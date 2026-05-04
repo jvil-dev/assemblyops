@@ -1,0 +1,37 @@
+# --- Node.js ---
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+dist/
+coverage/
+
+# --- Spring Boot (Java/Maven/Gradle) ---
+target/
+build/
+*.class
+*.jar
+*.war
+*.ear
+.settings/
+.project
+.classpath
+.idea/
+*.iml
+*.ipr
+*.iws
+.sts4-cache/
+.springBeans
+
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
+
+# --- Docs ---
+development_reference_docs/
