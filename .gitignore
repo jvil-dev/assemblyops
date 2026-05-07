@@ -35,3 +35,10 @@ Thumbs.db
 
 # --- Docs ---
 development_reference_docs/
+
+# --- Firebase ---
+.firebase/
+
+# --- Claude Code ---
+.agents/
+skills-lock.json
