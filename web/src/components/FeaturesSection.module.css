@@ -1,0 +1,37 @@
+/* web/src/components/FeaturesSection.module.css
+   Heading + responsive grid: 1 column mobile, 3 columns ≥640px. */
+
+.section {
+  padding: var(--section-pad-y) 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 2.25rem;
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

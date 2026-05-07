@@ -1,17 +1,19 @@
 // web/src/App.tsx
-// Root composition for landing page
+// Composes the landing page sections in archive order.
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import ProblemSection from "./components/ProblemSection";
+import FeaturesSection from "./components/FeaturesSection";
+import Footer from "./components/Footer";
 
-function App() {
+export default function App() {
   return (
-    <h1
-      style={{
-        padding: "120px 24px",
-        textAlign: "center",
-        color: "var(--primary)",
-      }}>
-      AssemblyOps
-    </h1>
+    <>
+      <Navbar />
+      <Hero />
+      <ProblemSection />
+      <FeaturesSection />
+      <Footer />
+    </>
   );
 }
-
-export default App;
