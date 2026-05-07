@@ -31,6 +31,8 @@
 
   --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  --section-pad-y: 40px;
 }
 
 *,
@@ -46,4 +48,10 @@ body {
   color: var(--text-primary);
   background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
   min-height: 100vh;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --section-pad-y: 64px;
+  }
 }
