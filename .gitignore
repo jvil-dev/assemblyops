@@ -42,3 +42,4 @@ development_reference_docs/
 # --- Claude Code ---
 .agents/
 skills-lock.json
+development_reference_docs/
