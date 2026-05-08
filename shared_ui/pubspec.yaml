@@ -1,7 +1,7 @@
 name: shared_ui
-description: "A new Flutter package project."
+description: "AssemblyOps shared design system: tokens, primitives, and behavior wrappers consumed by /app and /admin via path dependency"
 version: 0.0.1
-homepage:
+publish_to: "none"
 
 environment:
   sdk: ^3.11.5
@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  google_fonts: ^8.1.0
 
 dev_dependencies:
   flutter_test:
