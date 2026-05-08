@@ -35,10 +35,8 @@ The archived iOS app at `/Users/jvil723/Developer/AssemblyOps 2/ios/JW_AssemblyO
 - `docs/architecture/NN-*.md` — ADR-style technical decision docs (auth flow, schema choices, design tokens, etc.). **Tracked.**
 - `docs/development_reference_docs/` — confidential JW reference material (CO/S documents, regional PDFs, locator images). **Gitignored — never committed.**
 
-## Git
+## Git, worktrees, TODO conventions
 
-- `main` — live production. `development` — staging. Feature branches off `development` named `feat/<sprint-id>-<slug>`.
-- All merges use `--no-ff` (create a merge commit). Never squash, never rebase-merge. Only Release PRs go `development` → `main`.
-- **Commits are scoped to a single task or feature on any branch.** Stage only the files relevant to that change; never combine unrelated changes into one commit. Run `git status` before staging and inspect with `git diff --staged` before committing.
+See [`docs/architecture/02-git-workflow.md`](./docs/architecture/02-git-workflow.md) for the full set: branch model, merge style (`--no-ff`), commit style (one task per commit, conventional prefixes, issue refs in subject), worktree convention, and the four-layer TODO/progress model (sprint issues, in-session sub-tasks, code-level `TODO`/`FIXME`/`HACK` prefixes, `backlog`-labeled GitHub issues).
 
-Refer to Global CLAUDE.md for solo-dev lifecycle, commit style, file headers, and Claude's role.
+Refer to Global CLAUDE.md for solo-dev lifecycle, file headers, and Claude's role.
