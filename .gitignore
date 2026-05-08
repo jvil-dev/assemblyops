@@ -34,6 +34,7 @@ build/
 Thumbs.db
 
 # --- Docs ---
+# Decision docs live in docs/architecture/ (tracked); the roadmap lives in docs/development_plans/ (tracked).
 development_reference_docs/
 
 # --- Firebase ---
