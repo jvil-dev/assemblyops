@@ -43,3 +43,19 @@ development_reference_docs/
 # --- Claude Code ---
 .agents/
 skills-lock.json
+
+# --- Flutter / Dart ---
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/pubspec.lock
+**/ios/Pods/
+**/ios/.symlinks/
+**/android/.gradle/
+**/android/local.properties
+**/.idea/
+**/.iml
