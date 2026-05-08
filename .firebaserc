@@ -1,0 +1,21 @@
+{
+  "projects": {
+    "default": "assemblyops"
+  },
+  "targets": {
+    "assemblyops": {
+      "hosting": {
+        "web": [
+          "assemblyops"
+        ],
+        "app": [
+          "assemblyops-app"
+        ],
+        "admin": [
+          "assemblyops-admin"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
