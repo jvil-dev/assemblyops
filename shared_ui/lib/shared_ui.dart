@@ -17,10 +17,13 @@ export 'tokens/department_colors.dart';
 export 'tokens/typography.dart';
 
 // Theme
-// (filled in once theme.dart exists)
+export 'theme.dart';
 
 // Widgets
-// (filled in as widget files land)
+export 'widgets/app_card.dart';
+export 'widgets/app_button.dart';
+export 'widgets/app_badge.dart';
+export 'widgets/status_pill.dart';
 
 // Behaviors
 // (filled in as behavior wrappers land)
