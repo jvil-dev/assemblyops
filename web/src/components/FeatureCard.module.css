@@ -1,0 +1,22 @@
+/* web/src/components/FeatureCard.module.css                                                                                              
+   White rounded card with shadow. */
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}

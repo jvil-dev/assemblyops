@@ -1,0 +1,57 @@
+/* web/src/styles/global.css
+   Global tokens, reset, and body styling for the AssemblyOps landing page.
+   Imported once from main.tsx; component CSS Modules reference these :root vars. */
+
+:root {
+  --primary: #1a365d;
+  --primary-tint: #2c5282;
+  --primary-light: rgba(26, 54, 93, 0.12);
+
+  --bg-top: #faf7f2;
+  --bg-bottom: #f5f0e8;
+
+  --card: #ffffff;
+  --card-secondary: #faf8f6;
+
+  --text-primary: #1a1a1a;
+  --text-secondary: #727272;
+  --text-tertiary: #999999;
+
+  --divider: rgba(0, 0, 0, 0.08);
+
+  --status-ok: #22c55e;
+  --status-warn: #f97316;
+  --status-error: #ef4444;
+
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-btn: 14px;
+  --radius-sm: 12px;
+  --radius-badge: 8px;
+
+  --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  --section-pad-y: 40px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  color: var(--text-primary);
+  background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
+  min-height: 100vh;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --section-pad-y: 64px;
+  }
+}
