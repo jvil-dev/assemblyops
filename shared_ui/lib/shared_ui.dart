@@ -24,6 +24,10 @@ export 'widgets/app_card.dart';
 export 'widgets/app_button.dart';
 export 'widgets/app_badge.dart';
 export 'widgets/status_pill.dart';
+export 'widgets/expandable_section.dart';
+export 'widgets/empty_state.dart';
+export 'widgets/page_layout.dart';
 
 // Behaviors
-// (filled in as behavior wrappers land)
+export 'behaviors/app_dialog.dart';
+export 'behaviors/app_toast.dart';
