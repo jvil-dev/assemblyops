@@ -15,6 +15,17 @@ final storyDirectories = <WidgetbookNode>[
     name: 'Structural',
     children: [_expandableSection(), _emptyState(), _pageLayout()],
   ),
+  WidgetbookFolder(
+    name: 'Auth',
+    children: [
+      _loginScreen(),
+      _signUpScreen(),
+      _forgotPasswordScreen(),
+      _verifyEmailScreen(),
+      _authLoadingScreen(),
+      _noAccessScreen(),
+    ],
+  ),
 ];
 
 WidgetbookComponent _appCard() => WidgetbookComponent(
@@ -253,6 +264,155 @@ WidgetbookComponent _pageLayout() => WidgetbookComponent(
           ],
         ),
       ),
+    ),
+  ],
+);
+
+WidgetbookComponent _loginScreen() => WidgetbookComponent(
+  name: 'LoginScreen',
+  useCases: [
+    WidgetbookUseCase(
+      name: 'Default',
+      builder: (c) => LoginScreen(
+        onGoogle: () async {},
+        onEmailPassword: (_, _) async {},
+        onForgotPassword: () {},
+        onSignUp: () {},
+      ),
+    ),
+    WidgetbookUseCase(
+      name: 'Loading',
+      builder: (c) => LoginScreen(
+        onGoogle: () async {},
+        onEmailPassword: (_, _) async {},
+        onForgotPassword: () {},
+        onSignUp: () {},
+        isLoading: true,
+      ),
+    ),
+    WidgetbookUseCase(
+      name: 'With error',
+      builder: (c) => LoginScreen(
+        onGoogle: () async {},
+        onEmailPassword: (_, _) async {},
+        onForgotPassword: () {},
+        onSignUp: () {},
+        errorMessage: 'Incorrect email or password.',
+      ),
+    ),
+  ],
+);
+
+WidgetbookComponent _signUpScreen() => WidgetbookComponent(
+  name: 'SignUpScreen',
+  useCases: [
+    WidgetbookUseCase(
+      name: 'Default',
+      builder: (c) => SignUpScreen(
+        onGoogle: () async {},
+        onEmailPassword: (_, _) async {},
+        onSignIn: () {},
+      ),
+    ),
+    WidgetbookUseCase(
+      name: 'Loading',
+      builder: (c) => SignUpScreen(
+        onGoogle: () async {},
+        onEmailPassword: (_, _) async {},
+        onSignIn: () {},
+        isLoading: true,
+      ),
+    ),
+    WidgetbookUseCase(
+      name: 'With error',
+      builder: (c) => SignUpScreen(
+        onGoogle: () async {},
+        onEmailPassword: (_, _) async {},
+        onSignIn: () {},
+        errorMessage: 'An account with that email already exists.',
+      ),
+    ),
+  ],
+);
+
+WidgetbookComponent _forgotPasswordScreen() => WidgetbookComponent(
+  name: 'ForgotPasswordScreen',
+  useCases: [
+    WidgetbookUseCase(
+      name: 'Initial',
+      builder: (c) =>
+          ForgotPasswordScreen(onSendReset: (_) async {}, onBack: () {}),
+    ),
+    WidgetbookUseCase(
+      name: 'Sent',
+      builder: (c) => ForgotPasswordScreen(
+        onSendReset: (_) async {},
+        onBack: () {},
+        isSent: true,
+      ),
+    ),
+    WidgetbookUseCase(
+      name: 'Loading',
+      builder: (c) => ForgotPasswordScreen(
+        onSendReset: (_) async {},
+        onBack: () {},
+        isLoading: true,
+      ),
+    ),
+  ],
+);
+
+WidgetbookComponent _verifyEmailScreen() => WidgetbookComponent(
+  name: 'VerifyEmailScreen',
+  useCases: [
+    WidgetbookUseCase(
+      name: 'Default',
+      builder: (c) => VerifyEmailScreen(
+        email: 'volunteer@example.com',
+        onResend: () async {},
+        onCheckVerified: () async {},
+        onSignOut: () {},
+      ),
+    ),
+    WidgetbookUseCase(
+      name: 'Resending',
+      builder: (c) => VerifyEmailScreen(
+        email: 'volunteer@example.com',
+        onResend: () async {},
+        onCheckVerified: () async {},
+        onSignOut: () {},
+        isResending: true,
+      ),
+    ),
+    WidgetbookUseCase(
+      name: 'Checking',
+      builder: (c) => VerifyEmailScreen(
+        email: 'volunteer@example.com',
+        onResend: () async {},
+        onCheckVerified: () async {},
+        onSignOut: () {},
+        isChecking: true,
+      ),
+    ),
+  ],
+);
+
+WidgetbookComponent _authLoadingScreen() => WidgetbookComponent(
+  name: 'AuthLoadingScreen',
+  useCases: [
+    WidgetbookUseCase(
+      name: 'Default',
+      builder: (c) => const AuthLoadingScreen(),
+    ),
+  ],
+);
+
+WidgetbookComponent _noAccessScreen() => WidgetbookComponent(
+  name: 'NoAccessScreen',
+  useCases: [
+    WidgetbookUseCase(
+      name: 'Default',
+      builder: (c) => NoAccessScreen(onSignOut: () {}),
     ),
   ],
 );
