@@ -16,9 +16,12 @@ Firebase Hosting multi-target on the `assemblyops` GCP project. `firebase.json` 
 
 ## Auth & Roles
 
-- Google OAuth via Firebase Auth on the client. SpringBoot validates Firebase ID tokens per request (stateless — no server session).
-- **Two roles:** `OVERSEER` and `VOLUNTEER`. Captains are Volunteers with a `captain_flag` permission, not a separate role.
-- First overseer is bootstrapped via `BOOTSTRAP_OVERSEER_EMAILS` env var. Volunteer invites work by pre-creating a `users` row keyed by email; the row's `auth_uid` is filled in on first Google sign-in.
+- **Identity provider:** Firebase Auth on the client — Google, Apple, Microsoft, Email/Password — with native forgot-password and email-verification flows. SpringBoot validates Firebase ID tokens per request (stateless — no server session). Email verification is required for Email/Password signups before app access; OAuth methods trust the provider's verification.
+- **Three roles:**
+  - **Volunteer** — default global role. Open sign-up; anyone with a verified email lands here.
+  - **Overseer** — *not* a global role. Earned per-department-per-event by purchasing access; stored in `event_assignments` (`user_id × event_id × department × is_overseer × granted_via`). Purchase pipeline is deferred indefinitely; `event_assignments` rows can be created manually for testing until then.
+  - **Admin** — small allowlist via `BOOTSTRAP_ADMIN_EMAILS` env var on the backend (client-side stub for the admin portal until backend lands in Sprint 1.4). Gates `admin.assemblyops.org`.
+- Captains: still Volunteers with a per-event `captain_flag` on the same `event_assignments` row, not a separate role.
 
 ## Departments (build order)
 
