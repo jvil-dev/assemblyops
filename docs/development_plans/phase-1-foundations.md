@@ -8,10 +8,11 @@
 
 | Sprint                                                               | Status          | Issue                                                  | Decision Doc                                                |
 | -------------------------------------------------------------------- | --------------- | ------------------------------------------------------ | ----------------------------------------------------------- |
-| 1.1 — Polyglot monorepo + Flutter scaffold + multi-target hosting    | ✅ Merged       | [#4](https://github.com/jvil-dev/assemblyops/issues/4) | [01-monorepo-layout](../architecture/01-monorepo-layout.md) |
-| 1.2 — Design system extraction (Flutter ThemeData + widgets)         | 🟡 Ready for PR | [#8](https://github.com/jvil-dev/assemblyops/issues/8) | [03-design-system](../architecture/03-design-system.md)     |
-| 1.3 — Auth + role detection (Flutter + Riverpod + go_router)         | ⚪ Pending      | —                                                      | —                                                           |
-| 1.4 — Backend skeleton (SpringBoot + GraphQL + Postgres + Cloud Run) | ⚪ Pending      | —                                                      | —                                                           |
+| 1.1 — Polyglot monorepo + Flutter scaffold + multi-target hosting    | ✅ Merged         | [#4](https://github.com/jvil-dev/assemblyops/issues/4)   | [01-monorepo-layout](../architecture/01-monorepo-layout.md) |
+| 1.2 — Design system extraction (Flutter ThemeData + widgets)         | ✅ Merged         | [#8](https://github.com/jvil-dev/assemblyops/issues/8)   | [03-design-system](../architecture/03-design-system.md)     |
+| 1.3a — Auth shell + Google + Email/Password (Flutter + Firebase)     | 🟢 In progress   | [#10](https://github.com/jvil-dev/assemblyops/issues/10) | [04-auth-and-roles](../architecture/04-auth-and-roles.md)   |
+| 1.3b — Apple + Microsoft providers                                   | ⚪ Pending        | —                                                        | —                                                           |
+| 1.4 — Backend skeleton (SpringBoot + GraphQL + Postgres + Cloud Run) | ⚪ Pending        | —                                                        | —                                                           |
 
 ---
 
@@ -84,10 +85,34 @@
 - Golden-image tests — Sprint 2A.1 or later.
 - Custom `TabBar` styling — Material defaults are fine for now.
 
-## Sprint 1.3 — Auth + role detection
+## Sprint 1.3 — Auth + role detection (Flutter + Firebase Auth)
 
-See roadmap.
+Splits in two: **1.3a** (auth shell + Google + Email/Password + forgot password + role-model pivot) and **1.3b** (Apple + Microsoft providers, parallelizable with 1.4). The role-model pivot lands as the first 1–2 commits on the 1.3a branch — `CLAUDE.md` and `00-roadmap.md` no longer describe a global Overseer/Volunteer model with invite-only signup.
+
+### Sprint 1.3a — Auth shell + Google + Email/Password
+
+**Status:** 🟢 In progress
+**Started:** 2026-05-08
+**Issue:** [#10](https://github.com/jvil-dev/assemblyops/issues/10)
+**Decision doc:** [docs/architecture/04-auth-and-roles.md](../architecture/04-auth-and-roles.md) (drafted during this sprint)
+
+Targets:
+
+- Firebase Auth (Google + Email/Password) with the role-model pivot: Volunteer default, per-event Overseer (deferred), Admin allowlist.
+- `shared_ui/lib/auth/` — six stateless callback-based screens (login, signup, forgot password, verify email, auth loading, no access). No Firebase or Riverpod dep in `shared_ui`.
+- `app/lib/auth/` — Riverpod providers (`firebaseAuthProvider`, `authStateProvider`, `authActionsProvider`, `currentRoleProvider`), go_router with redirect guards, `firebase_options.dart`.
+- `admin/lib/auth/` — same shape with admin-allowlist enforcement and a dedicated `/no-access` screen (no router loop).
+- Schema designed (lands in 1.4): `users` + `event_assignments`. `auth_uid` is `NOT NULL` since invite-only signup is gone.
+- Custom auth-email sender: `noreply@assemblyops.org` via Workspace.
+- Firebase Console: enable email enumeration protection + auto-link.
+
+### Sprint 1.3b — Apple + Microsoft providers
+
+**Status:** ⚪ Pending
+**Issue:** —
+
+Sibling sprint. Bounded in code, unbounded in console wandering. Apple Developer portal (Services ID, `.well-known/apple-developer-domain-association.txt`, return URLs to `assemblyops.firebaseapp.com/__/auth/handler`, .p8 key); Azure AD multi-tenant + personal accounts registration with a 24-month client secret; Firebase Console provider toggles. Code changes ~5 commits. Parallelizable with Sprint 1.4 — no overlap.
 
 ## Sprint 1.4 — Backend skeleton
 
-See roadmap. Closes the Phase 1 end-to-end smoke loop.
+See roadmap. Closes the Phase 1 end-to-end smoke loop. Opens after 1.3a merges; can run alongside 1.3b.
