@@ -1,9 +1,4 @@
-/// Public API of the shared_ui package.
-///
-/// Tokens, theme, widgets, and behavior wrappers are exported from here
-/// so `/app`, `/admin`, and `widgetbook_app` only need a single import:
-///
-///     import 'package:shared_ui/shared_ui.dart';
+/// Public API of the shared_ui package — tokens, theme, widgets, behaviors.
 
 library;
 
@@ -31,3 +26,11 @@ export 'widgets/page_layout.dart';
 // Behaviors
 export 'behaviors/app_dialog.dart';
 export 'behaviors/app_toast.dart';
+
+// Auth Screens
+export 'auth/auth_loading_screen.dart';
+export 'auth/forgot_password_screen.dart';
+export 'auth/login_screen.dart';
+export 'auth/no_access_screen.dart';
+export 'auth/signup_screen.dart';
+export 'auth/verify_email_screen.dart';
