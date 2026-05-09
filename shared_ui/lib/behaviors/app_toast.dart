@@ -9,9 +9,10 @@ enum AppToastKind { info, success, warning, error }
 
 /// Shows a Material SnackBar with AssemblyOps chrome.
 ///
-/// Renders a floating, status-colored bar with a leading icon, the message,
-/// and auto-dismiss after the Material default (~4s). Returns the standard
-/// [ScaffoldFeatureController] so callers can manually dismiss or await close.
+/// Features:
+///   - Floating, status-colored bar with leading icon
+///   - Auto-dismiss after Material default (~4s)
+///   - Returns [ScaffoldFeatureController] for manual dismiss or await close
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showAppToast(
   BuildContext context, {
   required String message,

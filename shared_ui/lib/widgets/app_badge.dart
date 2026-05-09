@@ -6,8 +6,10 @@ import '../tokens/spacing.dart';
 
 /// Small label or count chip with a tinted background.
 ///
-/// Pass [color] to control the tint (defaults to the brand primary). The
-/// background renders at 12% opacity; the foreground uses the solid color.
+/// Features:
+///   - 12% opacity tint background, solid foreground
+///   - Optional [color] override (defaults to brand primary)
+///   - Optional leading icon
 class AppBadge extends StatelessWidget {
   final String label;
   final Color? color;

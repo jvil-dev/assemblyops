@@ -5,13 +5,9 @@ import '../tokens/spacing.dart';
 
 /// Standard page wrapper.
 ///
-/// Renders a vertical gradient background from `pageBackgroundTop` to
-/// `pageBackgroundBottom` (mode-aware via `AppTokens`), applies 20pt
-/// horizontal padding via `AppSpacing.screenEdge`, and wraps content in a
-/// `SingleChildScrollView` for natural overflow handling.
-///
-/// Pass `scrollable: false` to suppress the scroll view (useful for layouts
-/// that manage their own scrolling, e.g. lists with pull-to-refresh).
+/// Renders a vertical gradient background, 20pt horizontal padding, and a
+/// scroll view. Pass `scrollable: false` for layouts that manage their own
+/// scrolling.
 class PageLayout extends StatelessWidget {
   final Widget child;
   final bool scrollable;

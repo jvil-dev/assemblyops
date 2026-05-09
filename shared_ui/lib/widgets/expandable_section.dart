@@ -6,9 +6,10 @@ import '../tokens/spacing.dart';
 
 /// Expandable section with a tappable header and an animated body.
 ///
-/// The chevron rotates 0→90° on expand using `AppDurations.quick`. The body
-/// animates open/closed via [AnimatedSize]. Used for collapsible reference
-/// material (e.g., the CO-23 attendant info guide).
+/// Features:
+///   - Chevron rotates 0→90° on expand (`AppDurations.quick`)
+///   - Body animates open/closed via [AnimatedSize]
+///   - Used for collapsible reference material (CO-23 info guide, etc)
 class ExpandableSection extends StatefulWidget {
   final String title;
   final Widget child;

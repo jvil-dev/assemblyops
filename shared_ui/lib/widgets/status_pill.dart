@@ -9,9 +9,8 @@ enum StatusPillKind { pending, accepted, declined, info, success, warning }
 
 /// Pill-shaped chip with a colored dot + label.
 ///
-/// The dot uses the solid status color; the pill background renders at 12%
-/// opacity. Use to surface the state of an item (assignment status, alert
-/// resolution, etc.).
+/// Surfaces item state (assignment status, alert resolution, etc).
+/// Kinds via [StatusPillKind]: pending / accepted / declined / info / success / warning.
 class StatusPill extends StatelessWidget {
   final String label;
   final StatusPillKind kind;

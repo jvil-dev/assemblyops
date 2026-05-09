@@ -22,8 +22,11 @@ enum AppButtonKind {
 
 /// Primary interactive button.
 ///
-/// Scale-press feedback (0.97 over 150ms) on tap. Pass `onPressed: null` to
-/// render a disabled (45% opacity, non-interactive) button.
+/// Features:
+///   - Scale-press feedback (0.97 over 150ms)
+///   - Disabled state via `onPressed: null` (45% opacity)
+///   - Primary / secondary / ghost / destructive kinds via [AppButtonKind]
+///   - Optional leading icon
 class AppButton extends StatefulWidget {
   final String label;
   final VoidCallback? onPressed;

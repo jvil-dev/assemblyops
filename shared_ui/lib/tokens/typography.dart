@@ -3,10 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Typography scale for the design system.
 ///
-/// Sizes/weights match iOS reference exactly. Family is DM Sans for everything
-/// except `monospaced`, which uses Roboto Mono. iOS-named getters (`largeTitle`,
-/// `title`, etc.) keep porting straightforward; `textTheme(Color)` maps these
-/// onto Material's slots so `ThemeData.textTheme` works as expected.
+/// DM Sans for everything except `monospaced` (Roboto Mono).
+/// `textTheme(Color)` maps onto Material's slots.
 abstract final class AppTypography {
   AppTypography._();
 

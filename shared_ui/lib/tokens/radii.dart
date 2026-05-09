@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Corner radius scale. Mode-agnostic.
 ///
-/// Mirrors iOS: badge=8, small=12, button=14, medium=16, large=24, pill=100.
+/// Values: badge=8, small=12, button=14, medium=16, large=24, pill=100.
 /// `*Radius` getters are pre-built `BorderRadius.circular` helpers.
 abstract final class AppRadii {
   AppRadii._();

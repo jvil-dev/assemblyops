@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 /// Shadow stacks for cards and other floating surfaces.
 ///
-/// `card` is the dual-layer chrome used by `AppCard`: a 6%-opacity black drop
-/// (20px blur, 8px below) + a 4%-opacity halo (8px blur, 2px below). Together
-/// they read as a subtle, lifted card.
-///
-/// `subtle` is a single-layer shadow for nested elements (card-within-card).
+/// `card` is the dual-layer chrome used by `AppCard`: 6% black drop
+/// (20px blur, 8px below) + 4% halo (8px blur, 2px below).
+/// `subtle` is a single-layer shadow for nested elements.
 abstract final class AppShadows {
   AppShadows._();
 

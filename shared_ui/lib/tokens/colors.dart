@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Color tokens for the AssemblyOps design system.
+/// Color tokens for the design system.
 ///
-/// Pure consts; light and dark variants exposed as separate constants so they
-/// can be referenced explicitly when building `ThemeData`. Mode-aware access
-/// through `Theme.of(context)` happens via `AppTokens` (defined in
-/// `theme.dart`). Values mirror the iOS `AppTheme.swift` reference verbatim.
-///
-///
+/// Pure const light + dark variants. Mode-aware access via `AppTokens`
+/// (see `theme.dart`).
 abstract final class AppColors {
   AppColors._();
 

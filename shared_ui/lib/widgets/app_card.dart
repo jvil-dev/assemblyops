@@ -17,11 +17,12 @@ enum AppCardKind {
   secondary,
 }
 
-/// Rounded surface used for content blocks throughout the app.
+/// Rounded surface for content blocks throughout the app.
 ///
-/// Default chrome mirrors the iOS card: medium-radius corner, dual-layer
-/// shadow, 20pt internal padding. Provide [onTap] for tappable cards
-/// (a 0.97 scale-press feedback animates while pressed).
+/// Features:
+///   - Medium-radius corner, dual-layer shadow, 20pt internal padding
+///   - Optional [onTap] with 0.97 scale-press feedback
+///   - Primary / secondary kinds via [AppCardKind]
 class AppCard extends StatefulWidget {
   final Widget child;
   final AppCardKind kind;

@@ -1,8 +1,4 @@
 /// Animation durations used across the design system.
-///
-/// Curves are imported per-widget from `package:flutter/animation.dart`
-/// (typically `Curves.easeInOut` for `quick`, `Curves.easeOut` for
-/// `standard`).
 abstract final class AppDurations {
   AppDurations._();
 

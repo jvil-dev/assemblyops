@@ -4,11 +4,12 @@ import 'tokens/colors.dart';
 import 'tokens/radii.dart';
 import 'tokens/typography.dart';
 
-/// Mode-aware design tokens that don't map cleanly to Material's `ColorScheme`.
+/// Mode-aware design tokens that don't fit Material's `ColorScheme`.
 ///
-/// Access via `Theme.of(context).extension<AppTokens>()!` — guaranteed non-null
-/// because every `AppTheme.light()` / `AppTheme.dark()` registers the extension
-/// on the resulting `ThemeData`.
+/// Usage:
+/// ```dart
+/// final tokens = Theme.of(context).extension<AppTokens>()!;
+/// ```
 @immutable
 class AppTokens extends ThemeExtension<AppTokens> {
   final Color pageBackgroundTop;
@@ -83,11 +84,11 @@ class AppTokens extends ThemeExtension<AppTokens> {
   }
 }
 
-/// AssemblyOps app theme.
+/// Material `ThemeData` factories for light and dark modes.
 ///
-/// `light()` / `dark()` return `ThemeData` with our color scheme, text theme,
-/// card/button shapes, and an `AppTokens` ThemeExtension carrying mode-aware
-/// extras (gradient stops, tertiary text color, divider).
+/// Usage:
+///   theme: AppTheme.light(),
+///   darkTheme: AppTheme.dark(),
 abstract final class AppTheme {
   AppTheme._();
 

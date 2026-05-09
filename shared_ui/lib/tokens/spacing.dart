@@ -1,8 +1,7 @@
-/// Spacing scale, in logical pixels. Mode-agnostic.
+/// Spacing scale in logical pixels. Mode-agnostic.
 ///
-/// Mirrors the iOS reference exactly: xs=4, s=8, m=12, l=16, xl=24, xxl=32.
-/// `screenEdge` is the page horizontal padding; `cardPadding` is the internal
-/// padding of `AppCard`.
+/// Values: xs=4, s=8, m=12, l=16, xl=24, xxl=32.
+/// `screenEdge` for page horizontal padding; `cardPadding` for `AppCard`.
 abstract final class AppSpacing {
   AppSpacing._();
 

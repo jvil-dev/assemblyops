@@ -6,8 +6,8 @@ import '../tokens/spacing.dart';
 /// Shows a Material dialog with AssemblyOps chrome.
 ///
 /// Wraps [showDialog] with our card surface (large radius, 24pt padding).
-/// `builder` receives the dialog [BuildContext]; return your dialog body
-/// (typically a Column with a title, content, and action buttons).
+/// `builder` returns the dialog body — typically a Column with title,
+/// content, and action buttons.
 Future<T?> showAppDialog<T>({
   required BuildContext context,
   required Widget Function(BuildContext) builder,

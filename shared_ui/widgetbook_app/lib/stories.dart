@@ -4,8 +4,7 @@ import 'package:widgetbook/widgetbook.dart';
 
 /// Widgetbook stories for every shared_ui widget.
 ///
-/// One `WidgetbookComponent` per widget; each component groups its
-/// `WidgetbookUseCase`s. Folders organize the gallery navigation.
+/// One `WidgetbookComponent` per widget, grouped into `WidgetbookFolder`s.
 
 final storyDirectories = <WidgetbookNode>[
   WidgetbookFolder(

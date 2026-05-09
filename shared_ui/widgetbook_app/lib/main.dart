@@ -6,6 +6,7 @@ import 'stories.dart';
 
 void main() => runApp(const WidgetbookApp());
 
+/// Widgetbook gallery entry point.
 class WidgetbookApp extends StatelessWidget {
   const WidgetbookApp({super.key});
 

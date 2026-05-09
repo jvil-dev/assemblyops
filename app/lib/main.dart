@@ -3,6 +3,8 @@ import 'package:shared_ui/shared_ui.dart';
 
 void main() => runApp(const AssemblyOpsApp());
 
+/// AssemblyOps entry point. Bootstrap home renders the design system smoke
+/// screen.
 class AssemblyOpsApp extends StatelessWidget {
   const AssemblyOpsApp({super.key});
 

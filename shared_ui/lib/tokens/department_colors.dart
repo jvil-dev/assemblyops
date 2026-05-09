@@ -5,9 +5,8 @@ enum Department { attendant, audio, video, stage, parking }
 
 /// Department color theming.
 ///
-/// Each department has an accent color used for icons, status chips, and
-/// dashboard tile tinting. Mode-agnostic — the same color works in light and
-/// dark modes (matches iOS `DepartmentColors.swift` asset definitions).
+/// Each department has an accent for icons, status chips, and dashboard
+/// tinting. Mode-agnostic.
 abstract final class DepartmentTheme {
   DepartmentTheme._();
 
