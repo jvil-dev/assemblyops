@@ -1,0 +1,14 @@
+{
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "assemblyops",
+          "configurations": {
+            "web": "1:957619552687:web:32f633aacb81d5e3daef5a"
+          }
+        }
+      }
+    }
+  }
+}

@@ -52,7 +52,6 @@ skills-lock.json
 **/.packages
 **/.pub-cache/
 **/.pub/
-**/pubspec.lock
 **/ios/Pods/
 **/ios/.symlinks/
 **/android/.gradle/
