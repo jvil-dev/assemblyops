@@ -40,8 +40,11 @@ class PageLayout extends StatelessWidget {
           colors: [tokens.pageBackgroundTop, tokens.pageBackgroundBottom],
         ),
       ),
-      child: SafeArea(
-        child: scrollable ? SingleChildScrollView(child: body) : body,
+      child: Material(
+        type: MaterialType.transparency,
+        child: SafeArea(
+          child: scrollable ? SingleChildScrollView(child: body) : body,
+        ),
       ),
     );
   }
