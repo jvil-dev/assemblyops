@@ -181,7 +181,7 @@ Sprint 1.3 splits in two to keep risk manageable. Apple + Microsoft each have su
 
 #### Sprint 1.3a — Auth shell + Google + Email/Password
 
-**Objective:** stand up Firebase Auth with Google + Email/Password (the two simplest providers), forgot-password via Firebase's native email-link flow, email-verification gate for Email/Password, Riverpod state, and go_router with role-based redirects. Mirror the wiring in `/admin` with an admin allowlist + dedicated `/no-access` rejection screen. Bundles the role-model pivot docs update as the first commits on the same branch.
+**Objective:** stand up Firebase Auth with Google + Email/Password (the two simplest providers), forgot-password via Firebase's native email-link flow, email-verification gate for Email/Password, Riverpod state, and go_router with role-based redirects, all on `/app`. Bundles the role-model pivot docs update as the first commits on the same branch. (Originally also scoped to mirror the wiring in `/admin` with an admin allowlist + `/no-access` rejection screen — deferred mid-sprint; see [phase-1-foundations.md](./phase-1-foundations.md) for the defer note.)
 
 **Acceptance criteria**
 
@@ -207,7 +207,7 @@ Sprint 1.3 splits in two to keep risk manageable. Apple + Microsoft each have su
 - [ ] Apple sign-in works on Firebase Hosting preview channel (Apple requires HTTPS — won't work on localhost)
 - [ ] Microsoft sign-in works on localhost and Hosting preview, for both personal `outlook.com` accounts and multi-tenant work-school accounts
 - [ ] Apple private-relay email flow works (account created with `xxx@privaterelay.appleid.com`)
-- [ ] Apple domain-association files load at `app.assemblyops.org/.well-known/apple-developer-domain-association.txt` and the admin equivalent
+- [ ] Apple domain-association file loads at `app.assemblyops.org/.well-known/apple-developer-domain-association.txt`
 - [ ] All four sign-in methods visible in the Widgetbook `LoginScreen` story
 - [ ] Microsoft client secret expiration date documented in code (`HACK:` comment) and on the user's calendar
 - [ ] ADR updated (or sibling `05-oauth-providers.md` if it grows long) with Apple + Microsoft sections
@@ -219,7 +219,7 @@ Sprint 1.3 splits in two to keep risk manageable. Apple + Microsoft each have su
 
 #### Bootstrap mechanism
 
-- `BOOTSTRAP_ADMIN_EMAILS` env var → Spring `ApplicationRunner` ensures Admin rows exist on backend boot. Replaces the old `BOOTSTRAP_OVERSEER_EMAILS` mechanism. Sprint 1.3 stubs this client-side in `admin/lib/auth/auth_providers.dart`; Sprint 1.4 lands the real env-var-driven version.
+- `BOOTSTRAP_ADMIN_EMAILS` env var → Spring `ApplicationRunner` ensures Admin rows exist on backend boot. Replaces the old `BOOTSTRAP_OVERSEER_EMAILS` mechanism. Sprint 1.3a stubs this client-side in `app/lib/auth/auth_providers.dart` (the `_kAdminAllowlist` const consumed by `currentRoleProvider`); Sprint 1.4 lands the real env-var-driven version.
 
 ---
 
