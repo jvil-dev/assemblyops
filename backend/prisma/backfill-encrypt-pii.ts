@@ -8,9 +8,11 @@
  *
  * Idempotent: Skips rows that already contain base64-encoded encrypted data.
  */
-import 'dotenv/config';
+import { config as loadEnv } from 'dotenv-flow';
 import { PrismaClient } from '@prisma/client';
 import { encryptField } from '../src/utils/encryption.js';
+
+loadEnv();
 
 const prisma = new PrismaClient();
 

@@ -8,8 +8,10 @@
  *
  * Used by: services/notificationService.ts
  */
-import 'dotenv/config';
+import { config as loadEnv } from 'dotenv-flow';
 import admin from 'firebase-admin';
+
+loadEnv();
 
 const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT;
 

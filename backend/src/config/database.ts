@@ -21,10 +21,12 @@
  *
  * Used by: All services, resolvers, and context.ts
  */
-import 'dotenv/config';
+import { config as loadEnv } from 'dotenv-flow';
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import pg from 'pg';
+
+loadEnv();
 
 // Enable SSL for external connections (Cloud SQL, Supabase, etc.)
 const useSSL = process.env.DATABASE_SSL === 'true';

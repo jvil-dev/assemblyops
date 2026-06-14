@@ -16,10 +16,12 @@
  *   - npm run prisma:generate: Generate Prisma client
  *   - npm run prisma:seed: Run seed script
  *
- * Note: Uses dotenv/config to load .env file for DATABASE_URL
+ * Note: Uses dotenv/config to load .env.<NODE_ENV> file for DATABASE_URL / DIRECT_URL
  */
-import 'dotenv/config';
+import { config as loadEnv } from 'dotenv-flow';
 import { defineConfig } from 'prisma/config';
+
+loadEnv();
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
