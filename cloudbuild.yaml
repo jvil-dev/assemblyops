@@ -2,80 +2,93 @@
 #
 # Triggered on push to main (configured in GCP Console).
 # Builds Docker image, pushes to Artifact Registry, runs database
-# migrations via Cloud SQL Auth Proxy, then deploys to Cloud Run.
+# migrations against Neon Postgres, then deploys to Cloud Run.
 #
 # Prerequisites (GCP Console):
 #   - Cloud Build service account needs:
-#     - Cloud SQL Client role (roles/cloudsql.client)
 #     - Secret Manager Secret Accessor role (roles/secretmanager.secretAccessor)
-#   - Secret "DIRECT_URL" in Secret Manager with value:
-#     postgresql://postgres:<PASSWORD>@127.0.0.1:5433/production-db
-#     (localhost:5433 because Cloud SQL Auth Proxy runs on that port during build)
+#   - Secret "DIRECT_URL" in Secret Manager set to the Neon DIRECT (non-pooled)
+#     connection string, e.g.:
+#     postgresql://<user>:<pwd>@<endpoint>.us-east-1.aws.neon.tech/<db>?sslmode=require
 
 steps:
   # Build the Docker image
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: "gcr.io/cloud-builders/docker"
     args:
-      - 'build'
-      - '-t'
-      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}'
-      - '-t'
-      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:latest'
-      - './backend'
+      - "build"
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}"
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:latest"
+      - "./backend"
 
   # Push the image to Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: "gcr.io/cloud-builders/docker"
     args:
-      - 'push'
-      - '--all-tags'
-      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}'
+      - "push"
+      - "--all-tags"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}"
 
-  # Run database migrations via Cloud SQL Auth Proxy
-  - name: '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}'
-    entrypoint: 'sh'
-    dir: '/app'
-    args:
-      - '-c'
-      - |
-        echo "Downloading Cloud SQL Auth Proxy..."
-        wget -q https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.14.3/cloud-sql-proxy.linux.amd64 -O /tmp/cloud-sql-proxy
-        chmod +x /tmp/cloud-sql-proxy
-        echo "Starting Cloud SQL Auth Proxy..."
-        /tmp/cloud-sql-proxy --port=5433 ${_CLOUD_SQL_INSTANCE} &
-        PROXY_PID=$$!
-        sleep 3
-        echo "Running database migrations..."
-        npx prisma migrate deploy
-        RESULT=$$?
-        kill $$PROXY_PID 2>/dev/null
-        exit $$RESULT
-    secretEnv: ['DIRECT_URL']
+  # Run database migrations directly against Neon
+  - name: "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}"
+    entrypoint: "sh"
+    dir: "/app"
+    args: ["-c", "npx prisma migrate deploy"]
+    secretEnv: ["DIRECT_URL"]
 
   # Deploy to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
     args:
-      - 'run'
-      - 'deploy'
-      - '${_SERVICE}'
-      - '--image'
-      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}'
-      - '--region'
-      - '${_REGION}'
-      - '--platform'
-      - 'managed'
+      - "run"
+      - "deploy"
+      - "${_SERVICE}"
+      - "--image"
+      - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}"
+      - "--region"
+      - "${_REGION}"
+      - "--platform"
+      - "managed"
 
 substitutions:
   _REGION: us-east1
   _REPOSITORY: assemblyops
   _IMAGE: assemblyops-api
   _SERVICE: assemblyops-api
-  _CLOUD_SQL_INSTANCE: 'assemblyops:us-east4:assemblyops-prod-db'
 
 availableSecrets:
   secretManager:
-    - versionName: projects/${PROJECT_ID}/secrets/DIRECT_URL/versions/latest
-      env: 'DIRECT_URL'
+    # Run database migrations directly against Neon
+    - name: "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}"
+      entrypoint: "sh"
+      dir: "/app"
+      args: ["-c", "npx prisma migrate deploy"]
+      secretEnv: ["DIRECT_URL"]
 
-options:
-  logging: CLOUD_LOGGING_ONLY
+    # Deploy to Cloud Run
+    - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+      entrypoint: gcloud
+      args:
+        - "run"
+        - "deploy"
+        - "${_SERVICE}"
+        - "--image"
+        - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPOSITORY}/${_IMAGE}:${SHORT_SHA}"
+        - "--region"
+        - "${_REGION}"
+        - "--platform"
+        - "managed"
+
+  substitutions:
+    _REGION: us-east1
+    _REPOSITORY: assemblyops
+    _IMAGE: assemblyops-api
+    _SERVICE: assemblyops-api
+
+  availableSecrets:
+    secretManager:
+      - versionName: projects/${PROJECT_ID}/secrets/DIRECT_URL/versions/latest
+        env: "DIRECT_URL"
+
+  options:
+    logging: CLOUD_LOGGING_ONLY
