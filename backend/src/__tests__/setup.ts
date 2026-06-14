@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import { config as loadEnv } from 'dotenv-flow';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -8,6 +8,8 @@ import typeDefs from '../graphql/schema/index.js';
 import resolvers from '../graphql/resolvers/index.js';
 import { createContext, Context } from '../graphql/context.js';
 import { cleanupTestData } from './testHelpers.js';
+
+loadEnv();
 
 let app: express.Application;
 let server: ApolloServer<Context>;
@@ -33,8 +35,12 @@ export async function createTestApp() {
       const { NotificationService } = await import('../services/notificationService.js');
 
       const now = new Date();
-      const tomorrowStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1));
-      const tomorrowEnd = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 2));
+      const tomorrowStart = new Date(
+        Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
+      );
+      const tomorrowEnd = new Date(
+        Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 2)
+      );
 
       const meetings = await prisma.attendantMeeting.findMany({
         where: { meetingDate: { gte: tomorrowStart, lt: tomorrowEnd } },
