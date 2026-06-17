@@ -23,7 +23,6 @@ out/
 .classpath
 .settings/
 JW_AssemblyOps.code-workspace
-CLAUDE.md
 operations.graphql
 schema.graphql
 
