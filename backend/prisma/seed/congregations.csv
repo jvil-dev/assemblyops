@@ -170,7 +170,7 @@ White Clay - Newark DE,Delaware,,en
 Airport French - Auburn ME,Maine,,fr
 Albion - ME,Maine,,en
 Auburn - ME,Maine,,en
-Back Cove Lingala - Portland ME,Maine,,Lingala
+Back Cove Lingala - Portland ME,Maine,,ln
 Bangor - ME,Maine,,en
 Bar Harbor - ME,Maine,,en
 Bath - ME,Maine,,en
@@ -273,7 +273,7 @@ Central Mandarin Chinese - Boston MA,Massachusetts,NY-44-A-CHM,ch
 Central Portuguese - Leominster MA,Massachusetts,MA-7-A-T,pt
 Central Spanish - Boston MA,Massachusetts,MA-6-S,es
 Central Spanish - Lawrence MA,Massachusetts,MA-10-S,es
-Chelmsford - MA,Massachusetts,NH-1,en
+Chelmsford - MA,Massachusetts,NH-1-A,en
 College Square - Springfield MA,Massachusetts,MA-9,en
 County Sign Language - New Bedford MA,Massachusetts,NY-42-B-ASL,ase
 Cummins - Boston MA,Massachusetts,MA-2,en
@@ -292,7 +292,7 @@ East Longmeadow - Springfield MA,Massachusetts,MA-9,en
 Eastham - MA,Massachusetts,MA-8,en
 English - Ashland MA,Massachusetts,MA-13,en
 English - Buzzards Bay MA,Massachusetts,MA-8,en
-English - Fitchburg MA,Massachusetts,NH-1,en
+English - Fitchburg MA,Massachusetts,NH-1-A,en
 English - Holyoke MA,Massachusetts,MA-3,en
 English - Lawrence MA,Massachusetts,MA-1,en
 English - Methuen MA,Massachusetts,ME-2,en
@@ -312,7 +312,7 @@ Fellsway Spanish - Stoneham MA,Massachusetts,MA-10-S,es
 Forest Park - Springfield MA,Massachusetts,MA-9,en
 Franklin - MA,Massachusetts,MA-11,en
 Franklin Field - Boston MA,Massachusetts,MA-2,en
-Gardner - MA,Massachusetts,NH-1,en
+Gardner - MA,Massachusetts,NH-1-A,en
 Gloucester - MA,Massachusetts,MA-1,en
 Great Barrington - MA,Massachusetts,MA-3,en
 Greenfield - MA,Massachusetts,MA-3,en
@@ -322,7 +322,7 @@ Haitian Creole - Mattapan MA,Massachusetts,MA-14-CR,ht
 Haitian Creole - Somerville MA,Massachusetts,MA-14-CR,ht
 Haitian Creole Group - Central - Leominster MA,Massachusetts,,ht
 Harwich - MA,Massachusetts,MA-8,en
-Highlands - Lowell MA,Massachusetts,NH-1,en
+Highlands - Lowell MA,Massachusetts,NH-1-A,en
 Holbrook - MA,Massachusetts,MA-2,en
 Hopedale - MA,Massachusetts,,en
 Hyannis - MA,Massachusetts,MA-8,en
@@ -342,7 +342,7 @@ Martha's Vineyard - MA,Massachusetts,MA-8,en
 Martha's Vineyard MA,Massachusetts,,en
 Mashpee - MA,Massachusetts,MA-8,en
 Mattapan - Boston MA,Massachusetts,MA-2,en
-Maynard - MA,Massachusetts,NH-1,en
+Maynard - MA,Massachusetts,NH-1-A,en
 Metropolitan - Boston MA,Massachusetts,MA-1,en
 Middleboro - MA,Massachusetts,MA-8,en
 Mount Tom Spanish - Holyoke MA,Massachusetts,MA-15-S,es
@@ -366,7 +366,7 @@ Oxford - MA,Massachusetts,MA-13,en
 Palmer - MA,Massachusetts,MA-9,en
 Parker Spanish - Springfield MA,Massachusetts,MA-15-S,es
 Pearl Haitian Creole - Stoughton MA,Massachusetts,MA-14-CR,ht
-Pepperell - MA,Massachusetts,NH-1,en
+Pepperell - MA,Massachusetts,NH-1-A,en
 Pioneer Valley Swahili - Springfield MA,Massachusetts,NY-50-A-SW,sw
 Pittsfield - MA,Massachusetts,MA-3,en
 Plymouth - MA,Massachusetts,MA-8,en
@@ -438,7 +438,7 @@ West Haitian Creole - Lowell MA,Massachusetts,MA-14-CR,ht
 West Haitian Creole - Worcester MA,Massachusetts,MA-14-CR,ht
 West Portuguese - Boston MA,Massachusetts,MA-7-A-T,pt
 West Spanish - Springfield MA,Massachusetts,MA-15-S,es
-Whalom - Leominster MA,Massachusetts,NH-1,en
+Whalom - Leominster MA,Massachusetts,NH-1-A,en
 Wilmington - MA,Massachusetts,MA-1,en
 "Edmundston, NB",NB,,fr
 "Fundy Coast, Oak Bay, NB",NB,,en
@@ -473,7 +473,6 @@ Madison - NH,New Hampshire,NH-2,en
 Meredith - NH,New Hampshire,NH-2,en
 Merrimack - NH,New Hampshire,NH-1-A,en
 Merrimack River Swahili (Congo) - Concord NH,New Hampshire,NY-50-A-SW,sw
-Merrimack River Swahili (Congo) - Concord NH,New Hampshire,,Swahili (Congo)
 North - Franklin NH,New Hampshire,NH-2,en
 North - Manchester NH,New Hampshire,NH-1-A,en
 North - Rochester NH,New Hampshire,NH-2,en
@@ -755,7 +754,7 @@ Belmont Twi - New York NY,New York,,tw
 Bensonhurst English - New York NY,New York,,en
 Bensonhurst Georgian - New York NY,New York,,ka
 Bensonhurst Russian - New York NY,New York,,ru
-Bethlehem - NY,New York,NY-39,en
+Bethlehem - NY,New York,,en
 Bethpage - NY,New York,,en
 Beverly Haitian Creole - New York NY,New York,,ht
 Black River - NY,New York,,en
@@ -786,7 +785,6 @@ Bushwick Spanish - New York NY,New York,,es
 Cairo - NY,New York,,en
 Cambria Heights - New York NY,New York,,en
 Cambridge - NY,New York,,en
-Canandaigua - NY,New York,,en
 Canandaigua - NY,New York,,en
 Canarsie English - New York NY,New York,,en
 Canarsie Haitian Creole - New York NY,New York,,ht
@@ -825,7 +823,7 @@ Coes Neck Park - Uniondale NY,New York,,en
 Cold Spring Harbor - NY,New York,,en
 College Point Spanish - New York NY,New York,,es
 Colonial - New York NY,New York,,en
-Colonie - NY,New York,NY-6,en
+Colonie - NY,New York,,en
 Columbia - New York NY,New York,,en
 Conewango - NY,New York,,en
 Corning - NY,New York,,en
@@ -849,7 +847,7 @@ Dobbs Ferry - NY,New York,,en
 Dolgeville - NY,New York,,en
 Dorchester - New York NY,New York,,en
 Dover Plains - NY,New York,,en
-Duanesburg - NY,New York,NY-6,en
+Duanesburg - NY,New York,,en
 Dyckman Spanish - New York NY,New York,,es
 East - Beacon NY,New York,,en
 East - Bloomingburg NY,New York,,en
@@ -875,7 +873,6 @@ East Manhattan Spanish - New York NY,New York,,es
 East Meadow - Hempstead NY,New York,,en
 East New York - New York NY,New York,,en
 East Spanish - Rochester NY,New York,,es
-East Spanish - Rochester NY,New York,,es
 East Spanish - White Plains NY,New York,,es
 East Suffolk Haitian Creole - Central Islip NY,New York,,ht
 East Tremont Spanish - New York NY,New York,,es
@@ -885,7 +882,6 @@ Ebbets Field - New York NY,New York,,en
 Edenwald - New York NY,New York,,en
 Eggert - Buffalo NY,New York,,en
 Ellenville - NY,New York,,en
-Ellison Park - Rochester NY,New York,,en
 Ellison Park - Rochester NY,New York,,en
 Elmhurst Mandarin Chinese - New York NY,New York,,ch
 Elmhurst Spanish - New York NY,New York,,es
@@ -973,7 +969,6 @@ Hawks Nest - Port Jervis NY,New York,,en
 Hempstead Lake Haitian Creole - West Hempstead NY,New York,,ht
 Hempstead Lake Tagalog - West Hempstead NY,New York,,tl
 Henrietta - NY,New York,,en
-Henrietta - NY,New York,,en
 Heritage Trail - Middletown NY,New York,,en
 Herkimer - NY,New York,,en
 High Bridge - New York NY,New York,,en
@@ -995,7 +990,6 @@ Hunts Point - New York NY,New York,,en
 Hyde Park - NY,New York,,en
 Interborough - New York NY,New York,,en
 Intervale Spanish - New York NY,New York,,es
-Irondequoit - NY,New York,,en
 Irondequoit - NY,New York,,en
 Islip - NY,New York,,en
 Italian - Yonkers NY,New York,,it
@@ -1027,11 +1021,10 @@ Lafayette Spanish - Airmont NY,New York,,es
 Lafayette Spanish - New York NY,New York,,es
 Lake Ronkonkoma - NY,New York,,en
 Lakeshore - Rochester NY,New York,,en
-Lakeshore - Rochester NY,New York,,en
 Lakeview - Syracuse NY,New York,,en
 Lakewood - New York NY,New York,,en
 Lancaster - NY,New York,,en
-Latham - NY,New York,NY-6,en
+Latham - NY,New York,,en
 Laurelton - New York NY,New York,,en
 Lewisboro - NY,New York,,en
 Liberty - NY,New York,,en
@@ -1073,7 +1066,6 @@ Mill Basin Haitian Creole - New York NY,New York,,ht
 Milton - NY,New York,,en
 Minnewaska - Pine Bush NY,New York,,en
 Monroe - Rochester NY,New York,,en
-Monroe - Rochester NY,New York,,en
 Montgomery - NY,New York,,en
 Morris Heights - New York NY,New York,,en
 Mount Hope - Middletown NY,New York,,en
@@ -1089,7 +1081,6 @@ Niagara Spanish - Buffalo NY,New York,,es
 North - Albany NY,New York,,en
 North - Binghamton NY,New York,,en
 North - Coram NY,New York,,en
-North - Fairport NY,New York,,en
 North - Fairport NY,New York,,en
 North - Oneonta NY,New York,,en
 North - Peekskill NY,New York,,en
@@ -1133,7 +1124,6 @@ Penn Yan - NY,New York,,en
 Pennsylvania English - New York NY,New York,,en
 Pennsylvania Spanish - New York NY,New York,,es
 Pittsford - NY,New York,,en
-Pittsford - NY,New York,,en
 Plattsburgh - NY,New York,,en
 Pleasant Valley - NY,New York,,en
 Plum Point - New Windsor NY,New York,,en
@@ -1159,7 +1149,7 @@ Ransomville - NY,New York,,en
 Red Hook - NY,New York,,en
 Remsen - New York NY,New York,,en
 Remsen Haitian Creole - New York NY,New York,,ht
-Rensselaer - NY,New York,NY-39,en
+Rensselaer - NY,New York,,en
 Rhinebeck - NY,New York,,en
 Rhinelander - New York NY,New York,,en
 Richmond Hill Punjabi - New York NY,New York,,pa
@@ -1180,7 +1170,6 @@ Rosedale English - New York NY,New York,,en
 Round Hill - Chester NY,New York,,en
 Russian - New Rochelle NY,New York,,ru
 Russian - Nyack NY,New York,,ru
-Russian - Rochester NY,New York,,ru
 Russian - Rochester NY,New York,,ru
 Ryerson Spanish - Warwick NY,New York,,es
 Saint Albans English - New York NY,New York,,en
@@ -1204,7 +1193,6 @@ Soundview - New York NY,New York,,en
 South - Albany NY,New York,,en
 South - Binghamton NY,New York,,en
 South - Fairport NY,New York,,en
-South - Fairport NY,New York,,en
 South - Mount Vernon NY,New York,,en
 South - Newburgh NY,New York,,en
 South - Oneonta NY,New York,,en
@@ -1214,7 +1202,7 @@ South - Riverhead NY,New York,,en
 South - Rome NY,New York,,en
 South - Schenectady NY,New York,,en
 South - Syracuse NY,New York,,en
-South - Troy NY,New York,NY-6,en
+South - Troy NY,New York,,en
 South - Yonkers NY,New York,,en
 South Brooklyn Spanish - New York NY,New York,,es
 South English - Middletown NY,New York,,en
