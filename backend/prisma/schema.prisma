@@ -1,9 +1,9 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+    provider = "postgresql"
 }
 
 // ─────────────────────────────────────────────
@@ -11,49 +11,49 @@ datasource db {
 // ─────────────────────────────────────────────
 
 model User {
-  id                String             @id @default(cuid())
-  userId            String             @unique // 6-char alphanumeric permanent ID, e.g. "A7X9K2"
-  email             String             @unique
-  passwordHash      String? // null for pure OAuth users
-  firstName         String
-  lastName          String
-  phone             String?
-  appointmentStatus AppointmentStatus?
-  congregation      String? // Free-text congregation name (optional)
-  congregationId    String? // FK to Congregation (optional)
-  isOverseer        Boolean            @default(false) // Future monetization gate
-  isAppAdmin        Boolean            @default(false)
-  isPlaceholder     Boolean            @default(false)
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
+    id                String             @id @default(cuid())
+    userId            String             @unique // 6-char alphanumeric permanent ID, e.g. "A7X9K2"
+    email             String             @unique
+    passwordHash      String? // null for pure OAuth users
+    firstName         String
+    lastName          String
+    phone             String?
+    appointmentStatus AppointmentStatus?
+    congregation      String? // Free-text congregation name (optional)
+    congregationId    String? // FK to Congregation (optional)
+    isOverseer        Boolean            @default(false) // Future monetization gate
+    isAppAdmin        Boolean            @default(false)
+    isPlaceholder     Boolean            @default(false)
+    createdAt         DateTime           @default(now())
+    updatedAt         DateTime           @updatedAt
 
-  oauthConnections       OAuthConnection[]
-  refreshTokens          RefreshToken[]
-  passwordResetTokens    PasswordResetToken[]
-  eventAdmins            EventAdmin[] // When acting as overseer on an event
-  eventVolunteers        EventVolunteer[] // When acting as volunteer on an event
-  joinRequests           EventJoinRequest[] // Join requests submitted by this user
-  resolvedJoinRequests   EventJoinRequest[]   @relation("ResolvedJoinRequests")
-  attendanceCounts       AttendanceCount[]
-  checkIns               CheckIn[]
-  sentMessages           Message[]            @relation("MessageSenderUser")
-  eventNotes             EventNote[]
-  resolvedIncidents      SafetyIncident[]     @relation("ResolvedIncidents")
-  resolvedAlerts         LostPersonAlert[]    @relation("ResolvedAlerts")
-  attendantMeetings      AttendantMeeting[]
-  resolvedDamageReports          AVDamageReport[]       @relation("ResolvedDamageReports")
-  conductedBriefings             AVSafetyBriefing[]
-  completedHazardAssessments     AVHazardAssessment[]
-  createdShifts                  Shift[]                @relation("ShiftCreator")
-  createdAssignments             ScheduleAssignment[]   @relation("AssignmentCreator")
-  deviceTokens                   DeviceToken[]
-  notifications                  Notification[]
-  congregationRef        Congregation?        @relation(fields: [congregationId], references: [id])
+    oauthConnections           OAuthConnection[]
+    refreshTokens              RefreshToken[]
+    passwordResetTokens        PasswordResetToken[]
+    eventAdmins                EventAdmin[] // When acting as overseer on an event
+    eventVolunteers            EventVolunteer[] // When acting as volunteer on an event
+    joinRequests               EventJoinRequest[] // Join requests submitted by this user
+    resolvedJoinRequests       EventJoinRequest[]   @relation("ResolvedJoinRequests")
+    attendanceCounts           AttendanceCount[]
+    checkIns                   CheckIn[]
+    sentMessages               Message[]            @relation("MessageSenderUser")
+    eventNotes                 EventNote[]
+    resolvedIncidents          SafetyIncident[]     @relation("ResolvedIncidents")
+    resolvedAlerts             LostPersonAlert[]    @relation("ResolvedAlerts")
+    attendantMeetings          AttendantMeeting[]
+    resolvedDamageReports      AVDamageReport[]     @relation("ResolvedDamageReports")
+    conductedBriefings         AVSafetyBriefing[]
+    completedHazardAssessments AVHazardAssessment[]
+    createdShifts              Shift[]              @relation("ShiftCreator")
+    createdAssignments         ScheduleAssignment[] @relation("AssignmentCreator")
+    deviceTokens               DeviceToken[]
+    notifications              Notification[]
+    congregationRef            Congregation?        @relation(fields: [congregationId], references: [id])
 
-  @@index([email])
-  @@index([userId])
-  @@index([congregationId])
-  @@index([isPlaceholder])
+    @@index([email])
+    @@index([userId])
+    @@index([congregationId])
+    @@index([isPlaceholder])
 }
 
 // ─────────────────────────────────────────────
@@ -61,15 +61,15 @@ model User {
 // ─────────────────────────────────────────────
 
 model DeviceToken {
-  id        String   @id @default(cuid())
-  userId    String
-  token     String   @unique
-  platform  String   @default("ios")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id        String   @id @default(cuid())
+    userId    String
+    token     String   @unique
+    platform  String   @default("ios")
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
+    @@index([userId])
 }
 
 // ─────────────────────────────────────────────
@@ -77,20 +77,20 @@ model DeviceToken {
 // ─────────────────────────────────────────────
 
 model Notification {
-  id        String   @id @default(cuid())
-  userId    String
-  eventId   String
-  type      String   // ASSIGNMENT_CREATED, JOIN_REQUEST_SUBMITTED, etc.
-  title     String
-  body      String
-  data      Json?    // { assignmentId, requestId, etc. }
-  isRead    Boolean  @default(false)
-  createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    id        String   @id @default(cuid())
+    userId    String
+    eventId   String
+    type      String // ASSIGNMENT_CREATED, JOIN_REQUEST_SUBMITTED, etc.
+    title     String
+    body      String
+    data      Json? // { assignmentId, requestId, etc. }
+    isRead    Boolean  @default(false)
+    createdAt DateTime @default(now())
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
 
-  @@index([userId, eventId])
-  @@index([createdAt])
+    @@index([userId, eventId])
+    @@index([createdAt])
 }
 
 // ─────────────────────────────────────────────
@@ -98,23 +98,23 @@ model Notification {
 // ─────────────────────────────────────────────
 
 model EventJoinRequest {
-  id             String            @id @default(cuid())
-  eventId        String
-  userId         String
-  departmentType DepartmentType?
-  status         JoinRequestStatus @default(PENDING)
-  note           String?
-  createdAt      DateTime          @default(now())
-  resolvedAt     DateTime?
-  resolvedById   String?
-  event          Event             @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-  resolvedBy     User?             @relation("ResolvedJoinRequests", fields: [resolvedById], references: [id], onDelete: SetNull)
+    id             String            @id @default(cuid())
+    eventId        String
+    userId         String
+    departmentType DepartmentType?
+    status         JoinRequestStatus @default(PENDING)
+    note           String?
+    createdAt      DateTime          @default(now())
+    resolvedAt     DateTime?
+    resolvedById   String?
+    event          Event             @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+    resolvedBy     User?             @relation("ResolvedJoinRequests", fields: [resolvedById], references: [id], onDelete: SetNull)
 
-  @@unique([eventId, userId])
-  @@index([eventId])
-  @@index([userId])
-  @@index([status])
+    @@unique([eventId, userId])
+    @@index([eventId])
+    @@index([userId])
+    @@index([status])
 }
 
 // ─────────────────────────────────────────────
@@ -122,22 +122,22 @@ model EventJoinRequest {
 // ─────────────────────────────────────────────
 
 model AttendanceCount {
-  id            String   @id @default(cuid())
-  count         Int
-  section       String?
-  notes         String?
-  sessionId     String
-  postId        String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  submittedById String?
-  session       Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  post          Post?    @relation(fields: [postId], references: [id])
-  submittedBy   User?    @relation(fields: [submittedById], references: [id], onDelete: SetNull)
+    id            String   @id @default(cuid())
+    count         Int
+    section       String?
+    notes         String?
+    sessionId     String
+    postId        String?
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+    submittedById String?
+    session       Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    post          Post?    @relation(fields: [postId], references: [id])
+    submittedBy   User?    @relation(fields: [submittedById], references: [id], onDelete: SetNull)
 
-  @@unique([sessionId, section])
-  @@index([sessionId])
-  @@index([postId])
+    @@unique([sessionId, section])
+    @@index([sessionId])
+    @@index([postId])
 }
 
 // ─────────────────────────────────────────────
@@ -145,21 +145,21 @@ model AttendanceCount {
 // ─────────────────────────────────────────────
 
 model AttendantMeeting {
-  id          String              @id @default(cuid())
-  session     Session             @relation(fields: [sessionId], references: [id])
-  sessionId   String
-  event       Event               @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  eventId     String
-  name        String?
-  meetingDate DateTime
-  notes       String?
-  createdBy   User?               @relation(fields: [createdById], references: [id], onDelete: SetNull)
-  createdById String?
-  attendees   MeetingAttendance[]
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+    id          String              @id @default(cuid())
+    session     Session             @relation(fields: [sessionId], references: [id])
+    sessionId   String
+    event       Event               @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    eventId     String
+    name        String?
+    meetingDate DateTime
+    notes       String?
+    createdBy   User?               @relation(fields: [createdById], references: [id], onDelete: SetNull)
+    createdById String?
+    attendees   MeetingAttendance[]
+    createdAt   DateTime            @default(now())
+    updatedAt   DateTime            @updatedAt
 
-  @@index([eventId])
+    @@index([eventId])
 }
 
 // ─────────────────────────────────────────────
@@ -167,21 +167,21 @@ model AttendantMeeting {
 // ─────────────────────────────────────────────
 
 model CheckIn {
-  id               String             @id @default(cuid())
-  checkInTime      DateTime           @default(now())
-  checkOutTime     DateTime?
-  assignmentId     String             @unique
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  checkedInById    String? // User (overseer) who checked in
-  checkedInByVolId String? // EventVolunteer (captain) who checked in
-  notes            String?
-  status           CheckInStatus      @default(CHECKED_IN)
-  assignment       ScheduleAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
-  checkedInBy      User?              @relation(fields: [checkedInById], references: [id], onDelete: SetNull)
-  checkedInByVol   EventVolunteer?    @relation(fields: [checkedInByVolId], references: [id], onDelete: SetNull)
+    id               String             @id @default(cuid())
+    checkInTime      DateTime           @default(now())
+    checkOutTime     DateTime?
+    assignmentId     String             @unique
+    createdAt        DateTime           @default(now())
+    updatedAt        DateTime           @updatedAt
+    checkedInById    String? // User (overseer) who checked in
+    checkedInByVolId String? // EventVolunteer (captain) who checked in
+    notes            String?
+    status           CheckInStatus      @default(CHECKED_IN)
+    assignment       ScheduleAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+    checkedInBy      User?              @relation(fields: [checkedInById], references: [id], onDelete: SetNull)
+    checkedInByVol   EventVolunteer?    @relation(fields: [checkedInByVolId], references: [id], onDelete: SetNull)
 
-  @@index([assignmentId])
+    @@index([assignmentId])
 }
 
 // ─────────────────────────────────────────────
@@ -189,33 +189,54 @@ model CheckIn {
 // ─────────────────────────────────────────────
 
 model Circuit {
-  id             String          @id @default(cuid())
-  code           String          @unique
-  region         String
-  language       String          @default("E")
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
-  congregations  Congregation[]
-  events         Event[]
+    id            String         @id @default(cuid())
+    code          String         @unique
+    region        String
+    language      String         @default("E")
+    createdAt     DateTime       @default(now())
+    updatedAt     DateTime       @updatedAt
+    congregations Congregation[]
+    events        Event[]
 
-  @@index([region])
-  @@index([language])
+    @@index([region])
+    @@index([language])
 }
 
 model Congregation {
-  id        String   @id @default(cuid())
-  name      String
-  state     String
-  language  String   @default("E")
-  circuitId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  circuit   Circuit  @relation(fields: [circuitId], references: [id], onDelete: Cascade)
-  users     User[]
+    id        String   @id @default(cuid())
+    name      String
+    state     String
+    language  String   @default("E")
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  @@unique([name, state])
-  @@index([circuitId])
-  @@index([state, language])
+    users     User[]
+    circuit   Circuit? @relation(fields: [circuitId], references: [id])
+    circuitId String?
+
+    @@unique([name, state])
+    @@index([circuitId])
+    @@index([state, language])
+}
+
+// ─────────────────────────────────────────────
+// VENUE
+// ─────────────────────────────────────────────
+
+model Venue {
+    id        String   @id @default(cuid())
+    name      String
+    address   String
+    state     String
+    region    String
+    latitude  Float?
+    longitude Float?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([name, state])
+    @@index([state])
+    @@index([region])
 }
 
 // ─────────────────────────────────────────────
@@ -223,28 +244,28 @@ model Congregation {
 // ─────────────────────────────────────────────
 
 model Department {
-  id              String                @id @default(cuid())
-  name            String
-  departmentType  DepartmentType
-  description     String?
-  accessCode      String?               @unique // e.g. "ATT-7X9K", generated at purchase
-  isPublic        Boolean               @default(true) // Privacy toggle for cross-dept visibility
-  eventId         String
-  createdAt       DateTime              @default(now())
-  updatedAt       DateTime              @updatedAt
-  event           Event                 @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  overseer        EventAdmin?
-  notes           EventNote[]
-  posts           Post[]
-  areas           Area[]
-  eventVolunteers EventVolunteer[]
-  hierarchyRoles     DepartmentHierarchy[]
-  departmentSessions DepartmentSession[]
-  conversations      Conversation[]
+    id                 String                @id @default(cuid())
+    name               String
+    departmentType     DepartmentType
+    description        String?
+    accessCode         String?               @unique // e.g. "ATT-7X9K", generated at purchase
+    isPublic           Boolean               @default(true) // Privacy toggle for cross-dept visibility
+    eventId            String
+    createdAt          DateTime              @default(now())
+    updatedAt          DateTime              @updatedAt
+    event              Event                 @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    overseer           EventAdmin?
+    notes              EventNote[]
+    posts              Post[]
+    areas              Area[]
+    eventVolunteers    EventVolunteer[]
+    hierarchyRoles     DepartmentHierarchy[]
+    departmentSessions DepartmentSession[]
+    conversations      Conversation[]
 
-  @@unique([eventId, departmentType])
-  @@index([eventId])
-  @@index([accessCode])
+    @@unique([eventId, departmentType])
+    @@index([eventId])
+    @@index([accessCode])
 }
 
 // ─────────────────────────────────────────────
@@ -252,20 +273,20 @@ model Department {
 // ─────────────────────────────────────────────
 
 model DepartmentHierarchy {
-  id               String         @id @default(cuid())
-  departmentId     String
-  eventVolunteerId String
-  hierarchyRole    HierarchyRole
-  areaId           String?
-  assignedAt       DateTime       @default(now())
-  department       Department     @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-  eventVolunteer   EventVolunteer @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
-  area             Area?          @relation(fields: [areaId], references: [id])
+    id               String         @id @default(cuid())
+    departmentId     String
+    eventVolunteerId String
+    hierarchyRole    HierarchyRole
+    areaId           String?
+    assignedAt       DateTime       @default(now())
+    department       Department     @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+    eventVolunteer   EventVolunteer @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    area             Area?          @relation(fields: [areaId], references: [id])
 
-  @@unique([departmentId, hierarchyRole, eventVolunteerId])
-  @@index([departmentId])
-  @@index([eventVolunteerId])
-  @@index([areaId])
+    @@unique([departmentId, hierarchyRole, eventVolunteerId])
+    @@index([departmentId])
+    @@index([eventVolunteerId])
+    @@index([areaId])
 }
 
 // ─────────────────────────────────────────────
@@ -273,56 +294,56 @@ model DepartmentHierarchy {
 // ─────────────────────────────────────────────
 
 model Event {
-  id                 String    @id @default(cuid())
-  // --- Absorbed from EventTemplate ---
-  eventType          EventType
-  name               String
-  circuit            String? // Readable circuit code (assemblies only)
-  circuitId          String? // FK to Circuit (assemblies only)
-  region             String // e.g. "US-MA"
-  state              String? // Derived from region, for convention discovery
-  serviceYear        Int
-  theme              String?
-  themeScripture     String?
-  venue              String
-  address            String
-  startDate          DateTime
-  endDate            DateTime
-  language           String    @default("en")
-  // --- Existing Event fields ---
-  joinCode           String    @unique @default(cuid())
-  isPublic           Boolean   @default(true) // Controls visibility in discoverEvents
-  acceptDeadlineDays Int       @default(5)
-  floorPlanKey       String?   // S3 object key, null if no floor plan
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  // --- Relations ---
-  circuitRef             Circuit?                @relation(fields: [circuitId], references: [id])
-  departments            Department[]
-  admins                 EventAdmin[]
-  notes                  EventNote[]
-  messages               Message[]
-  roles                  Role[]
-  sessions               Session[]
-  eventVolunteers        EventVolunteer[]
-  safetyIncidents        SafetyIncident[]
-  lostPersonAlerts       LostPersonAlert[]
-  attendantMeetings      AttendantMeeting[]
-  walkThroughCompletions WalkThroughCompletion[]
-  conversations          Conversation[]
-  joinRequests           EventJoinRequest[]
-  avEquipment            AVEquipmentItem[]
-  avHazardAssessments    AVHazardAssessment[]
-  avSafetyBriefings      AVSafetyBriefing[]
-  lanyardCheckouts       LanyardCheckout[]
-  notifications          Notification[]
+    id                     String                  @id @default(cuid())
+    // --- Absorbed from EventTemplate ---
+    eventType              EventType
+    name                   String
+    circuit                String? // Readable circuit code (assemblies only)
+    circuitId              String? // FK to Circuit (assemblies only)
+    region                 String // e.g. "US-MA"
+    state                  String? // Derived from region, for convention discovery
+    serviceYear            Int
+    theme                  String?
+    themeScripture         String?
+    venue                  String
+    address                String
+    startDate              DateTime
+    endDate                DateTime
+    language               String                  @default("en")
+    // --- Existing Event fields ---
+    joinCode               String                  @unique @default(cuid())
+    isPublic               Boolean                 @default(true) // Controls visibility in discoverEvents
+    acceptDeadlineDays     Int                     @default(5)
+    floorPlanKey           String? // S3 object key, null if no floor plan
+    createdAt              DateTime                @default(now())
+    updatedAt              DateTime                @updatedAt
+    // --- Relations ---
+    circuitRef             Circuit?                @relation(fields: [circuitId], references: [id])
+    departments            Department[]
+    admins                 EventAdmin[]
+    notes                  EventNote[]
+    messages               Message[]
+    roles                  Role[]
+    sessions               Session[]
+    eventVolunteers        EventVolunteer[]
+    safetyIncidents        SafetyIncident[]
+    lostPersonAlerts       LostPersonAlert[]
+    attendantMeetings      AttendantMeeting[]
+    walkThroughCompletions WalkThroughCompletion[]
+    conversations          Conversation[]
+    joinRequests           EventJoinRequest[]
+    avEquipment            AVEquipmentItem[]
+    avHazardAssessments    AVHazardAssessment[]
+    avSafetyBriefings      AVSafetyBriefing[]
+    lanyardCheckouts       LanyardCheckout[]
+    notifications          Notification[]
 
-  @@unique([eventType, venue, startDate, language])
-  @@index([joinCode])
-  @@index([circuitId])
-  @@index([region])
-  @@index([serviceYear])
-  @@index([state])
+    @@unique([eventType, venue, startDate, language])
+    @@index([joinCode])
+    @@index([circuitId])
+    @@index([region])
+    @@index([serviceYear])
+    @@index([state])
 }
 
 // ─────────────────────────────────────────────
@@ -330,19 +351,19 @@ model Event {
 // ─────────────────────────────────────────────
 
 model EventAdmin {
-  id           String      @id @default(cuid())
-  userId       String // FK to User (was adminId)
-  eventId      String
-  role         EventRole
-  departmentId String?     @unique
-  claimedAt    DateTime    @default(now())
-  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  department   Department? @relation(fields: [departmentId], references: [id])
-  event        Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    id           String      @id @default(cuid())
+    userId       String // FK to User (was adminId)
+    eventId      String
+    role         EventRole
+    departmentId String?     @unique
+    claimedAt    DateTime    @default(now())
+    user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+    department   Department? @relation(fields: [departmentId], references: [id])
+    event        Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, eventId])
-  @@index([userId])
-  @@index([eventId])
+    @@unique([userId, eventId])
+    @@index([userId])
+    @@index([eventId])
 }
 
 // ─────────────────────────────────────────────
@@ -350,20 +371,20 @@ model EventAdmin {
 // ─────────────────────────────────────────────
 
 model EventNote {
-  id           String      @id @default(cuid())
-  title        String?
-  body         String
-  eventId      String
-  departmentId String?
-  createdById  String?
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  department   Department? @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-  event        Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  createdBy    User?       @relation(fields: [createdById], references: [id], onDelete: SetNull)
+    id           String      @id @default(cuid())
+    title        String?
+    body         String
+    eventId      String
+    departmentId String?
+    createdById  String?
+    createdAt    DateTime    @default(now())
+    updatedAt    DateTime    @updatedAt
+    department   Department? @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+    event        Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    createdBy    User?       @relation(fields: [createdById], references: [id], onDelete: SetNull)
 
-  @@index([departmentId])
-  @@index([eventId])
+    @@index([departmentId])
+    @@index([eventId])
 }
 
 // ─────────────────────────────────────────────
@@ -371,38 +392,38 @@ model EventNote {
 // ─────────────────────────────────────────────
 
 model EventVolunteer {
-  id             String               @id @default(cuid())
-  userId         String // FK to User
-  eventId        String
-  departmentId   String?
-  roleId         String?
-  createdAt      DateTime             @default(now())
-  updatedAt      DateTime             @updatedAt
-  user           User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-  event          Event                @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  department     Department?          @relation(fields: [departmentId], references: [id])
-  role           Role?                @relation(fields: [roleId], references: [id])
-  assignments    ScheduleAssignment[]
-  checkIns       CheckIn[]
-  sentMessages       Message[]            @relation("MessageSenderVol")
-  legacyMessages     Message[]            @relation("MessageLegacyRecipient")
-  safetyIncidents        SafetyIncident[]
-  lostPersonAlerts       LostPersonAlert[]
-  meetingAttendances     MeetingAttendance[]
-  areaCaptains           AreaCaptain[]
-  walkThroughCompletions WalkThroughCompletion[]
-  postSessionStatuses    PostSessionStatus[]     @relation("PostSessionStatusUpdatedBy")
-  hierarchyRoles         DepartmentHierarchy[]
-  avEquipmentCheckouts           AVEquipmentCheckout[]
-  avDamageReports                AVDamageReport[]
-  avSafetyBriefingAttendances    AVSafetyBriefingAttendee[]
-  reminderConfirmations          ReminderConfirmation[]
-  lanyardCheckouts               LanyardCheckout[]
+    id                          String                     @id @default(cuid())
+    userId                      String // FK to User
+    eventId                     String
+    departmentId                String?
+    roleId                      String?
+    createdAt                   DateTime                   @default(now())
+    updatedAt                   DateTime                   @updatedAt
+    user                        User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
+    event                       Event                      @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    department                  Department?                @relation(fields: [departmentId], references: [id])
+    role                        Role?                      @relation(fields: [roleId], references: [id])
+    assignments                 ScheduleAssignment[]
+    checkIns                    CheckIn[]
+    sentMessages                Message[]                  @relation("MessageSenderVol")
+    legacyMessages              Message[]                  @relation("MessageLegacyRecipient")
+    safetyIncidents             SafetyIncident[]
+    lostPersonAlerts            LostPersonAlert[]
+    meetingAttendances          MeetingAttendance[]
+    areaCaptains                AreaCaptain[]
+    walkThroughCompletions      WalkThroughCompletion[]
+    postSessionStatuses         PostSessionStatus[]        @relation("PostSessionStatusUpdatedBy")
+    hierarchyRoles              DepartmentHierarchy[]
+    avEquipmentCheckouts        AVEquipmentCheckout[]
+    avDamageReports             AVDamageReport[]
+    avSafetyBriefingAttendances AVSafetyBriefingAttendee[]
+    reminderConfirmations       ReminderConfirmation[]
+    lanyardCheckouts            LanyardCheckout[]
 
-  @@unique([userId, eventId]) // One membership per user per event
-  @@index([eventId])
-  @@index([departmentId])
-  @@index([userId])
+    @@unique([userId, eventId]) // One membership per user per event
+    @@index([eventId])
+    @@index([departmentId])
+    @@index([userId])
 }
 
 // ─────────────────────────────────────────────
@@ -410,29 +431,29 @@ model EventVolunteer {
 // ─────────────────────────────────────────────
 
 model LostPersonAlert {
-  id                    String         @id @default(cuid())
-  encryptedPersonName   String // AES-256-GCM encrypted
-  age                   Int?
-  description           String
-  lastSeenLocation      String?
-  lastSeenTime          DateTime?
-  encryptedContactName  String // AES-256-GCM encrypted
-  encryptedContactPhone String? // AES-256-GCM encrypted
-  reportedBy            EventVolunteer @relation(fields: [reportedById], references: [id], onDelete: Cascade)
-  reportedById          String
-  event                 Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  eventId               String
-  resolved              Boolean        @default(false)
-  resolvedAt            DateTime?
-  resolvedBy            User?          @relation("ResolvedAlerts", fields: [resolvedById], references: [id], onDelete: SetNull)
-  resolvedById          String?
-  resolutionNotes       String?
-  createdAt             DateTime       @default(now())
-  session               Session?       @relation(fields: [sessionId], references: [id])
-  sessionId             String?
+    id                    String         @id @default(cuid())
+    encryptedPersonName   String // AES-256-GCM encrypted
+    age                   Int?
+    description           String
+    lastSeenLocation      String?
+    lastSeenTime          DateTime?
+    encryptedContactName  String // AES-256-GCM encrypted
+    encryptedContactPhone String? // AES-256-GCM encrypted
+    reportedBy            EventVolunteer @relation(fields: [reportedById], references: [id], onDelete: Cascade)
+    reportedById          String
+    event                 Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    eventId               String
+    resolved              Boolean        @default(false)
+    resolvedAt            DateTime?
+    resolvedBy            User?          @relation("ResolvedAlerts", fields: [resolvedById], references: [id], onDelete: SetNull)
+    resolvedById          String?
+    resolutionNotes       String?
+    createdAt             DateTime       @default(now())
+    session               Session?       @relation(fields: [sessionId], references: [id])
+    sessionId             String?
 
-  @@index([eventId])
-  @@index([resolved])
+    @@index([eventId])
+    @@index([resolved])
 }
 
 // ─────────────────────────────────────────────
@@ -440,16 +461,16 @@ model LostPersonAlert {
 // ─────────────────────────────────────────────
 
 model MeetingAttendance {
-  id               String           @id @default(cuid())
-  meeting          AttendantMeeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
-  meetingId        String
-  eventVolunteer   EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
-  eventVolunteerId String
-  createdAt        DateTime         @default(now())
-  session          Session?         @relation(fields: [sessionId], references: [id])
-  sessionId        String?
+    id               String           @id @default(cuid())
+    meeting          AttendantMeeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+    meetingId        String
+    eventVolunteer   EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    eventVolunteerId String
+    createdAt        DateTime         @default(now())
+    session          Session?         @relation(fields: [sessionId], references: [id])
+    sessionId        String?
 
-  @@unique([meetingId, eventVolunteerId])
+    @@unique([meetingId, eventVolunteerId])
 }
 
 // ─────────────────────────────────────────────
@@ -457,67 +478,67 @@ model MeetingAttendance {
 // ─────────────────────────────────────────────
 
 model Message {
-  id                 String             @id @default(cuid())
-  subject            String?
-  body               String
-  recipientType      RecipientType
-  recipientId        String
-  isRead             Boolean            @default(false)
-  readAt             DateTime?
-  eventId            String
-  senderType         MessageSenderType?
-  senderUserId       String? // Unified sender (was senderAdminId)
-  senderVolId        String? // EventVolunteer sender
-  conversationId     String?
-  deletedBySender    Boolean            @default(false)
-  deletedByRecipient Boolean            @default(false)
-  createdAt          DateTime           @default(now())
-  updatedAt          DateTime           @updatedAt
-  event              Event              @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  senderUser         User?              @relation("MessageSenderUser", fields: [senderUserId], references: [id], onDelete: SetNull)
-  senderVol          EventVolunteer?    @relation("MessageSenderVol", fields: [senderVolId], references: [id], onDelete: Cascade)
-  conversation       Conversation?      @relation(fields: [conversationId], references: [id], onDelete: Cascade)
-  eventVolunteer     EventVolunteer?    @relation("MessageLegacyRecipient", fields: [eventVolunteerId], references: [id], onDelete: Cascade)
-  eventVolunteerId   String?
+    id                 String             @id @default(cuid())
+    subject            String?
+    body               String
+    recipientType      RecipientType
+    recipientId        String
+    isRead             Boolean            @default(false)
+    readAt             DateTime?
+    eventId            String
+    senderType         MessageSenderType?
+    senderUserId       String? // Unified sender (was senderAdminId)
+    senderVolId        String? // EventVolunteer sender
+    conversationId     String?
+    deletedBySender    Boolean            @default(false)
+    deletedByRecipient Boolean            @default(false)
+    createdAt          DateTime           @default(now())
+    updatedAt          DateTime           @updatedAt
+    event              Event              @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    senderUser         User?              @relation("MessageSenderUser", fields: [senderUserId], references: [id], onDelete: SetNull)
+    senderVol          EventVolunteer?    @relation("MessageSenderVol", fields: [senderVolId], references: [id], onDelete: Cascade)
+    conversation       Conversation?      @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+    eventVolunteer     EventVolunteer?    @relation("MessageLegacyRecipient", fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    eventVolunteerId   String?
 
-  @@index([eventId])
-  @@index([conversationId])
-  @@index([senderType, senderUserId])
-  @@index([senderType, senderVolId])
-  @@index([recipientType, recipientId])
-  @@index([eventVolunteerId])
+    @@index([eventId])
+    @@index([conversationId])
+    @@index([senderType, senderUserId])
+    @@index([senderType, senderVolId])
+    @@index([recipientType, recipientId])
+    @@index([eventVolunteerId])
 }
 
 model Conversation {
-  id           String                    @id @default(cuid())
-  eventId      String
-  subject      String?
-  type         ConversationType          @default(DIRECT)
-  departmentId String?
-  createdAt    DateTime                  @default(now())
-  updatedAt    DateTime                  @updatedAt
-  event        Event                     @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  department   Department?               @relation(fields: [departmentId], references: [id])
-  messages     Message[]
-  participants ConversationParticipant[]
+    id           String                    @id @default(cuid())
+    eventId      String
+    subject      String?
+    type         ConversationType          @default(DIRECT)
+    departmentId String?
+    createdAt    DateTime                  @default(now())
+    updatedAt    DateTime                  @updatedAt
+    event        Event                     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    department   Department?               @relation(fields: [departmentId], references: [id])
+    messages     Message[]
+    participants ConversationParticipant[]
 
-  @@index([eventId])
-  @@index([type, eventId, departmentId])
+    @@index([eventId])
+    @@index([type, eventId, departmentId])
 }
 
 model ConversationParticipant {
-  id              String            @id @default(cuid())
-  conversationId  String
-  participantType MessageSenderType
-  participantId   String
-  lastReadAt      DateTime?
-  deletedAt       DateTime?
-  createdAt       DateTime          @default(now())
-  conversation    Conversation      @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+    id              String            @id @default(cuid())
+    conversationId  String
+    participantType MessageSenderType
+    participantId   String
+    lastReadAt      DateTime?
+    deletedAt       DateTime?
+    createdAt       DateTime          @default(now())
+    conversation    Conversation      @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
-  @@unique([conversationId, participantType, participantId])
-  @@index([participantType, participantId])
-  @@index([conversationId])
+    @@unique([conversationId, participantType, participantId])
+    @@index([participantType, participantId])
+    @@index([conversationId])
 }
 
 // ─────────────────────────────────────────────
@@ -525,16 +546,16 @@ model ConversationParticipant {
 // ─────────────────────────────────────────────
 
 model OAuthConnection {
-  id             String       @id @default(cuid())
-  provider       AuthProvider
-  providerId     String
-  encryptedEmail String? // AES-256-GCM encrypted
-  userId         String // FK to User (was adminId)
-  createdAt      DateTime     @default(now())
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id             String       @id @default(cuid())
+    provider       AuthProvider
+    providerId     String
+    encryptedEmail String? // AES-256-GCM encrypted
+    userId         String // FK to User (was adminId)
+    createdAt      DateTime     @default(now())
+    user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerId])
-  @@index([userId])
+    @@unique([provider, providerId])
+    @@index([userId])
 }
 
 // ─────────────────────────────────────────────
@@ -542,26 +563,26 @@ model OAuthConnection {
 // ─────────────────────────────────────────────
 
 model Post {
-  id               String               @id @default(cuid())
-  name             String
-  description      String?
-  location         String?
-  category         String?
-  sortOrder        Int                  @default(0)
-  departmentId     String
-  areaId           String?
-  createdAt        DateTime             @default(now())
-  updatedAt        DateTime             @updatedAt
-  department          Department           @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-  area                Area?                @relation(fields: [areaId], references: [id], onDelete: Cascade)
-  assignments         ScheduleAssignment[]
-  attendanceCounts    AttendanceCount[]
-  incidents           SafetyIncident[]
-  postSessionStatuses PostSessionStatus[]
-  shifts              Shift[]
+    id                  String               @id @default(cuid())
+    name                String
+    description         String?
+    location            String?
+    category            String?
+    sortOrder           Int                  @default(0)
+    departmentId        String
+    areaId              String?
+    createdAt           DateTime             @default(now())
+    updatedAt           DateTime             @updatedAt
+    department          Department           @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+    area                Area?                @relation(fields: [areaId], references: [id], onDelete: Cascade)
+    assignments         ScheduleAssignment[]
+    attendanceCounts    AttendanceCount[]
+    incidents           SafetyIncident[]
+    postSessionStatuses PostSessionStatus[]
+    shifts              Shift[]
 
-  @@index([departmentId])
-  @@index([areaId])
+    @@index([departmentId])
+    @@index([areaId])
 }
 
 // ─────────────────────────────────────────────
@@ -569,17 +590,17 @@ model Post {
 // ─────────────────────────────────────────────
 
 model RefreshToken {
-  id        String   @id @default(cuid())
-  token     String   @unique
-  expiresAt DateTime
-  revoked   Boolean  @default(false)
-  userId    String // FK to User
-  createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id        String   @id @default(cuid())
+    token     String   @unique
+    expiresAt DateTime
+    revoked   Boolean  @default(false)
+    userId    String // FK to User
+    createdAt DateTime @default(now())
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
-  @@index([expiresAt])
-  @@index([token])
+    @@index([userId])
+    @@index([expiresAt])
+    @@index([token])
 }
 
 // ─────────────────────────────────────────────
@@ -587,16 +608,16 @@ model RefreshToken {
 // ─────────────────────────────────────────────
 
 model PasswordResetToken {
-  id        String    @id @default(cuid())
-  token     String    @unique // SHA-256 hash of the 6-digit code
-  userId    String
-  expiresAt DateTime
-  usedAt    DateTime?
-  createdAt DateTime  @default(now())
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id        String    @id @default(cuid())
+    token     String    @unique // SHA-256 hash of the 6-digit code
+    userId    String
+    expiresAt DateTime
+    usedAt    DateTime?
+    createdAt DateTime  @default(now())
+    user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
-  @@index([expiresAt])
+    @@index([userId])
+    @@index([expiresAt])
 }
 
 // ─────────────────────────────────────────────
@@ -604,18 +625,18 @@ model PasswordResetToken {
 // ─────────────────────────────────────────────
 
 model Role {
-  id              String           @id @default(cuid())
-  name            String
-  description     String?
-  sortOrder       Int              @default(0)
-  eventId         String
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  event           Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  eventVolunteers EventVolunteer[]
+    id              String           @id @default(cuid())
+    name            String
+    description     String?
+    sortOrder       Int              @default(0)
+    eventId         String
+    createdAt       DateTime         @default(now())
+    updatedAt       DateTime         @updatedAt
+    event           Event            @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    eventVolunteers EventVolunteer[]
 
-  @@unique([eventId, name])
-  @@index([eventId])
+    @@unique([eventId, name])
+    @@index([eventId])
 }
 
 // ─────────────────────────────────────────────
@@ -623,27 +644,27 @@ model Role {
 // ─────────────────────────────────────────────
 
 model SafetyIncident {
-  id              String             @id @default(cuid())
-  type            SafetyIncidentType
-  description     String
-  location        String?
-  post            Post?              @relation(fields: [postId], references: [id])
-  postId          String?
-  reportedBy      EventVolunteer     @relation(fields: [reportedById], references: [id], onDelete: Cascade)
-  reportedById    String
-  event           Event              @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  eventId         String
-  resolved        Boolean            @default(false)
-  resolvedAt      DateTime?
-  resolvedBy      User?              @relation("ResolvedIncidents", fields: [resolvedById], references: [id], onDelete: SetNull)
-  resolvedById    String?
-  resolutionNotes String?
-  createdAt       DateTime           @default(now())
-  session         Session?           @relation(fields: [sessionId], references: [id])
-  sessionId       String?
+    id              String             @id @default(cuid())
+    type            SafetyIncidentType
+    description     String
+    location        String?
+    post            Post?              @relation(fields: [postId], references: [id])
+    postId          String?
+    reportedBy      EventVolunteer     @relation(fields: [reportedById], references: [id], onDelete: Cascade)
+    reportedById    String
+    event           Event              @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    eventId         String
+    resolved        Boolean            @default(false)
+    resolvedAt      DateTime?
+    resolvedBy      User?              @relation("ResolvedIncidents", fields: [resolvedById], references: [id], onDelete: SetNull)
+    resolvedById    String?
+    resolutionNotes String?
+    createdAt       DateTime           @default(now())
+    session         Session?           @relation(fields: [sessionId], references: [id])
+    sessionId       String?
 
-  @@index([eventId])
-  @@index([resolved])
+    @@index([eventId])
+    @@index([resolved])
 }
 
 // ─────────────────────────────────────────────
@@ -651,34 +672,34 @@ model SafetyIncident {
 // ─────────────────────────────────────────────
 
 model ScheduleAssignment {
-  id               String           @id @default(cuid())
-  eventVolunteerId String // FK to EventVolunteer
-  postId           String
-  sessionId        String
-  shiftId          String? // FK to Shift (null = whole-session assignment)
-  status           AssignmentStatus @default(PENDING)
-  isCaptain        Boolean          @default(false)
-  canCount         Boolean          @default(false)
-  respondedAt      DateTime?
-  declineReason    String?
-  acceptedDeadline DateTime?
-  forceAssigned    Boolean          @default(false)
-  createdAt        DateTime         @default(now())
-  updatedAt        DateTime         @updatedAt
-  createdByUserId  String?
-  checkIn          CheckIn?
-  post             Post             @relation(fields: [postId], references: [id], onDelete: Cascade)
-  session          Session          @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  shift            Shift?           @relation(fields: [shiftId], references: [id], onDelete: Cascade)
-  eventVolunteer   EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
-  createdBy        User?            @relation("AssignmentCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+    id               String           @id @default(cuid())
+    eventVolunteerId String // FK to EventVolunteer
+    postId           String
+    sessionId        String
+    shiftId          String? // FK to Shift (null = whole-session assignment)
+    status           AssignmentStatus @default(PENDING)
+    isCaptain        Boolean          @default(false)
+    canCount         Boolean          @default(false)
+    respondedAt      DateTime?
+    declineReason    String?
+    acceptedDeadline DateTime?
+    forceAssigned    Boolean          @default(false)
+    createdAt        DateTime         @default(now())
+    updatedAt        DateTime         @updatedAt
+    createdByUserId  String?
+    checkIn          CheckIn?
+    post             Post             @relation(fields: [postId], references: [id], onDelete: Cascade)
+    session          Session          @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    shift            Shift?           @relation(fields: [shiftId], references: [id], onDelete: Cascade)
+    eventVolunteer   EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    createdBy        User?            @relation("AssignmentCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
 
-  @@unique([eventVolunteerId, postId, sessionId, shiftId])
-  @@index([postId])
-  @@index([sessionId])
-  @@index([shiftId])
-  @@index([eventVolunteerId])
-  @@index([status])
+    @@unique([eventVolunteerId, postId, sessionId, shiftId])
+    @@index([postId])
+    @@index([sessionId])
+    @@index([shiftId])
+    @@index([eventVolunteerId])
+    @@index([status])
 }
 
 // ─────────────────────────────────────────────
@@ -686,24 +707,24 @@ model ScheduleAssignment {
 // ─────────────────────────────────────────────
 
 model Shift {
-  id              String               @id @default(cuid())
-  sessionId       String
-  postId          String
-  name            String
-  startTime       DateTime             @db.Time(6)
-  endTime         DateTime             @db.Time(6)
-  createdByUserId String?
-  createdAt       DateTime             @default(now())
-  updatedAt       DateTime             @updatedAt
-  session                Session              @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  post                   Post                 @relation(fields: [postId], references: [id], onDelete: Cascade)
-  createdBy              User?                @relation("ShiftCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
-  assignments            ScheduleAssignment[]
-  reminderConfirmations  ReminderConfirmation[]
+    id                    String                 @id @default(cuid())
+    sessionId             String
+    postId                String
+    name                  String
+    startTime             DateTime               @db.Time(6)
+    endTime               DateTime               @db.Time(6)
+    createdByUserId       String?
+    createdAt             DateTime               @default(now())
+    updatedAt             DateTime               @updatedAt
+    session               Session                @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    post                  Post                   @relation(fields: [postId], references: [id], onDelete: Cascade)
+    createdBy             User?                  @relation("ShiftCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+    assignments           ScheduleAssignment[]
+    reminderConfirmations ReminderConfirmation[]
 
-  @@index([sessionId])
-  @@index([postId])
-  @@unique([sessionId, postId, startTime])
+    @@unique([sessionId, postId, startTime])
+    @@index([sessionId])
+    @@index([postId])
 }
 
 // ─────────────────────────────────────────────
@@ -711,33 +732,33 @@ model Shift {
 // ─────────────────────────────────────────────
 
 model Session {
-  id                     String                  @id @default(cuid())
-  name                   String
-  date                   DateTime                @db.Date
-  startTime              DateTime                @db.Time(6)
-  endTime                DateTime                @db.Time(6)
-  eventId                String
-  createdAt              DateTime                @default(now())
-  updatedAt              DateTime                @updatedAt
-  attendanceCounts       AttendanceCount[]
-  assignments            ScheduleAssignment[]
-  event                  Event                   @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  safetyIncidents        SafetyIncident[]
-  lostPersonAlerts       LostPersonAlert[]
-  meetingAttendances     MeetingAttendance[]
-  attendantMeetings      AttendantMeeting[]
-  areaCaptains           AreaCaptain[]
-  walkThroughCompletions WalkThroughCompletion[]
-  postSessionStatuses    PostSessionStatus[]
-  shifts                 Shift[]
-  reminderConfirmations  ReminderConfirmation[]
-  avEquipmentCheckouts   AVEquipmentCheckout[]
-  avDamageReports        AVDamageReport[]
-  avHazardAssessments    AVHazardAssessment[]
-  departmentSessions     DepartmentSession[]
+    id                     String                  @id @default(cuid())
+    name                   String
+    date                   DateTime                @db.Date
+    startTime              DateTime                @db.Time(6)
+    endTime                DateTime                @db.Time(6)
+    eventId                String
+    createdAt              DateTime                @default(now())
+    updatedAt              DateTime                @updatedAt
+    attendanceCounts       AttendanceCount[]
+    assignments            ScheduleAssignment[]
+    event                  Event                   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    safetyIncidents        SafetyIncident[]
+    lostPersonAlerts       LostPersonAlert[]
+    meetingAttendances     MeetingAttendance[]
+    attendantMeetings      AttendantMeeting[]
+    areaCaptains           AreaCaptain[]
+    walkThroughCompletions WalkThroughCompletion[]
+    postSessionStatuses    PostSessionStatus[]
+    shifts                 Shift[]
+    reminderConfirmations  ReminderConfirmation[]
+    avEquipmentCheckouts   AVEquipmentCheckout[]
+    avDamageReports        AVDamageReport[]
+    avHazardAssessments    AVHazardAssessment[]
+    departmentSessions     DepartmentSession[]
 
-  @@index([date])
-  @@index([eventId])
+    @@index([date])
+    @@index([eventId])
 }
 
 // ─────────────────────────────────────────────
@@ -745,18 +766,18 @@ model Session {
 // ─────────────────────────────────────────────
 
 model DepartmentSession {
-  id           String     @id @default(cuid())
-  departmentId String
-  sessionId    String
-  startTime    DateTime?  @db.Time(6)
-  endTime      DateTime?  @db.Time(6)
-  notes        String?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-  session      Session    @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    id           String     @id @default(cuid())
+    departmentId String
+    sessionId    String
+    startTime    DateTime?  @db.Time(6)
+    endTime      DateTime?  @db.Time(6)
+    notes        String?
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime   @updatedAt
+    department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+    session      Session    @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
-  @@unique([departmentId, sessionId])
+    @@unique([departmentId, sessionId])
 }
 
 // ─────────────────────────────────────────────
@@ -764,45 +785,45 @@ model DepartmentSession {
 // ─────────────────────────────────────────────
 
 model Area {
-  id           String        @id @default(cuid())
-  name         String
-  description  String?
-  category     String?
-  sortOrder    Int           @default(0)
-  startTime    DateTime?     @db.Time(6)
-  endTime      DateTime?     @db.Time(6)
-  departmentId String
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  department      Department          @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-  posts           Post[]
-  captains        AreaCaptain[]
-  equipmentItems  AVEquipmentItem[]
-  hierarchyRoles  DepartmentHierarchy[]
+    id             String                @id @default(cuid())
+    name           String
+    description    String?
+    category       String?
+    sortOrder      Int                   @default(0)
+    startTime      DateTime?             @db.Time(6)
+    endTime        DateTime?             @db.Time(6)
+    departmentId   String
+    createdAt      DateTime              @default(now())
+    updatedAt      DateTime              @updatedAt
+    department     Department            @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+    posts          Post[]
+    captains       AreaCaptain[]
+    equipmentItems AVEquipmentItem[]
+    hierarchyRoles DepartmentHierarchy[]
 
-  @@unique([departmentId, category, name])
-  @@index([departmentId])
+    @@unique([departmentId, category, name])
+    @@index([departmentId])
 }
 
 model AreaCaptain {
-  id               String           @id @default(cuid())
-  areaId           String
-  sessionId        String
-  eventVolunteerId String
-  status           AssignmentStatus @default(PENDING)
-  respondedAt      DateTime?
-  declineReason    String?
-  acceptedDeadline DateTime?
-  forceAssigned    Boolean          @default(false)
-  createdAt        DateTime         @default(now())
-  area             Area             @relation(fields: [areaId], references: [id], onDelete: Cascade)
-  session          Session          @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  eventVolunteer   EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    id               String           @id @default(cuid())
+    areaId           String
+    sessionId        String
+    eventVolunteerId String
+    status           AssignmentStatus @default(PENDING)
+    respondedAt      DateTime?
+    declineReason    String?
+    acceptedDeadline DateTime?
+    forceAssigned    Boolean          @default(false)
+    createdAt        DateTime         @default(now())
+    area             Area             @relation(fields: [areaId], references: [id], onDelete: Cascade)
+    session          Session          @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    eventVolunteer   EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
 
-  @@unique([areaId, sessionId])
-  @@index([eventVolunteerId])
-  @@index([sessionId])
-  @@index([status])
+    @@unique([areaId, sessionId])
+    @@index([eventVolunteerId])
+    @@index([sessionId])
+    @@index([status])
 }
 
 // ─────────────────────────────────────────────
@@ -810,35 +831,35 @@ model AreaCaptain {
 // ─────────────────────────────────────────────
 
 model WalkThroughCompletion {
-  id               String         @id @default(cuid())
-  eventId          String
-  sessionId        String
-  eventVolunteerId String
-  completedAt      DateTime       @default(now())
-  itemCount        Int
-  notes            String?
-  checklistType    String?        // "APPENDIX_E" | "APPENDIX_F" | "APPENDIX_G" | null (Attendant default)
-  event            Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  session          Session        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  eventVolunteer   EventVolunteer @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    id               String         @id @default(cuid())
+    eventId          String
+    sessionId        String
+    eventVolunteerId String
+    completedAt      DateTime       @default(now())
+    itemCount        Int
+    notes            String?
+    checklistType    String? // "APPENDIX_E" | "APPENDIX_F" | "APPENDIX_G" | null (Attendant default)
+    event            Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    session          Session        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    eventVolunteer   EventVolunteer @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
 
-  @@index([eventId, sessionId])
-  @@index([eventVolunteerId])
+    @@index([eventId, sessionId])
+    @@index([eventVolunteerId])
 }
 
 model PostSessionStatus {
-  id          String               @id @default(cuid())
-  postId      String
-  sessionId   String
-  status      SeatingSectionStatus @default(OPEN)
-  updatedById String
-  updatedAt   DateTime             @updatedAt
-  post        Post                 @relation(fields: [postId], references: [id], onDelete: Cascade)
-  session     Session              @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  updatedBy   EventVolunteer       @relation("PostSessionStatusUpdatedBy", fields: [updatedById], references: [id], onDelete: Cascade)
+    id          String               @id @default(cuid())
+    postId      String
+    sessionId   String
+    status      SeatingSectionStatus @default(OPEN)
+    updatedById String
+    updatedAt   DateTime             @updatedAt
+    post        Post                 @relation(fields: [postId], references: [id], onDelete: Cascade)
+    session     Session              @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    updatedBy   EventVolunteer       @relation("PostSessionStatusUpdatedBy", fields: [updatedById], references: [id], onDelete: Cascade)
 
-  @@unique([postId, sessionId])
-  @@index([sessionId])
+    @@unique([postId, sessionId])
+    @@index([sessionId])
 }
 
 // ─────────────────────────────────────────────
@@ -846,110 +867,110 @@ model PostSessionStatus {
 // ─────────────────────────────────────────────
 
 enum AppointmentStatus {
-  PUBLISHER
-  MINISTERIAL_SERVANT
-  ELDER
+    PUBLISHER
+    MINISTERIAL_SERVANT
+    ELDER
 }
 
 enum AssignmentStatus {
-  PENDING
-  ACCEPTED
-  DECLINED
-  AUTO_DECLINED
+    PENDING
+    ACCEPTED
+    DECLINED
+    AUTO_DECLINED
 }
 
 enum AuthProvider {
-  EMAIL
-  GOOGLE
-  APPLE
+    EMAIL
+    GOOGLE
+    APPLE
 }
 
 enum CheckInStatus {
-  CHECKED_IN
-  CHECKED_OUT
-  NO_SHOW
+    CHECKED_IN
+    CHECKED_OUT
+    NO_SHOW
 }
 
 enum DateFilter {
-  UPCOMING
-  PAST
-  ALL
+    UPCOMING
+    PAST
+    ALL
 }
 
 enum DepartmentType {
-  ACCOUNTS
-  ATTENDANT
-  AUDIO
-  BAPTISM
-  CLEANING
-  FIRST_AID
-  INFORMATION_VOLUNTEER_SERVICE
-  INSTALLATION
-  LOST_FOUND_CHECKROOM
-  PARKING
-  ROOMING
-  STAGE
-  TRUCKING_EQUIPMENT
-  VIDEO
+    ACCOUNTS
+    ATTENDANT
+    AUDIO
+    BAPTISM
+    CLEANING
+    FIRST_AID
+    INFORMATION_VOLUNTEER_SERVICE
+    INSTALLATION
+    LOST_FOUND_CHECKROOM
+    PARKING
+    ROOMING
+    STAGE
+    TRUCKING_EQUIPMENT
+    VIDEO
 }
 
 enum EventRole {
-  DEPARTMENT_OVERSEER
+    DEPARTMENT_OVERSEER
 }
 
 enum HierarchyRole {
-  ASSISTANT_OVERSEER
-  AREA_OVERSEER
+    ASSISTANT_OVERSEER
+    AREA_OVERSEER
 }
 
 enum EventType {
-  CIRCUIT_ASSEMBLY_CO // Assembly with Circuit Overseer (1 day)
-  CIRCUIT_ASSEMBLY_BR // Assembly with Branch Representative (1 day)
-  REGIONAL_CONVENTION // Regional Convention (3 days)
-  SPECIAL_CONVENTION // Special Convention (3 days)
+    CIRCUIT_ASSEMBLY_CO // Assembly with Circuit Overseer (1 day)
+    CIRCUIT_ASSEMBLY_BR // Assembly with Branch Representative (1 day)
+    REGIONAL_CONVENTION // Regional Convention (3 days)
+    SPECIAL_CONVENTION // Special Convention (3 days)
 }
 
 enum JoinRequestStatus {
-  PENDING
-  APPROVED
-  DENIED
+    PENDING
+    APPROVED
+    DENIED
 }
 
 enum MessageSenderType {
-  USER
-  VOLUNTEER
+    USER
+    VOLUNTEER
 }
 
 enum RecipientType {
-  VOLUNTEER
-  DEPARTMENT
-  EVENT
-  USER
+    VOLUNTEER
+    DEPARTMENT
+    EVENT
+    USER
 }
 
 enum ConversationType {
-  DIRECT
-  DEPARTMENT_BROADCAST
-  EVENT_BROADCAST
+    DIRECT
+    DEPARTMENT_BROADCAST
+    EVENT_BROADCAST
 }
 
 enum SeatingSectionStatus {
-  OPEN
-  FILLING
-  FULL
+    OPEN
+    FILLING
+    FULL
 }
 
 enum SafetyIncidentType {
-  BUILDING_DEFECT
-  WET_FLOOR
-  UNSAFE_CONDITION
-  MEDICAL_EMERGENCY
-  DISRUPTIVE_INDIVIDUAL
-  BOMB_THREAT
-  VIOLENT_INDIVIDUAL
-  SEVERE_WEATHER
-  ACTIVE_SHOOTER
-  OTHER
+    BUILDING_DEFECT
+    WET_FLOOR
+    UNSAFE_CONDITION
+    MEDICAL_EMERGENCY
+    DISRUPTIVE_INDIVIDUAL
+    BOMB_THREAT
+    VIOLENT_INDIVIDUAL
+    SEVERE_WEATHER
+    ACTIVE_SHOOTER
+    OTHER
 }
 
 // ─────────────────────────────────────────────
@@ -957,145 +978,145 @@ enum SafetyIncidentType {
 // ─────────────────────────────────────────────
 
 enum AVEquipmentCategory {
-  CAMERA_PTZ
-  CAMERA_MANNED
-  TRIPOD
-  AUDIO_MIXER
-  VIDEO_SWITCHER
-  MEDIA_PLAYER
-  LED_PANEL
-  LOUDSPEAKER
-  MICROPHONE
-  STAGE_MONITOR
-  INTERCOM
-  CABLE
-  STAGE_LIGHTING
-  RECORDING_DEVICE
-  ASSISTIVE_LISTENING
-  ACCESSORY
+    CAMERA_PTZ
+    CAMERA_MANNED
+    TRIPOD
+    AUDIO_MIXER
+    VIDEO_SWITCHER
+    MEDIA_PLAYER
+    LED_PANEL
+    LOUDSPEAKER
+    MICROPHONE
+    STAGE_MONITOR
+    INTERCOM
+    CABLE
+    STAGE_LIGHTING
+    RECORDING_DEVICE
+    ASSISTIVE_LISTENING
+    ACCESSORY
 }
 
 enum AVEquipmentCondition {
-  GOOD
-  NEEDS_REPAIR
-  OUT_OF_SERVICE
+    GOOD
+    NEEDS_REPAIR
+    OUT_OF_SERVICE
 }
 
 enum AVDamageSeverity {
-  MINOR
-  MODERATE
-  SEVERE
+    MINOR
+    MODERATE
+    SEVERE
 }
 
 enum AVHazardType {
-  WORKING_AT_HEIGHT
-  ELECTRICAL_EXPOSURE
-  ELEVATED_PLATFORM
-  POWER_TOOLS
-  MOVING_EQUIPMENT
-  NEAR_STAIRS
-  UNEVEN_SURFACE
-  HEAVY_LIFTING
-  PINCH_CRUSH_CUT
-  EXTREME_CONDITIONS
+    WORKING_AT_HEIGHT
+    ELECTRICAL_EXPOSURE
+    ELEVATED_PLATFORM
+    POWER_TOOLS
+    MOVING_EQUIPMENT
+    NEAR_STAIRS
+    UNEVEN_SURFACE
+    HEAVY_LIFTING
+    PINCH_CRUSH_CUT
+    EXTREME_CONDITIONS
 }
 
 model AVEquipmentItem {
-  id            String               @id @default(cuid())
-  name          String
-  model         String?
-  serialNumber  String?
-  category      AVEquipmentCategory
-  condition     AVEquipmentCondition @default(GOOD)
-  location      String?
-  notes         String?
-  areaId        String?
-  eventId       String
-  createdAt     DateTime             @default(now())
-  updatedAt     DateTime             @updatedAt
+    id           String               @id @default(cuid())
+    name         String
+    model        String?
+    serialNumber String?
+    category     AVEquipmentCategory
+    condition    AVEquipmentCondition @default(GOOD)
+    location     String?
+    notes        String?
+    areaId       String?
+    eventId      String
+    createdAt    DateTime             @default(now())
+    updatedAt    DateTime             @updatedAt
 
-  area          Area?                @relation(fields: [areaId], references: [id])
-  event         Event                @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  checkouts     AVEquipmentCheckout[]
-  damageReports AVDamageReport[]
+    area          Area?                 @relation(fields: [areaId], references: [id])
+    event         Event                 @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    checkouts     AVEquipmentCheckout[]
+    damageReports AVDamageReport[]
 
-  @@index([eventId])
-  @@index([areaId])
-  @@index([category])
+    @@index([eventId])
+    @@index([areaId])
+    @@index([category])
 }
 
 model AVEquipmentCheckout {
-  id             String          @id @default(cuid())
-  equipmentId    String
-  checkedOutById String
-  checkedOutAt   DateTime        @default(now())
-  checkedInAt    DateTime?
-  sessionId      String?
-  notes          String?
+    id             String    @id @default(cuid())
+    equipmentId    String
+    checkedOutById String
+    checkedOutAt   DateTime  @default(now())
+    checkedInAt    DateTime?
+    sessionId      String?
+    notes          String?
 
-  equipment      AVEquipmentItem @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
-  checkedOutBy   EventVolunteer  @relation(fields: [checkedOutById], references: [id], onDelete: Cascade)
-  session        Session?        @relation(fields: [sessionId], references: [id])
+    equipment    AVEquipmentItem @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+    checkedOutBy EventVolunteer  @relation(fields: [checkedOutById], references: [id], onDelete: Cascade)
+    session      Session?        @relation(fields: [sessionId], references: [id])
 
-  @@index([equipmentId])
-  @@index([checkedOutById])
-  @@index([checkedInAt])
+    @@index([equipmentId])
+    @@index([checkedOutById])
+    @@index([checkedInAt])
 }
 
 model AVDamageReport {
-  id              String              @id @default(cuid())
-  equipmentId     String
-  description     String
-  severity        AVDamageSeverity
-  reportedById    String
-  sessionId       String?
-  resolved        Boolean             @default(false)
-  resolvedAt      DateTime?
-  resolvedById    String?
-  resolutionNotes String?
-  createdAt       DateTime            @default(now())
+    id              String           @id @default(cuid())
+    equipmentId     String
+    description     String
+    severity        AVDamageSeverity
+    reportedById    String
+    sessionId       String?
+    resolved        Boolean          @default(false)
+    resolvedAt      DateTime?
+    resolvedById    String?
+    resolutionNotes String?
+    createdAt       DateTime         @default(now())
 
-  equipment       AVEquipmentItem     @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
-  reportedBy      EventVolunteer      @relation(fields: [reportedById], references: [id], onDelete: Cascade)
-  resolvedBy      User?               @relation("ResolvedDamageReports", fields: [resolvedById], references: [id], onDelete: SetNull)
-  session         Session?            @relation(fields: [sessionId], references: [id])
+    equipment  AVEquipmentItem @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+    reportedBy EventVolunteer  @relation(fields: [reportedById], references: [id], onDelete: Cascade)
+    resolvedBy User?           @relation("ResolvedDamageReports", fields: [resolvedById], references: [id], onDelete: SetNull)
+    session    Session?        @relation(fields: [sessionId], references: [id])
 
-  @@index([equipmentId])
-  @@index([resolved])
+    @@index([equipmentId])
+    @@index([resolved])
 }
 
 model AVHazardAssessment {
-  id            String       @id @default(cuid())
-  eventId       String
-  title         String
-  hazardType    AVHazardType
-  description   String
-  controls      String
-  ppeRequired   String[]
-  completedById String?
-  sessionId     String?
-  completedAt   DateTime     @default(now())
+    id            String       @id @default(cuid())
+    eventId       String
+    title         String
+    hazardType    AVHazardType
+    description   String
+    controls      String
+    ppeRequired   String[]
+    completedById String?
+    sessionId     String?
+    completedAt   DateTime     @default(now())
 
-  event         Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  completedBy   User?        @relation(fields: [completedById], references: [id], onDelete: SetNull)
-  session       Session?     @relation(fields: [sessionId], references: [id])
+    event       Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    completedBy User?    @relation(fields: [completedById], references: [id], onDelete: SetNull)
+    session     Session? @relation(fields: [sessionId], references: [id])
 
-  @@index([eventId])
+    @@index([eventId])
 }
 
 model AVSafetyBriefing {
-  id            String                     @id @default(cuid())
-  eventId       String
-  topic         String
-  notes         String?
-  conductedById String?
-  conductedAt   DateTime                   @default(now())
+    id            String   @id @default(cuid())
+    eventId       String
+    topic         String
+    notes         String?
+    conductedById String?
+    conductedAt   DateTime @default(now())
 
-  event         Event                      @relation(fields: [eventId], references: [id], onDelete: Cascade)
-  conductedBy   User?                      @relation(fields: [conductedById], references: [id], onDelete: SetNull)
-  attendees     AVSafetyBriefingAttendee[]
+    event       Event                      @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    conductedBy User?                      @relation(fields: [conductedById], references: [id], onDelete: SetNull)
+    attendees   AVSafetyBriefingAttendee[]
 
-  @@index([eventId])
+    @@index([eventId])
 }
 
 // ─────────────────────────────────────────────
@@ -1105,46 +1126,46 @@ model AVSafetyBriefing {
 // Uses shiftId for shift-level confirmations, sessionId as fallback for non-shift depts.
 
 model ReminderConfirmation {
-  id                 String          @id @default(cuid())
-  eventVolunteerId   String
-  shiftId            String?
-  sessionId          String?
-  confirmedAt        DateTime        @default(now())
+    id               String   @id @default(cuid())
+    eventVolunteerId String
+    shiftId          String?
+    sessionId        String?
+    confirmedAt      DateTime @default(now())
 
-  eventVolunteer     EventVolunteer  @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
-  shift              Shift?          @relation(fields: [shiftId], references: [id], onDelete: Cascade)
-  session            Session?        @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+    eventVolunteer EventVolunteer @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    shift          Shift?         @relation(fields: [shiftId], references: [id], onDelete: Cascade)
+    session        Session?       @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 
-  @@unique([eventVolunteerId, shiftId])
-  @@unique([eventVolunteerId, sessionId])
-  @@index([eventVolunteerId])
+    @@unique([eventVolunteerId, shiftId])
+    @@unique([eventVolunteerId, sessionId])
+    @@index([eventVolunteerId])
 }
 
 model LanyardCheckout {
-  id               String          @id @default(cuid())
-  eventVolunteerId String
-  eventId          String
-  date             DateTime        @db.Date
-  pickedUpAt       DateTime?
-  returnedAt       DateTime?
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
+    id               String    @id @default(cuid())
+    eventVolunteerId String
+    eventId          String
+    date             DateTime  @db.Date
+    pickedUpAt       DateTime?
+    returnedAt       DateTime?
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @updatedAt
 
-  eventVolunteer   EventVolunteer  @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
-  event            Event           @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    eventVolunteer EventVolunteer @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    event          Event          @relation(fields: [eventId], references: [id], onDelete: Cascade)
 
-  @@unique([eventVolunteerId, date])
-  @@index([eventId, date])
+    @@unique([eventVolunteerId, date])
+    @@index([eventId, date])
 }
 
 model AVSafetyBriefingAttendee {
-  id               String           @id @default(cuid())
-  briefingId       String
-  eventVolunteerId String
-  createdAt        DateTime         @default(now())
+    id               String   @id @default(cuid())
+    briefingId       String
+    eventVolunteerId String
+    createdAt        DateTime @default(now())
 
-  briefing         AVSafetyBriefing @relation(fields: [briefingId], references: [id], onDelete: Cascade)
-  eventVolunteer   EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
+    briefing       AVSafetyBriefing @relation(fields: [briefingId], references: [id], onDelete: Cascade)
+    eventVolunteer EventVolunteer   @relation(fields: [eventVolunteerId], references: [id], onDelete: Cascade)
 
-  @@unique([briefingId, eventVolunteerId])
+    @@unique([briefingId, eventVolunteerId])
 }
