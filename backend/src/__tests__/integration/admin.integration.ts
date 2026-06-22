@@ -18,7 +18,7 @@
  */
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent, setAppAdmin } from '../testHelpers.js';
+import { createTestEvent, setAppAdmin, registerTestUser } from '../testHelpers.js';
 import type { Application } from 'express';
 
 let app: Application;
@@ -33,31 +33,10 @@ describe('Admin Operations', () => {
 
     // Register an admin user
     const adminEmail = `admin-test-${Date.now()}@example.com`;
-    const adminRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) {
-              accessToken
-            }
-          }
-        `,
-        variables: {
-          input: {
-            email: adminEmail,
-            password: 'AdminPass123!',
-            firstName: 'Admin',
-            lastName: 'Tester',
-            isOverseer: true,
-          },
-        },
-      });
-
-    if (adminRes.body.errors) {
-      console.error('Admin register failed:', adminRes.body.errors);
-      return;
-    }
+    await registerTestUser(app, {
+      email: adminEmail, password: 'AdminPass123!',
+      firstName: 'Admin', lastName: 'Tester', isOverseer: true,
+    });
 
     // Set isAppAdmin
     await setAppAdmin(adminEmail);
@@ -83,29 +62,9 @@ describe('Admin Operations', () => {
     adminToken = loginRes.body.data.loginUser.accessToken;
 
     // Register a regular (non-admin) user
-    const regularEmail = `regular-test-${Date.now()}@example.com`;
-    const regularRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) {
-              accessToken
-            }
-          }
-        `,
-        variables: {
-          input: {
-            email: regularEmail,
-            password: 'TestPassword123!',
-            firstName: 'Regular',
-            lastName: 'User',
-            isOverseer: false,
-          },
-        },
-      });
-
-    regularToken = regularRes.body.data.registerUser.accessToken;
+    regularToken = (await registerTestUser(app, {
+      firstName: 'Regular', lastName: 'User',
+    })).accessToken;
   });
 
   afterAll(async () => {
