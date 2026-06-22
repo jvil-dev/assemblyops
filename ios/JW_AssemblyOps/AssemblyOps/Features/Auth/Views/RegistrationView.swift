@@ -20,8 +20,8 @@
 //   - Password match indicator
 //   - Google/Apple sign-up
 
-import SwiftUI
 import AuthenticationServices
+import SwiftUI
 
 struct RegistrationView: View {
     @StateObject private var viewModel = RegistrationViewModel()
@@ -190,16 +190,37 @@ struct RegistrationView: View {
 
                 if !viewModel.confirmPassword.isEmpty {
                     HStack(spacing: 4) {
-                        Image(systemName: viewModel.passwordsMatch ? "checkmark.circle.fill" : "xmark.circle.fill")
-                            .font(.caption)
-                        Text(viewModel.passwordsMatch ? "auth.passwordsMatch".localized : "auth.passwordsDontMatch".localized)
-                            .font(.caption)
+                        Image(
+                            systemName: viewModel.passwordsMatch
+                                ? "checkmark.circle.fill" : "xmark.circle.fill"
+                        )
+                        .font(.caption)
+                        Text(
+                            viewModel.passwordsMatch
+                                ? "auth.passwordsMatch".localized
+                                : "auth.passwordsDontMatch".localized
+                        )
+                        .font(.caption)
                     }
-                    .foregroundStyle(viewModel.passwordsMatch
-                        ? AppTheme.StatusColors.accepted
-                        : AppTheme.StatusColors.declined)
+                    .foregroundStyle(
+                        viewModel.passwordsMatch
+                            ? AppTheme.StatusColors.accepted
+                            : AppTheme.StatusColors.declined
+                    )
                     .transition(.opacity)
                 }
+            }
+
+            VStack(alignment: .leading, spacing: AppTheme.Spacing.xs) {
+                Text("auth.section.congregation".localized)
+                    .font(.system(size: 11, weight: .semibold))
+                    .tracking(0.6)
+                    .foregroundStyle(AppTheme.textTertiary(for: colorScheme))
+
+                CongregationSearchField(
+                    selectedName: $viewModel.congregationName,
+                    selectedId: $viewModel.congregationId
+                )
             }
         }
         .cardPadding()
@@ -233,29 +254,26 @@ struct RegistrationView: View {
             )
             .focused($focusedField, equals: .phone)
 
-            VStack(alignment: .leading, spacing: AppTheme.Spacing.xs) {
-                Text("auth.section.congregation".localized)
-                    .font(.system(size: 11, weight: .semibold))
-                    .tracking(0.6)
-                    .foregroundStyle(AppTheme.textTertiary(for: colorScheme))
-
-                CongregationSearchField(
-                    selectedName: $viewModel.congregationName,
-                    selectedId: $viewModel.congregationId
-                )
-            }
-
             VStack(alignment: .leading, spacing: AppTheme.Spacing.s) {
                 Text("auth.section.appointment".localized)
                     .font(.system(size: 11, weight: .semibold))
                     .tracking(0.6)
                     .foregroundStyle(AppTheme.textTertiary(for: colorScheme))
 
-                Picker("auth.section.appointment".localized, selection: $viewModel.appointmentStatus) {
+                Picker(
+                    "auth.section.appointment".localized,
+                    selection: $viewModel.appointmentStatus
+                ) {
                     Text("auth.appointment.none".localized).tag(String?.none)
-                    Text("auth.appointment.publisher".localized).tag(String?.some("PUBLISHER"))
-                    Text("auth.appointment.ministerialServant".localized).tag(String?.some("MINISTERIAL_SERVANT"))
-                    Text("auth.appointment.elder".localized).tag(String?.some("ELDER"))
+                    Text("auth.appointment.publisher".localized).tag(
+                        String?.some("PUBLISHER")
+                    )
+                    Text("auth.appointment.ministerialServant".localized).tag(
+                        String?.some("MINISTERIAL_SERVANT")
+                    )
+                    Text("auth.appointment.elder".localized).tag(
+                        String?.some("ELDER")
+                    )
                 }
                 .pickerStyle(.menu)
                 .tint(AppTheme.themeColor)
@@ -297,7 +315,10 @@ struct RegistrationView: View {
                 }
                 .background(
                     RoundedRectangle(cornerRadius: AppTheme.CornerRadius.button)
-                        .stroke(AppTheme.dividerColor(for: colorScheme), lineWidth: 1.5)
+                        .stroke(
+                            AppTheme.dividerColor(for: colorScheme),
+                            lineWidth: 1.5
+                        )
                 )
                 .foregroundStyle(AppTheme.textSecondary(for: colorScheme))
                 .accessibilityLabel("auth.a11y.signUpGoogle".localized)
@@ -314,7 +335,10 @@ struct RegistrationView: View {
                 }
                 .background(
                     RoundedRectangle(cornerRadius: AppTheme.CornerRadius.button)
-                        .stroke(AppTheme.dividerColor(for: colorScheme), lineWidth: 1.5)
+                        .stroke(
+                            AppTheme.dividerColor(for: colorScheme),
+                            lineWidth: 1.5
+                        )
                 )
                 .foregroundStyle(AppTheme.textSecondary(for: colorScheme))
                 .accessibilityLabel("auth.a11y.signUpApple".localized)
@@ -342,11 +366,19 @@ struct RegistrationView: View {
         }
         .background(
             RoundedRectangle(cornerRadius: AppTheme.CornerRadius.button)
-                .fill(viewModel.isFormValid
-                      ? AppTheme.themeColor
-                      : AppTheme.themeColor.opacity(0.4))
-                .shadow(color: AppTheme.themeColor.opacity(viewModel.isFormValid ? 0.3 : 0),
-                        radius: 10, x: 0, y: 3)
+                .fill(
+                    viewModel.isFormValid
+                        ? AppTheme.themeColor
+                        : AppTheme.themeColor.opacity(0.4)
+                )
+                .shadow(
+                    color: AppTheme.themeColor.opacity(
+                        viewModel.isFormValid ? 0.3 : 0
+                    ),
+                    radius: 10,
+                    x: 0,
+                    y: 3
+                )
         )
         .foregroundStyle(.white)
         .disabled(!viewModel.isFormValid || viewModel.isLoading)
