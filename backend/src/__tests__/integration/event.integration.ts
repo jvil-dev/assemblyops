@@ -27,7 +27,7 @@
  */
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent } from '../testHelpers.js';
+import { createTestEvent, registerTestUser } from '../testHelpers.js';
 import type { Application } from 'express';
 
 let app: Application;
@@ -40,35 +40,10 @@ describe('Event Operations', () => {
 
   beforeAll(async () => {
     app = await createTestApp();
-    const email = `event-test-${Date.now()}@example.com`;
-
     // Register overseer user
-    const registerRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) {
-              accessToken
-            }
-          }
-        `,
-        variables: {
-          input: {
-            email,
-            password: 'TestPassword123!',
-            firstName: 'Event',
-            lastName: 'Tester',
-            isOverseer: true,
-          },
-        },
-      });
-
-    if (registerRes.body.errors) {
-      console.error('Register failed:', registerRes.body.errors);
-      return;
-    }
-    accessToken = registerRes.body.data.registerUser.accessToken;
+    accessToken = (await registerTestUser(app, {
+      firstName: 'Event', lastName: 'Tester', isOverseer: true,
+    })).accessToken;
 
     // Create a test event directly via Prisma (simulating seed script)
     eventId = await createTestEvent();
@@ -247,29 +222,9 @@ describe('Event Operations', () => {
 
     it('should allow a user to join via access code', async () => {
       // Register a second user (non-overseer)
-      const email = `vol-join-${Date.now()}@example.com`;
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Join',
-              lastName: 'Tester',
-              isOverseer: false,
-            },
-          },
-        });
-
-      volunteerUserToken = registerRes.body.data.registerUser.accessToken;
+      volunteerUserToken = (await registerTestUser(app, {
+        firstName: 'Join', lastName: 'Tester',
+      })).accessToken;
 
       const response = await request(app)
         .post('/graphql')
@@ -398,28 +353,9 @@ describe('Event Operations', () => {
 
     beforeAll(async () => {
       // Register a second overseer who owns a different department on the same event
-      const email = `event-auth-${Date.now()}@example.com`;
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Other',
-              lastName: 'Overseer',
-              isOverseer: true,
-            },
-          },
-        });
-      otherUserToken = registerRes.body.data.registerUser.accessToken;
+      otherUserToken = (await registerTestUser(app, {
+        firstName: 'Other', lastName: 'Overseer', isOverseer: true,
+      })).accessToken;
 
       // Purchase a different department on the same event
       await request(app)
@@ -493,28 +429,9 @@ describe('Event Operations', () => {
 
   describe('edge cases', () => {
     it('should reject joinDepartmentByAccessCode for the same user twice', async () => {
-      const email = `dup-join-${Date.now()}@example.com`;
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Dup',
-              lastName: 'Joiner',
-              isOverseer: false,
-            },
-          },
-        });
-      const dupToken = registerRes.body.data.registerUser.accessToken;
+      const dupToken = (await registerTestUser(app, {
+        firstName: 'Dup', lastName: 'Joiner',
+      })).accessToken;
 
       // First join — should succeed
       await request(app)
@@ -572,28 +489,9 @@ describe('Event Operations', () => {
 
     it('myAllEvents should return both memberships when user is both EventAdmin and EventVolunteer for the same event', async () => {
       // Register a new overseer user
-      const email = `dual-role-${Date.now()}@example.com`;
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Dual',
-              lastName: 'Role',
-              isOverseer: true,
-            },
-          },
-        });
-      const dualToken = registerRes.body.data.registerUser.accessToken;
+      const dualToken = (await registerTestUser(app, {
+        firstName: 'Dual', lastName: 'Role', isOverseer: true,
+      })).accessToken;
 
       // Purchase a department (becomes EventAdmin/overseer)
       await request(app)
@@ -658,29 +556,9 @@ describe('Event Operations', () => {
 
     it('should assign assistant overseer role', async () => {
       // Register a volunteer and join the department
-      const email = `hier-vol-${Date.now()}@example.com`;
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Hierarchy',
-              lastName: 'Volunteer',
-              isOverseer: false,
-            },
-          },
-        });
-
-      const volToken = registerRes.body.data.registerUser.accessToken;
+      const volToken = (await registerTestUser(app, {
+        firstName: 'Hierarchy', lastName: 'Volunteer',
+      })).accessToken;
 
       // Join the department via access code — returns the EventVolunteer id
       const joinRes = await request(app)

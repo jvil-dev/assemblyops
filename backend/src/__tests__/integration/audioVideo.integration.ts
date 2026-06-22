@@ -19,7 +19,7 @@
  */
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent, createTestVolunteerUser } from '../testHelpers.js';
+import { createTestEvent, createTestVolunteerUser, registerTestUser } from '../testHelpers.js';
 import prisma from '../../config/database.js';
 import type { Application } from 'express';
 
@@ -45,31 +45,9 @@ describe('Audio/Video Department', () => {
     app = await createTestApp();
 
     // 1. Register overseer
-    const email = `test-av-overseer-${Date.now()}@test.com`;
-    const registerRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `mutation Register($input: RegisterUserInput!) {
-          registerUser(input: $input) {
-            accessToken
-          }
-        }`,
-        variables: {
-          input: {
-            email,
-            password: 'TestPass123',
-            firstName: 'AV',
-            lastName: 'Overseer',
-            isOverseer: true,
-          },
-        },
-      });
-
-    if (registerRes.body.errors) {
-      console.error('Register failed:', registerRes.body.errors);
-      return;
-    }
-    overseerToken = registerRes.body.data.registerUser.accessToken;
+    overseerToken = (await registerTestUser(app, {
+      firstName: 'AV', lastName: 'Overseer', isOverseer: true,
+    })).accessToken;
 
     // 2. Create test event
     eventId = await createTestEvent();

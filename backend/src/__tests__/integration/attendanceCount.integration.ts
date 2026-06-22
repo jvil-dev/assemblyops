@@ -19,7 +19,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent } from '../testHelpers.js';
+import { createTestEvent, registerTestUser } from '../testHelpers.js';
 import type { Application } from 'express';
 
 describe('Attendance Count Operations', () => {
@@ -34,26 +34,9 @@ describe('Attendance Count Operations', () => {
     const email = `attendance-test-${Date.now()}@example.com`;
 
     // Register user (overseer)
-    const registerRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) { accessToken }
-          }
-        `,
-        variables: {
-          input: {
-            email,
-            password: 'TestPassword123',
-            firstName: 'Attendance',
-            lastName: 'Tester',
-            isOverseer: true,
-          },
-        },
-      });
-
-    adminToken = registerRes.body.data.registerUser.accessToken;
+    adminToken = (await registerTestUser(app, {
+      firstName: 'Attendance', lastName: 'Tester', isOverseer: true,
+    })).accessToken;
 
     // Setup event and session
     eventId = await createTestEvent();

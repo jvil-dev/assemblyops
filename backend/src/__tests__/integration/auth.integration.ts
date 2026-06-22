@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
+import { createTestCongregation } from '../testHelpers.js';
 import type { Application } from 'express';
 
 let app: Application;
@@ -14,9 +15,11 @@ describe('Auth', () => {
 
   let accessToken: string;
   let refreshToken: string;
+  let congregationId: string;
 
   beforeAll(async () => {
     app = await createTestApp();
+    congregationId = await createTestCongregation();
   });
 
   afterAll(async () => {
@@ -43,7 +46,7 @@ describe('Auth', () => {
               }
             }
           `,
-          variables: { input: testUser },
+          variables: { input: { ...testUser, congregationId } },
         });
 
       expect(response.status).toBe(200);
@@ -67,7 +70,7 @@ describe('Auth', () => {
               }
             }
           `,
-          variables: { input: testUser },
+          variables: { input: { ...testUser, congregationId } },
         });
 
       expect(response.body.errors).toBeDefined();
