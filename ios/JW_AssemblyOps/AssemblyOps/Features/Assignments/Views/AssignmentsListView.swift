@@ -45,7 +45,9 @@ struct AssignmentsListView: View {
     var body: some View {
         Group {
             if viewModel.isLoading && !viewModel.hasLoaded {
-                LoadingView(message: NSLocalizedString("schedule.loading", comment: ""))
+                LoadingView(
+                    message: NSLocalizedString("schedule.loading", comment: "")
+                )
             } else if let error = viewModel.errorMessage, viewModel.isEmpty {
                 ErrorView(message: error) {
                     viewModel.refresh()
@@ -88,7 +90,9 @@ struct AssignmentsListView: View {
             HapticManager.shared.lightTap()
         } label: {
             Label(
-                showTodayOnly ? "schedule.filter.all".localized : "schedule.filter.today".localized,
+                showTodayOnly
+                    ? "schedule.filter.all".localized
+                    : "schedule.filter.today".localized,
                 systemImage: showTodayOnly ? "calendar" : "sun.max"
             )
         }
@@ -96,7 +100,9 @@ struct AssignmentsListView: View {
 
     // MARK: - Filtered Data
 
-    private var filteredGroupedAssignments: [(date: Date, sessions: [SessionGroup])] {
+    private var filteredGroupedAssignments:
+        [(date: Date, sessions: [SessionGroup])]
+    {
         if showTodayOnly {
             return viewModel.groupedAssignments.filter { group in
                 DateUtils.isSessionDateToday(group.date)
@@ -127,20 +133,36 @@ struct AssignmentsListView: View {
             }
 
             ScrollView {
-                LazyVStack(spacing: AppTheme.Spacing.l, pinnedViews: .sectionHeaders) {
+                LazyVStack(
+                    spacing: AppTheme.Spacing.l,
+                    pinnedViews: .sectionHeaders
+                ) {
                     // Pending Captain Roles section
                     if !viewModel.pendingCaptainAssignments.isEmpty {
                         Section {
-                            ForEach(Array(viewModel.pendingCaptainAssignments.enumerated()), id: \.element.id) { index, captainAssignment in
+                            ForEach(
+                                Array(
+                                    viewModel.pendingCaptainAssignments
+                                        .enumerated()
+                                ),
+                                id: \.element.id
+                            ) { index, captainAssignment in
                                 NavigationLink {
-                                    CaptainAssignmentDetailView(assignment: captainAssignment) {
+                                    CaptainAssignmentDetailView(
+                                        assignment: captainAssignment
+                                    ) {
                                         viewModel.refresh()
                                     }
                                 } label: {
-                                    CaptainAssignmentCardView(assignment: captainAssignment)
+                                    CaptainAssignmentCardView(
+                                        assignment: captainAssignment
+                                    )
                                 }
                                 .buttonStyle(.plain)
-                                .entranceAnimation(hasAppeared: hasAppeared, delay: Double(index) * 0.03)
+                                .entranceAnimation(
+                                    hasAppeared: hasAppeared,
+                                    delay: Double(index) * 0.03
+                                )
                             }
                         } header: {
                             captainSectionHeader
@@ -149,11 +171,20 @@ struct AssignmentsListView: View {
 
                     if showTodayOnly && filteredGroupedAssignments.isEmpty {
                         noTodayAssignmentsView
-                            .entranceAnimation(hasAppeared: hasAppeared, delay: 0)
+                            .entranceAnimation(
+                                hasAppeared: hasAppeared,
+                                delay: 0
+                            )
                     } else {
-                        ForEach(Array(filteredGroupedAssignments.enumerated()), id: \.element.date) { groupIndex, group in
+                        ForEach(
+                            Array(filteredGroupedAssignments.enumerated()),
+                            id: \.element.date
+                        ) { groupIndex, group in
                             Section {
-                                dateGroupContent(group: group, groupIndex: groupIndex)
+                                dateGroupContent(
+                                    group: group,
+                                    groupIndex: groupIndex
+                                )
                             } header: {
                                 dateHeader(for: group.date)
                             }
@@ -174,35 +205,54 @@ struct AssignmentsListView: View {
     // MARK: - Date Group Content
 
     @ViewBuilder
-    private func dateGroupContent(group: (date: Date, sessions: [SessionGroup]), groupIndex: Int) -> some View {
-        ForEach(Array(group.sessions.enumerated()), id: \.element.id) { sessionIndex, session in
+    private func dateGroupContent(
+        group: (date: Date, sessions: [SessionGroup]),
+        groupIndex: Int
+    ) -> some View {
+        ForEach(Array(group.sessions.enumerated()), id: \.element.id) {
+            sessionIndex,
+            session in
             if group.sessions.count > 1 {
                 sessionSubHeader(session.sessionName)
             }
-            sessionAssignments(session: session, groupIndex: groupIndex, sessionIndex: sessionIndex)
+            sessionAssignments(
+                session: session,
+                groupIndex: groupIndex,
+                sessionIndex: sessionIndex
+            )
         }
     }
 
     @ViewBuilder
-    private func sessionAssignments(session: SessionGroup, groupIndex: Int, sessionIndex: Int) -> some View {
-        ForEach(Array(session.assignments.enumerated()), id: \.element.id) { index, assignment in
-            NavigationLink {
-                AssignmentDetailView(assignment: assignment)
-                    .onDisappear {
-                        viewModel.refresh()
-                    }
-            } label: {
-                AssignmentCardView(
-                    assignment: assignment,
-                    hasSessionConflict: conflictSessionIds.contains(assignment.sessionId)
-                )
-            }
-            .buttonStyle(.plain)
-            .entranceAnimation(
+    private func sessionAssignments(
+        session: SessionGroup,
+        groupIndex: Int,
+        sessionIndex: Int
+    ) -> some View {
+        ForEach(Array(session.assignments.enumerated()), id: \.element.id) {
+            index,
+            assignment in
+            AssignmentRow(
+                assignment: assignment,
+                hasSessionConflict: conflictSessionIds.contains(
+                    assignment.sessionId
+                ),
                 hasAppeared: hasAppeared,
-                delay: Double(groupIndex) * 0.05 + Double(sessionIndex) * 0.03 + Double(index) * 0.02
+                delay: entranceDelay(
+                    groupIndex: groupIndex,
+                    sessionIndex: sessionIndex,
+                    index: index
+                ),
+                onRefresh: { viewModel.refresh() }
             )
         }
+    }
+
+    private func entranceDelay(groupIndex: Int, sessionIndex: Int, index: Int)
+        -> Double
+    {
+        Double(groupIndex) * 0.05 + Double(sessionIndex) * 0.03 + Double(index)
+            * 0.02
     }
 
     // MARK: - Cache Indicator
@@ -211,7 +261,9 @@ struct AssignmentsListView: View {
         HStack(spacing: 6) {
             Image(systemName: "clock.arrow.circlePath")
             if let timestamp = AssignmentCache.shared.cacheTimestamp {
-                Text("Last updated \(timestamp.formatted(date: .omitted, time: .shortened))")
+                Text(
+                    "Last updated \(timestamp.formatted(date: .omitted, time: .shortened))"
+                )
             } else {
                 Text("Showing cached data")
             }
@@ -287,17 +339,27 @@ struct AssignmentsListView: View {
                     Circle()
                         .fill(AppTheme.StatusColors.pending)
                         .frame(width: 8, height: 8)
-                    Text(NSLocalizedString("schedule.dateHeader.today", comment: ""))
-                        .font(AppTheme.Typography.headline)
-                        .foregroundStyle(.primary)
+                    Text(
+                        NSLocalizedString(
+                            "schedule.dateHeader.today",
+                            comment: ""
+                        )
+                    )
+                    .font(AppTheme.Typography.headline)
+                    .foregroundStyle(.primary)
                 }
                 Text("• \(DateUtils.formatSessionDateAbbreviated(date))")
                     .font(AppTheme.Typography.subheadline)
                     .foregroundStyle(AppTheme.textSecondary(for: colorScheme))
             } else if DateUtils.isSessionDateTomorrow(date) {
-                Text(NSLocalizedString("schedule.dateHeader.tomorrow", comment: ""))
-                    .font(AppTheme.Typography.headline)
-                    .foregroundStyle(.primary)
+                Text(
+                    NSLocalizedString(
+                        "schedule.dateHeader.tomorrow",
+                        comment: ""
+                    )
+                )
+                .font(AppTheme.Typography.headline)
+                .foregroundStyle(.primary)
                 Text("• \(DateUtils.formatSessionDateAbbreviated(date))")
                     .font(AppTheme.Typography.subheadline)
                     .foregroundStyle(AppTheme.textSecondary(for: colorScheme))
@@ -311,6 +373,31 @@ struct AssignmentsListView: View {
         .padding(.vertical, AppTheme.Spacing.s)
         .padding(.horizontal, AppTheme.Spacing.xs)
         .background(AppTheme.backgroundTop(for: colorScheme))
+    }
+
+    // MARK: - Assignment Row
+
+    /// Single tappable assignment row navigating to its detail screen
+    private struct AssignmentRow: View {
+        let assignment: Assignment
+        let hasSessionConflict: Bool
+        let hasAppeared: Bool
+        let delay: Double
+        let onRefresh: () -> Void
+
+        var body: some View {
+            NavigationLink {
+                AssignmentDetailView(assignment: assignment)
+                    .onDisappear(perform: onRefresh)
+            } label: {
+                AssignmentCardView(
+                    assignment: assignment,
+                    hasSessionConflict: hasSessionConflict
+                )
+            }
+            .buttonStyle(.plain)
+            .entranceAnimation(hasAppeared: hasAppeared, delay: delay)
+        }
     }
 }
 
