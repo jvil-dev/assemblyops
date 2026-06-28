@@ -262,6 +262,7 @@ model Department {
     hierarchyRoles     DepartmentHierarchy[]
     departmentSessions DepartmentSession[]
     conversations      Conversation[]
+    safetyIncidents    SafetyIncident[]
 
     @@unique([eventId, departmentType])
     @@index([eventId])
@@ -654,6 +655,8 @@ model SafetyIncident {
     reportedById    String
     event           Event              @relation(fields: [eventId], references: [id], onDelete: Cascade)
     eventId         String
+    department      Department         @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+    departmentId    String
     resolved        Boolean            @default(false)
     resolvedAt      DateTime?
     resolvedBy      User?              @relation("ResolvedIncidents", fields: [resolvedById], references: [id], onDelete: SetNull)
@@ -665,6 +668,7 @@ model SafetyIncident {
 
     @@index([eventId])
     @@index([resolved])
+    @@index([departmentId])
 }
 
 // ─────────────────────────────────────────────
