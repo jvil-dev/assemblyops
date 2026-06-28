@@ -5,9 +5,6 @@
  * lost person alerts, and meetings.
  *
  * Methods:
- *   - reportSafetyIncident(reportedById, input): Report a safety incident
- *   - resolveSafetyIncident(id, adminId, resolutionNotes?): Mark incident as resolved
- *   - getSafetyIncidents(eventId, resolved?): Get safety incidents for an event
  *   - createLostPersonAlert(reportedById, input): Report a lost person
  *   - resolveLostPersonAlert(id, adminId, resolutionNotes): Mark alert as resolved
  *   - getLostPersonAlerts(eventId, resolved?): Get lost person alerts for an event
@@ -24,19 +21,12 @@
  * Called by: ../graphql/resolvers/attendant.ts
  */
 import { encryptField } from '../utils/encryption.js';
-import {
-  PrismaClient,
-  SafetyIncident,
-  LostPersonAlert,
-  AttendantMeeting,
-} from '@prisma/client';
+import { PrismaClient, LostPersonAlert, AttendantMeeting } from '@prisma/client';
 import { NotFoundError, ValidationError } from '../utils/errors.js';
 import {
-  reportSafetyIncidentSchema,
   createLostPersonAlertSchema,
   createAttendantMeetingSchema,
   updateAttendantMeetingSchema,
-  ReportSafetyIncidentInput,
   CreateLostPersonAlertInput,
   CreateAttendantMeetingInput,
   UpdateAttendantMeetingInput,
@@ -44,65 +34,6 @@ import {
 
 export class AttendantService {
   constructor(private prisma: PrismaClient) {}
-
-  // MARK: - Safety Incidents
-
-  /**
-   * Report a safety incident
-   */
-  async reportSafetyIncident(
-    reportedById: string,
-    input: ReportSafetyIncidentInput
-  ): Promise<SafetyIncident> {
-    const result = reportSafetyIncidentSchema.safeParse(input);
-    if (!result.success) {
-      throw new ValidationError(result.error.issues[0].message);
-    }
-
-    return this.prisma.safetyIncident.create({
-      data: {
-        ...result.data,
-        reportedById,
-      },
-      include: { post: true, reportedBy: true },
-    });
-  }
-
-  /**
-   * Resolve a safety incident
-   */
-  async resolveSafetyIncident(
-    id: string,
-    adminId: string,
-    resolutionNotes?: string
-  ): Promise<SafetyIncident> {
-    const existing = await this.prisma.safetyIncident.findUnique({ where: { id } });
-    if (!existing) {
-      throw new NotFoundError('Safety incident');
-    }
-
-    return this.prisma.safetyIncident.update({
-      where: { id },
-      data: {
-        resolved: true,
-        resolvedAt: new Date(),
-        resolvedById: adminId,
-        resolutionNotes,
-      },
-      include: { post: true, reportedBy: true, resolvedBy: true },
-    });
-  }
-
-  /**
-   * Get safety incidents for an event
-   */
-  async getSafetyIncidents(eventId: string, resolved?: boolean): Promise<SafetyIncident[]> {
-    return this.prisma.safetyIncident.findMany({
-      where: { eventId, ...(resolved !== undefined ? { resolved } : {}) },
-      include: { post: true, reportedBy: true, resolvedBy: true },
-      orderBy: { createdAt: 'desc' },
-    });
-  }
 
   // MARK: - Lost Person Alerts
 
@@ -337,22 +268,6 @@ export class AttendantService {
   }
 
   // MARK: - Access Control Helpers
-
-  /**
-   * Get incident's event ID for access control
-   */
-  async getIncidentEventId(id: string): Promise<string> {
-    const incident = await this.prisma.safetyIncident.findUnique({
-      where: { id },
-      select: { eventId: true },
-    });
-
-    if (!incident) {
-      throw new NotFoundError('Safety incident');
-    }
-
-    return incident.eventId;
-  }
 
   /**
    * Get alert's event ID for access control
