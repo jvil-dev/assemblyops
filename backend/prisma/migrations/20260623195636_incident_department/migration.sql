@@ -5,7 +5,7 @@
 
 */
 -- AlterTable
-ALTER TABLE "SafetyIncident" ADD COLUMN     "departmentId" TEXT NOT NULL;
+ALTER TABLE "SafetyIncident" ADD COLUMN     "departmentId" TEXT;
 
 UPDATE "SafetyIncident" si
 SET "departmentId" = ev."departmentId"
