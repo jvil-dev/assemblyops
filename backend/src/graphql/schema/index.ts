@@ -35,6 +35,7 @@ import { circuitTypeDefs } from './circuit.js';
 import { congregationTypeDefs } from './congregation.js';
 import { volunteerProfileTypeDefs } from './volunteerProfile.js';
 import { attendantTypeDefs } from './attendant.js';
+import { incidentTypeDefs } from './incident.js';
 import { areaTypeDefs } from './area.js';
 import { walkThroughTypeDefs } from './walkThrough.js';
 import { postSessionStatusTypeDefs } from './postSessionStatus.js';
@@ -88,6 +89,7 @@ const typeDefs = [
   congregationTypeDefs,
   volunteerProfileTypeDefs,
   attendantTypeDefs,
+  incidentTypeDefs,
   areaTypeDefs,
   walkThroughTypeDefs,
   postSessionStatusTypeDefs,

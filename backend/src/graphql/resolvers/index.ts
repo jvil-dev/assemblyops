@@ -40,6 +40,7 @@ import circuitResolvers from './circuit.js';
 import congregationResolvers from './congregation.js';
 import volunteerProfileResolvers from './volunteerProfile.js';
 import attendantResolvers from './attendant.js';
+import incidentResolvers from './incident.js';
 import areaResolvers from './area.js';
 import walkThroughResolvers from './walkThrough.js';
 import postSessionStatusResolvers from './postSessionStatus.js';
@@ -99,6 +100,7 @@ const resolvers = {
     ...congregationResolvers.Query,
     ...volunteerProfileResolvers.Query,
     ...attendantResolvers.Query,
+    ...incidentResolvers.Query,
     ...areaResolvers.Query,
     ...walkThroughResolvers.Query,
     ...postSessionStatusResolvers.Query,
@@ -128,6 +130,7 @@ const resolvers = {
     ...oauthResolvers.Mutation,
     ...volunteerProfileResolvers.Mutation,
     ...attendantResolvers.Mutation,
+    ...incidentResolvers.Mutation,
     ...areaResolvers.Mutation,
     ...walkThroughResolvers.Mutation,
     ...postSessionStatusResolvers.Mutation,
