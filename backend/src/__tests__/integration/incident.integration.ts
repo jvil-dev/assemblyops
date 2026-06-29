@@ -104,6 +104,16 @@ describe('Incident Operations', () => {
   });
 
   it('scopes listing to the caller department', async () => {
+    await request(app)
+      .post('/graphql')
+      .set('Authorization', `Bearer ${parkingVolToken}`)
+      .send({
+        query: REPORT,
+        variables: {
+          input: { eventId, type: 'UNSAFE_CONDITION', description: 'Icy patch in lot C' },
+        },
+      });
+
     // Attendant volunteer reports in the attendant department
     await request(app)
       .post('/graphql')
@@ -154,6 +164,16 @@ describe('Incident Operations', () => {
     expect(denied.body.errors).toBeDefined();
     expect(denied.body.errors[0].message).toMatch(/overseer|access/i);
 
+    const afterDenied = await prisma.safetyIncident.findUnique({
+      where: { id: incidentId },
+      select: { resolved: true, resolvedById: true, resolutionNotes: true },
+    });
+    expect(afterDenied).toMatchObject({
+      resolved: false,
+      resolvedById: null,
+      resolutionNotes: null,
+    });
+
     // Attendant overseer resolves it
     const allowed = await request(app)
       .post('/graphql')
@@ -170,5 +190,71 @@ describe('Incident Operations', () => {
       .send({ query: LIST, variables: { eventId, resolved: true } });
     const ids = listRes.body.data.safetyIncidents.map((i: { id: string }) => i.id);
     expect(ids).toContain(incidentId);
+  });
+
+  it('rejects a postId that belongs to another department', async () => {
+    // A post owned by the attendant department
+    const foreignPost = await prisma.post.create({
+      data: { name: 'Door A', departmentId: attendantDeptId },
+    });
+
+    // Parking volunteer tries to attach the attendant department's post
+    const res = await request(app)
+      .post('/graphql')
+      .set('Authorization', `Bearer ${parkingVolToken}`)
+      .send({
+        query: REPORT,
+        variables: {
+          input: {
+            eventId,
+            type: 'UNSAFE_CONDITION',
+            description: 'Spill near door A',
+            postId: foreignPost.id,
+          },
+        },
+      });
+
+    expect(res.body.errors).toBeDefined();
+    expect(res.body.errors[0].message).toMatch(/post does not belong/i);
+
+    // Nothing was written
+    const count = await prisma.safetyIncident.count({ where: { postId: foreignPost.id } });
+    expect(count).toBe(0);
+  });
+
+  it('rejects a sessionId that belongs to another event', async () => {
+    // A session living under a different event
+    const otherEventId = await createTestEvent();
+    const foreignSession = await prisma.session.create({
+      data: {
+        name: 'Morning',
+        date: new Date('2026-07-24'),
+        startTime: new Date('1970-01-01T09:00:00Z'),
+        endTime: new Date('1970-01-01T12:00:00Z'),
+        eventId: otherEventId,
+      },
+    });
+
+    // Parking volunteer tries to attach a session from another event
+    const res = await request(app)
+      .post('/graphql')
+      .set('Authorization', `Bearer ${parkingVolToken}`)
+      .send({
+        query: REPORT,
+        variables: {
+          input: {
+            eventId,
+            type: 'UNSAFE_CONDITION',
+            description: 'Spill in lot C',
+            sessionId: foreignSession.id,
+          },
+        },
+      });
+
+    expect(res.body.errors).toBeDefined();
+    expect(res.body.errors[0].message).toMatch(/session does not belong/i);
+
+    const count = await prisma.safetyIncident.count({ where: { sessionId: foreignSession.id } });
+    expect(count).toBe(0);
   });
 });
