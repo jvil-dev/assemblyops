@@ -25,9 +25,9 @@ export const reportSafetyIncidentSchema = z.object({
     'OTHER',
   ]),
   description: z.string().min(1).max(2000),
-  location: z.string().max(200).optional(),
-  postId: z.string().min(1).optional(),
-  sessionId: z.string().min(1).optional(),
+  location: z.string().max(200).nullish(),
+  postId: z.string().min(1).nullish(),
+  sessionId: z.string().min(1).nullish(),
 });
 
 export type ReportSafetyIncidentInput = z.infer<typeof reportSafetyIncidentSchema>;

@@ -33,6 +33,30 @@ export class IncidentService {
       throw new ValidationError(result.error.issues[0].message);
     }
 
+    const { postId, sessionId, eventId } = result.data;
+
+    // Post is scoped to a department - reject cross-department references
+    if (postId) {
+      const post = await this.prisma.post.findUnique({
+        where: { id: postId },
+        select: { departmentId: true },
+      });
+      if (!post || post.departmentId !== departmentId) {
+        throw new ValidationError('Post does not belong to your department');
+      }
+    }
+
+    // Session is scoped to an event - reject cross-event references
+    if (sessionId) {
+      const session = await this.prisma.session.findUnique({
+        where: { id: sessionId },
+        select: { eventId: true },
+      });
+      if (!session || session.eventId !== eventId) {
+        throw new ValidationError('Session does not belong to this event');
+      }
+    }
+
     return this.prisma.safetyIncident.create({
       data: {
         ...result.data,

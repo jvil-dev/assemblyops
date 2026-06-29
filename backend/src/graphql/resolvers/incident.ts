@@ -51,7 +51,7 @@ const incidentResolvers = {
       const departmentId = await resolveCallerDepartmentId(context, eventId);
 
       const incidentService = new IncidentService(context.prisma);
-      return incidentService.getSafetyIncidents(eventId, departmentId, resolved);
+      return incidentService.getSafetyIncidents(eventId, departmentId, resolved ?? undefined);
     },
   },
 
