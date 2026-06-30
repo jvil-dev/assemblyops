@@ -37,6 +37,7 @@ Postgres on Neon (project `icy-sea-11544625`, aws-us-east-1, PG16). Pooled `DATA
 - Migrations named `<timestamp>_<kebab-case>`; never edit an applied migration.
 - Every file carries a header comment describing it.
 - No `any` types; Zod-validate all GraphQL inputs.
+- Web tier (`web/`) is Dart/Flutter: use the installed Dart/Flutter skills automatically (`dart-*`, `flutter-*`) — e.g. `dart-run-static-analysis`, `dart-add-unit-test`, `flutter-add-widget-test`. Invoke the relevant skill *before* writing or reviewing Dart/Flutter code, not after.
 
 ## Workflow
 
