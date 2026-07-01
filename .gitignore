@@ -82,3 +82,8 @@ AssemblyOps.xcodeproj/
 
 # Firebase
 GoogleService-Info.plist
+
+# Dart / Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-Dependencies

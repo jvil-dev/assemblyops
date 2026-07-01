@@ -1,0 +1,10 @@
+# Shared analyzer config for every member of the web workspace
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.graphql.dart"
+  language:
+    strict-casts: true
+    strict-inference: true
