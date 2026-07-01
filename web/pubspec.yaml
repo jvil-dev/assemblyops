@@ -4,8 +4,11 @@ name: assemblyops_web
 description: "Workspace root for the AssemblyOps Flutter web apps and shared packages"
 publish_to: none
 
-environment: 
-  sdk: ^3.11.0 
+environment:
+  sdk: ^3.11.0
+
+workspace:
+  - packages/design_system
 
 dev_dependencies:
   flutter_lints: ^6.0.0
