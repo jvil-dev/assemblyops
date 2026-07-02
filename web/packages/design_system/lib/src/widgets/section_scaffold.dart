@@ -31,7 +31,12 @@ class SectionScaffold extends StatelessWidget {
               : AppSpacing.sectionPadYWide;
           return Padding(
             padding: EdgeInsets.symmetric(vertical: padY, horizontal: 24),
-            child: Center(child: child),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxContentWidth),
+                child: child,
+              ),
+            ),
           );
         },
       ),
