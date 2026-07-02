@@ -1,0 +1,23 @@
+# design_system — shared visual layer for the AssemblyOps web tier
+
+name: design_system
+description: "Design tokens, theme, and base widgets shared across the web apps"
+version: 0.0.1
+publish_to: none
+
+resolution: workspace
+
+environment:
+  sdk: ^3.11.3
+  flutter: ">=3.29.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^8.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
