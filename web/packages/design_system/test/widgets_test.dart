@@ -99,5 +99,27 @@ void main() {
       await pumpAtWidth(tester, 500);
       expect(hasVerticalPadding(tester, AppSpacing.sectionPadYMobile), isTrue);
     });
+
+    testWidgets('caps child width at maxContentWidth on wide viewports', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(2000, 800);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: SectionScaffold(
+            child: SizedBox(
+              key: Key('content'),
+              width: double.infinity,
+              height: 10,
+            ),
+          ),
+        ),
+      );
+
+      expect(tester.getSize(find.byKey(const Key('content'))).width, 1120);
+    });
   });
 }
