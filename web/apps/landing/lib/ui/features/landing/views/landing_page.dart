@@ -1,7 +1,9 @@
 // Landing page shell
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:landing/ui/features/landing/widgets/hero.dart';
+import 'package:landing/ui/features/landing/widgets/navbar.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -18,21 +20,19 @@ class LandingPage extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(32),
-            // TODO: replace placeholder with NavBar + Hero.
-            // TODO: Add problem + features section
-            // TODO: Add footer + final page composition
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset('assets/icon.svg', height: 72),
-                const SizedBox(height: 16),
-                Image.asset('assets/logo.png', height: 96),
-              ],
+        body: Stack(
+          children: const [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  HeroSection(),
+                  // TODO: Problem + Features sections
+                  // TODO: Footer + final page composition
+                ],
+              ),
             ),
-          ),
+            Positioned(top: 0, left: 0, right: 0, child: Navbar()),
+          ],
         ),
       ),
     );
