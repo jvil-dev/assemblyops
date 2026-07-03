@@ -1,3 +1,4 @@
+// Top nav: translucent, blurred header with the brand mark
 import 'dart:ui';
 
 import 'package:design_system/design_system.dart';
