@@ -24,7 +24,6 @@ class AppPrimaryButton extends StatelessWidget {
       onPressed: onPressed,
       style:
           FilledButton.styleFrom(
-            foregroundColor: AppColors.card,
             shape: const RoundedRectangleBorder(borderRadius: AppRadii.button),
             padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
             textStyle: labelStyle,
@@ -44,7 +43,13 @@ class AppPrimaryButton extends StatelessWidget {
               }
               return AppColors.primary;
             }),
-            overlayColor: const WidgetStatePropertyAll(Color(0x00000000)),
+            overlayColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.pressed) ||
+                  states.contains(WidgetState.focused)) {
+                return AppColors.card.withValues(alpha: 0.12);
+              }
+              return Colors.transparent;
+            }),
           ),
       child: Text(label),
     );
