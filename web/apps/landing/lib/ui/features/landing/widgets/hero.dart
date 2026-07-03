@@ -11,9 +11,16 @@ class HeroSection extends StatelessWidget {
   static final Uri _waitlistUrl = Uri.parse('');
 
   Future<void> _openWaitlist() async {
-    final launched = await launchUrl(_waitlistUrl, webOnlyWindowName: '_blank');
+    var launched = false;
+    if (_waitlistUrl.hasScheme) {
+      try {
+        launched = await launchUrl(_waitlistUrl, webOnlyWindowName: '_blank');
+      } on PlatformException {
+        launched = false;
+      }
+    }
     if (!launched) {
-      // TODO: surface an error to the user
+      //TODO: surface an error to user
     }
   }
 
