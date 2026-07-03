@@ -1,0 +1,37 @@
+# CodeRabbit configuration — AI PR review tuning for AssemblyOps.
+# Reviews feature PRs targeting development and release PRs targeting main.
+# Docs: https://docs.coderabbit.ai/reference/yaml-template
+language: en-US
+early_access: false
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - development
+      - main
+  path_filters:
+    - "!**/*.generated.*"
+    - "!**/generated/**"
+    - "!ios/**/*.graphql.swift"
+  path_instructions:
+    - path: "backend/**/*.ts"
+      instructions: >
+        No `any` types. All GraphQL inputs must be Zod-validated.
+        Every file needs a header comment describing it.
+        Flag resolvers with business logic that belongs in services/.
+    - path: "web/**/*.dart"
+      instructions: >
+        Follow Flutter/Dart idioms. Every file needs a header comment.
+    - path: "ios/**/*.swift"
+      instructions: >
+        SwiftUI + MVVM. Every file needs a header comment.
+
+chat:
+  auto_reply: true
