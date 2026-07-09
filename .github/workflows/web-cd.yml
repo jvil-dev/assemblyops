@@ -1,0 +1,78 @@
+# Flutter Web CD: preview channels on PRs, staging on development, production on main (gated).
+name: Flutter Web CD
+
+on:
+  pull_request:
+    branches: [main, development]
+    paths:
+      - "web/**"
+      - "firebase.json"
+      - ".firebaserc"
+      - ".github/workflows/web-cd.yml"
+  push:
+    branches: [development, main]
+    paths:
+      - "web/**"
+      - "firebase.json"
+      - ".firebaserc"
+      - ".github/workflows/web-cd.yml"
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  deploy:
+    name: Build & deploy landing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install workspace dependencies
+        run: flutter pub get
+        working-directory: web
+
+      - name: Build web
+        run: flutter build web --release --no-web-resources-cdn
+        working-directory: web/apps/landing
+
+      # PR -> ephemeral preview channel; the action comments the URL on the PR.
+      - name: Deploy preview channel
+        if: github.event_name == 'pull_request'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ASSEMBLYOPS }}
+          projectId: assemblyops
+          target: landing
+          expires: 7d
+
+      # development -> staging site. Inert until you create the assemblyops-staging
+      # site + a `staging` target and set repo variable ENABLE_WEB_STAGING=true.
+      - name: Deploy to staging
+        if: github.event_name == 'push' && github.ref == 'refs/heads/development' && vars.ENABLE_WEB_STAGING == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ASSEMBLYOPS }}
+          projectId: assemblyops
+          target: staging
+          channelId: live
+
+      # main -> production. DISABLED until the explicit React->Flutter cutover (#137),
+      # so CI never clobbers the live site mid-port. Flip `if:` to the ref check to enable.
+      - name: Deploy to production
+        if: false
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ASSEMBLYOPS }}
+          projectId: assemblyops
+          target: landing
+          channelId: live
