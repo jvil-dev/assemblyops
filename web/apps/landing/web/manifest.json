@@ -1,11 +1,11 @@
 {
-    "name": "landing",
-    "short_name": "landing",
+    "name": "AssemblyOps",
+    "short_name": "AssemblyOps",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FAF7F2",
+    "theme_color": "#1A365D",
+    "description": "The all-in-one platform for organizing departments, assigning volunteers, and tracking attendance at assemblies and conventions.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
