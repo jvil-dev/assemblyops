@@ -17,7 +17,7 @@ class FeaturesSection extends StatelessWidget {
         title: 'Organized from the first session',
         body:
             'Give every volunteer their assignment, location, and time in'
-            'one place. Volunteers confirm from their phone before the doors '
+            ' one place. Volunteers confirm from their phone before the doors '
             "open - so you know who's assigned where, and where you still need coverage.",
       ),
       _FeatureCard(
