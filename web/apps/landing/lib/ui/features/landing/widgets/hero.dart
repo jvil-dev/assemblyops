@@ -32,49 +32,47 @@ class HeroSection extends StatelessWidget {
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 960, minHeight: minHeight),
-        child: IntrinsicHeight(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                const SizedBox(height: 120),
-                const Spacer(),
-                const _HeroBadge(),
-                const SizedBox(height: 20),
-                Text(
-                  'Assembly management,\nsimplified',
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 120),
+              const _HeroBadge(),
+              const SizedBox(height: 20),
+              Text(
+                'Assembly management,\nsimplified',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: compact ? 40 : 52,
+                  height: 1.2,
+                  fontWeight: AppTypography.bold,
+                  color: AppColors.primary,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 560),
+                child: Text(
+                  'The all-in-one platform for organizing departments, '
+                  'assigning volunteers, and tracking attendance at '
+                  'assemblies and conventions.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: compact ? 40 : 52,
-                    height: 1.2,
-                    fontWeight: AppTypography.bold,
-                    color: AppColors.primary,
+                    fontSize: compact ? 18 : 20,
+                    height: 1.6,
+                    color: AppColors.textSecondary,
                   ),
                 ),
-                const SizedBox(height: 16),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 560),
-                  child: Text(
-                    'The all-in-one platform for organizing departments, '
-                    'assigning volunteers, and tracking attendance at '
-                    'assemblies and conventions.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: compact ? 18 : 20,
-                      height: 1.6,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
-                AppPrimaryButton(
-                  label: 'Join the waitlist',
-                  onPressed: _openWaitlist,
-                ),
-                const Spacer(),
-                const SizedBox(height: 24),
-              ],
-            ),
+              ),
+              const SizedBox(height: 32),
+              AppPrimaryButton(
+                label: 'Join the waitlist',
+                onPressed: _openWaitlist,
+              ),
+              const SizedBox(height: 24),
+            ],
           ),
         ),
       ),
