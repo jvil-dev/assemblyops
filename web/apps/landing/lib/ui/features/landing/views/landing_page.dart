@@ -3,6 +3,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 import 'package:landing/ui/features/landing/widgets/features.dart';
+import 'package:landing/ui/features/landing/widgets/footer.dart';
 import 'package:landing/ui/features/landing/widgets/hero.dart';
 import 'package:landing/ui/features/landing/widgets/navbar.dart';
 import 'package:landing/ui/features/landing/widgets/problem.dart';
@@ -30,7 +31,7 @@ class LandingPage extends StatelessWidget {
                   HeroSection(),
                   ProblemSection(),
                   FeaturesSection(),
-                  // TODO: Footer + final page composition
+                  FooterSection(),
                 ],
               ),
             ),
