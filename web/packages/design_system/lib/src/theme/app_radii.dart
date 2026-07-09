@@ -12,4 +12,5 @@ abstract final class AppRadii {
 
   static const BorderRadius card = BorderRadius.all(Radius.circular(md));
   static const BorderRadius button = BorderRadius.all(Radius.circular(btn));
+  static const BorderRadius large = BorderRadius.all(Radius.circular(lg));
 }

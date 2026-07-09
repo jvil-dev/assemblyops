@@ -9,17 +9,19 @@ class AppCard extends StatelessWidget {
     super.key,
     required this.child,
     this.padding = const EdgeInsets.all(20),
+    this.borderRadius = AppRadii.card,
   });
 
   final Widget child;
   final EdgeInsetsGeometry padding;
+  final BorderRadius borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: AppColors.card,
-        borderRadius: AppRadii.card,
+        borderRadius: borderRadius,
         boxShadow: AppShadows.card,
       ),
       child: Padding(padding: padding, child: child),
