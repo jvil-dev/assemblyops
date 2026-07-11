@@ -1,3 +1,4 @@
+// astro.config.mjs - Astro build config for the AssemblyOps landing site: site URL, sitemap, self-hosted DM Sans.
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
