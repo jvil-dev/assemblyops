@@ -1,2 +1,0 @@
-# Inherits the shared web-tier lints
-include: ../../analysis_options.yaml
