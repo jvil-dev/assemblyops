@@ -1,8 +1,10 @@
+<!-- AGENTS.md — development guidance for the web/landing Astro site. -->
+
 ## Development
 
 When starting the dev server, use background mode:
 
-```
+```sh
 astro dev --background
 ```
 
