@@ -121,13 +121,13 @@ After backend schema changes:
 ### Admin Portal
 
 ```bash
-cd admin
+cd web/admin
 npm install
 cp .env.local.example .env.local  # Set NEXT_PUBLIC_API_URL
 npm run dev                        # → http://localhost:3000
 ```
 
-See [admin/README.md](./admin/README.md) for pages, project structure, and access control details.
+See [web/admin/README.md](./web/admin/README.md) for pages, project structure, and access control details.
 
 ## User Roles
 
@@ -146,7 +146,9 @@ Accounts, Attendant, Audio/Video, Baptism, Cleaning, First Aid, Information & Vo
 ```text
 AssemblyOps/
 ├── ios/               # iOS app (SwiftUI + Apollo iOS)
-├── admin/             # Admin portal (Next.js + React)
+├── web/               # Browser apps
+│   ├── landing/       # Marketing site (Astro)
+│   └── admin/         # Admin portal (Next.js + React)
 ├── backend/           # Node.js GraphQL API
 ├── docs/              # Architecture & development docs
 └── .github/           # CI/CD workflows
