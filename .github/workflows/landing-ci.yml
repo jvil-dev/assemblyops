@@ -1,0 +1,28 @@
+# Landing CI — build the Astro marketing site on PRs touching web/landing/.
+name: Landing CI
+
+on:
+  pull_request:
+    paths:
+      - "web/landing/**"
+      - ".github/workflows/landing-ci.yml"
+
+permissions:
+    contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web/landing
+    steps:
+      - uses: actions/checkout@v4
+        with:
+            persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/landing/package-lock.json
+      - run: npm ci
+      - run: npm run build

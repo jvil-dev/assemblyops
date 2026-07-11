@@ -6,7 +6,7 @@ Volunteer scheduling and management for JW assembly/convention committees.
 
 - **Backend** (`backend/`) — Node.js + TypeScript GraphQL API: Apollo Server 5, Prisma 7, PostgreSQL 16. JWT access/refresh + Google/Apple OAuth. RBAC: App Admin / Department Overseer / Volunteer.
 - **iOS** (`ios/JW_AssemblyOps/`) — SwiftUI native app, Apollo iOS GraphQL client, MVVM, EN/ES localization.
-- **Admin** (`admin/`) — Next.js admin portal.
+- **Web** (`web/`) — `web/landing/` Astro marketing site (static) + `web/admin/` Next.js admin portal.
 
 ## Backend layout (`backend/src/`)
 
@@ -37,7 +37,7 @@ Postgres on Neon (project `icy-sea-11544625`, aws-us-east-1, PG16). Pooled `DATA
 - Migrations named `<timestamp>_<kebab-case>`; never edit an applied migration.
 - Every file carries a header comment describing it.
 - No `any` types; Zod-validate all GraphQL inputs.
-- Web tier (`web/`) is Dart/Flutter: use the installed Dart/Flutter skills automatically (`dart-*`, `flutter-*`) — e.g. `dart-run-static-analysis`, `dart-add-unit-test`, `flutter-add-widget-test`. Invoke the relevant skill *before* writing or reviewing Dart/Flutter code, not after.
+- Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/admin/` is Next.js. No Dart/Flutter in the repo currently.
 
 ## Workflow
 
