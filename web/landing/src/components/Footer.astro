@@ -1,0 +1,39 @@
+---
+// Footer.astro — bottom footer: logo, tagline, copyright.
+---
+
+<footer class="footer">
+  <div class="inner">
+    <img src="/icon.svg" alt="AssemblyOps logo" class="logo" />
+    <p class="tagline">Built for the work behind the program.</p>
+    <p class="copyright">© 2026 AssemblyOps</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--divider);
+    padding: 40px 16px;
+  }
+  .inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo {
+    width: 32px;
+    height: auto;
+  }
+  .tagline {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  .copyright {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+  }
+</style>

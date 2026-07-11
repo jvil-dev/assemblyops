@@ -1,0 +1,18 @@
+// @ts-check
+import { defineConfig, fontProviders } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://assemblyops.org',
+  integrations: [sitemap()],
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'DM Sans',
+      cssVariable: '--font-dm-sans',
+      weights: [400, 500, 700],
+      styles: ['normal'],
+    },
+  ],
+});
