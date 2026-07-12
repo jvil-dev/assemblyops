@@ -108,7 +108,26 @@ export class FloorPlanService {
     await this.prisma.event.update({ where: { id: eventId }, data: { floorPlanKey: null } });
 
     if (key) {
-      await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: key }));
+      // Best-effort object delete: the DB reference is already cleared, so a
+      // failed R2 delete only leaves an unreachable orphan. Log and suppress
+      // rather than throwing; a retried delete() is a safe no-op.
+      try {
+        await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: key }));
+      } catch (err) {
+        const e = err as {
+          name?: string;
+          message?: string;
+          $metadata?: { httpStatusCode?: number };
+        };
+        logger.error('Floor plan object delete failed (orphaned)', {
+          eventId,
+          bucket: BUCKET,
+          key,
+          name: e.name,
+          status: e.$metadata?.httpStatusCode,
+          message: e.message,
+        });
+      }
     }
   }
 }
