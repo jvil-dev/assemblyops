@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://assemblyops.org',
+  site: 'https://www.assemblyops.org',
   integrations: [sitemap()],
   fonts: [
     {
