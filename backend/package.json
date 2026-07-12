@@ -24,11 +24,12 @@
   "dependencies": {
     "@apollo/server": "^5.2.0",
     "@as-integrations/express5": "^1.1.2",
+    "@aws-sdk/client-s3": "^3.1085.0",
+    "@aws-sdk/s3-request-presigner": "^3.1085.0",
     "@google-cloud/bigquery": "^7.9.4",
     "@google-cloud/logging": "^11.2.1",
     "@google-cloud/monitoring": "^4.1.0",
     "@google-cloud/run": "^1.5.1",
-    "@google-cloud/storage": "^7.19.0",
     "@graphql-tools/schema": "^10.0.31",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.5.0",

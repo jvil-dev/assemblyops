@@ -20,7 +20,7 @@
  *   - DATABASE_URL: PostgreSQL connection string
  *   - JWT_SECRET: Access token signing key
  *   - JWT_REFRESH_SECRET: Refresh token signing key
- *   - GCS_BUCKET: Google Cloud Storage bucket for floor plan images
+ *   - S3_BUCKET: Cloudflare Storage bucket for floor plan images
  *
  * Run with: npm run dev (development) or npm start (production)
  */
@@ -32,7 +32,7 @@ import { createApolloServer } from './graphql/index.js';
 import { createRateLimiter, shutdownRateLimiter } from './middleware/rateLimiter.js';
 import { validateJwtSecrets } from './utils/jwt.js';
 import { validateEncryptionKey } from './utils/encryption.js';
-import { validateGcsBucket } from './services/floorPlanService.js';
+import { validateStorageBucket } from './services/floorPlanService.js';
 import { logger } from './utils/logger.js';
 
 const app = express();
@@ -47,7 +47,9 @@ app.use(
   })
 );
 // CORS: restrict to environment-based allowlist
-const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://localhost:4000')
+const allowedOrigins = (
+  process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://localhost:4000'
+)
   .split(',')
   .map((o) => o.trim());
 
@@ -133,8 +135,12 @@ app.post('/api/cron/meeting-reminders', async (req, res) => {
 
     // Tomorrow's date range (midnight-to-midnight UTC)
     const now = new Date();
-    const tomorrowStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1));
-    const tomorrowEnd = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 2));
+    const tomorrowStart = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
+    );
+    const tomorrowEnd = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 2)
+    );
 
     const meetings = await prisma.attendantMeeting.findMany({
       where: {
@@ -219,7 +225,7 @@ process.on('SIGINT', shutdown);
 async function start() {
   validateJwtSecrets();
   validateEncryptionKey();
-  await validateGcsBucket();
+  await validateStorageBucket();
   const httpServer = await createApolloServer(app);
 
   httpServer.listen(PORT, () => {
