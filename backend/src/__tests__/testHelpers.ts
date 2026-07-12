@@ -45,6 +45,85 @@ export async function createTestEvent(overrides?: {
 }
 
 /**
+ * Create a test congregation directly in the database.
+ * Required for registration since congregationId is now mandatory
+ * Returns the congregation ID
+ */
+export async function createTestCongregation(overrides?: {
+    name?: string;
+    state?: string;
+}): Promise<string> {
+    const congregation = await prisma.congregation.create({
+        data: {
+            name:
+                overrides?.name ??
+                `Test Cong ${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+            state: overrides?.state ?? 'MA',
+        },
+    });
+    return congregation.id;
+}
+
+/**
+ * Register a user via GraphQL and return tokens
+ * Auto-creates a congregation unless one is supplied
+ * Used by integration tests that need an authenticated user
+ */
+export async function registerTestUser(
+    app: express.Application,
+    overrides?: {
+        email?: string;
+        password?: string;
+        firstName?: string;
+        lastName?: string;
+        isOverseer?: boolean;
+        congregationId?: string;
+    }
+): Promise<{
+    accessToken: string;
+    refreshToken: string;
+    userId: string;
+    email: string;
+    congregationId: string;
+}> {
+    const email = overrides?.email ?? `test-${Date.now()}-${Math.random().toString(36).slice(2, 6)}@test.com`;
+    const congregationId = overrides?.congregationId ?? (await createTestCongregation());
+
+    const res = await supertest(app)
+        .post('/graphql')
+        .send({
+            query: `mutation RegisterUser($input: RegisterUserInput!) {
+                registerUser(input: $input) {
+                    accessToken
+                    refreshToken
+                    user { id }
+                }
+            }`,
+            variables: {
+                input: {
+                    email,
+                    password: overrides?.password ?? 'TestPass123',
+                    firstName: overrides?.firstName ?? 'Test',
+                    lastName: overrides?.lastName ?? 'User',
+                    isOverseer: overrides?.isOverseer ?? false,
+                    congregationId,
+                },
+            },
+        });
+    const data = res.body.data?.registerUser;
+    if (!data?.accessToken) {
+        throw new Error(`registerTestUser failed: ${JSON.stringify(res.body.errors)}`);
+    }
+    return {
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        userId: data.user.id,
+        email,
+        congregationId,
+    };
+}
+
+/**
  * Set a user as app admin by email.
  */
 export async function setAppAdmin(email: string): Promise<void> {
@@ -83,6 +162,11 @@ export async function cleanupTestData() {
     where: { name: { startsWith: 'Test Event' } },
   });
 
+  // Delete test congregations (test users referencing them are already removed)
+  await prisma.congregation.deleteMany({
+    where: { name: { startsWith: 'Test Cong' } },
+  });
+
   // Delete test users
   await prisma.user.deleteMany({
     where: { email: { contains: 'test-' } },
@@ -96,39 +180,22 @@ export async function cleanupTestData() {
  * Returns { accessToken, userId, eventVolunteerId }
  */
 export async function createTestVolunteerUser(
-  app: express.Application,
-  eventId: string,
-  departmentId?: string
-): Promise<{ accessToken: string; userId: string; eventVolunteerId: string }> {
-  const email = `test-vol-${Date.now()}-${Math.random().toString(36).slice(2, 6)}@test.com`;
-  const res = await supertest(app)
-    .post('/graphql')
-    .send({
-      query: `mutation RegisterUser($input: RegisterUserInput!) {
-        registerUser(input: $input) {
-          user { id }
-          accessToken
-        }
-      }`,
-      variables: {
-        input: {
-          email,
-          password: 'TestPass123',
-          firstName: 'TestVol',
-          lastName: 'User',
-        },
+    app: express.Application,
+    eventId: string,
+    departmentId?: string
+  ): Promise<{ accessToken: string; userId: string; eventVolunteerId: string }> {
+    const { accessToken, userId } = await registerTestUser(app, {
+      email: `test-vol-${Date.now()}-${Math.random().toString(36).slice(2, 6)}@test.com`,
+      firstName: 'TestVol',
+    });
+
+    const eventVolunteer = await prisma.eventVolunteer.create({
+      data: {
+        userId,
+        eventId,
+        ...(departmentId && { departmentId }),
       },
     });
 
-  const { user, accessToken } = res.body.data.registerUser;
-
-  const eventVolunteer = await prisma.eventVolunteer.create({
-    data: {
-      userId: user.id,
-      eventId,
-      ...(departmentId && { departmentId }),
-    },
-  });
-
-  return { accessToken, userId: user.id, eventVolunteerId: eventVolunteer.id };
-}
+    return { accessToken, userId, eventVolunteerId: eventVolunteer.id };
+  }

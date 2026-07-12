@@ -1,0 +1,61 @@
+---
+// Features.astro — "Made for the work behind the program": three feature cards in a grid.
+import FeatureCard from "./FeatureCard.astro";
+
+const features = [
+  {
+    title: "Organized from the first session",
+    body: "Give every volunteer their assignment, location, and time in one place. Volunteers confirm from their phone before the doors open — so you know who's assigned where, and where you still need coverage.",
+  },
+  {
+    title: "Reach your whole department instantly",
+    body: "Send updates to individual volunteers, your keymen, or the whole department with a tap. Push notifications make sure last-minute changes reach everyone.",
+  },
+  {
+    title: "Delegate to your assistants and keymen",
+    body: "Give assistant overseers and keymen the access they need in the app. They handle their part of the department while you keep the full picture.",
+  },
+];
+---
+
+<section class="section">
+  <div class="container">
+    <h2 class="title">Made for the work behind the program</h2>
+    <div class="grid">
+      {features.map((f) => <FeatureCard title={f.title} body={f.body} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: var(--section-pad-y) 0;
+  }
+  .container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  @media (min-width: 640px) {
+    .title {
+      font-size: 2.25rem;
+    }
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

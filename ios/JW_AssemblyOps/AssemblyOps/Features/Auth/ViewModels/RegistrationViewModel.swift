@@ -62,7 +62,8 @@ final class RegistrationViewModel: ObservableObject {
         password.count >= 8 &&
         password == confirmPassword &&
         !firstName.trimmingCharacters(in: .whitespaces).isEmpty &&
-        !lastName.trimmingCharacters(in: .whitespaces).isEmpty
+        !lastName.trimmingCharacters(in: .whitespaces).isEmpty &&
+        congregationId != nil
     }
 
     var passwordsMatch: Bool {

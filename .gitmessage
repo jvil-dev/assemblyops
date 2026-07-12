@@ -1,0 +1,9 @@
+# type(scope): imperative summary (#issue)   ← subject, <72 chars
+#   type:  feat | fix | chore | refactor | test | docs
+#   scope: backend | ios | admin | infra   (omit for full-stack)
+#
+# Body — what changed and why; enough that a reader needn't open the diff.
+
+# One concern per commit. One commit per layer when a feature spans layers:
+#   docs / build+config / migrations / model / service / controller / security / tests
+# Stage only that layer's files — never `git add .`.

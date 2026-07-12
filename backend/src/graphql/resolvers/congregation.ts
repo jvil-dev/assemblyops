@@ -78,6 +78,10 @@ const congregationResolvers = {
 
   Congregation: {
     circuit: async (congregation: Congregation, _args: unknown, context: Context) => {
+      // circuitId is nullable; unlinked congregations resolve to no circuit
+      if (!congregation.circuitId) {
+        return null;
+      }
       return context.prisma.circuit.findUnique({
         where: { id: congregation.circuitId },
       });

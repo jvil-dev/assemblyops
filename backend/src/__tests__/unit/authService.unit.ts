@@ -120,7 +120,8 @@ describe('AuthService', () => {
           email: 'test@example.com',
           password: 'Short1',
           firstName: 'John',
-          lastName: 'Doe',
+          lastName: 'Williams',
+          congregationId: 'cong-1',
         })
       ).rejects.toThrow(ValidationError);
     });
@@ -131,7 +132,8 @@ describe('AuthService', () => {
           email: 'test@example.com',
           password: 'alllowercase1',
           firstName: 'John',
-          lastName: 'Doe',
+          lastName: 'Williams',
+          congregationId: 'cong-1',
         })
       ).rejects.toThrow(ValidationError);
     });
@@ -142,7 +144,8 @@ describe('AuthService', () => {
           email: 'test@example.com',
           password: 'NoNumbersHere',
           firstName: 'John',
-          lastName: 'Doe',
+          lastName: 'Williams',
+          congregationId: 'cong-1',
         })
       ).rejects.toThrow(ValidationError);
     });
@@ -153,7 +156,8 @@ describe('AuthService', () => {
           email: 'not-an-email',
           password: 'Valid1Pass',
           firstName: 'John',
-          lastName: 'Doe',
+          lastName: 'Williams',
+          congregationId: 'cong-1',
         })
       ).rejects.toThrow(ValidationError);
     });
@@ -167,7 +171,8 @@ describe('AuthService', () => {
           email: 'test@example.com',
           password: 'Valid1Pass',
           firstName: 'John',
-          lastName: 'Doe',
+          lastName: 'Williams',
+          congregationId: 'cong-1',
         })
       ).rejects.toThrow(ConflictError);
 
@@ -176,30 +181,21 @@ describe('AuthService', () => {
       });
     });
 
-    it('registers a new user successfully without a congregation', async () => {
-      // email uniqueness check → no conflict
-      vi.mocked(prisma.user.findUnique)
-        .mockResolvedValueOnce(null as never)  // email check
-        .mockResolvedValueOnce(null as never); // userId uniqueness loop
-
-      vi.mocked(prisma.user.create).mockResolvedValue(mockUser as never);
-
-      const result = await service.registerUser({
-        email: 'test@example.com',
-        password: 'Valid1Pass',
-        firstName: 'John',
-        lastName: 'Doe',
-      });
-
-      expect(result.user).toEqual(mockUser);
-      expect(result.tokens).toEqual(mockTokenPair);
-      expect(hashPassword).toHaveBeenCalledWith('Valid1Pass');
-      expect(prisma.user.create).toHaveBeenCalledOnce();
+    it('throws ValidationError when congregationId is missing', async () => {
+      await expect(
+        service.registerUser({
+          email: 'test@example.com',
+          password: 'ValidPass123',
+          firstName: 'John',
+          lastName: 'Williams',
+          congregationId: '',
+        })
+      ).rejects.toThrow(ValidationError);
     });
 
     it('registers a new user with a valid congregationId lookup', async () => {
       vi.mocked(prisma.user.findUnique)
-        .mockResolvedValueOnce(null as never)  // email check
+        .mockResolvedValueOnce(null as never) // email check
         .mockResolvedValueOnce(null as never); // userId uniqueness loop
 
       vi.mocked(prisma.congregation.findUnique).mockResolvedValue({
@@ -227,30 +223,28 @@ describe('AuthService', () => {
       });
       expect(result.user?.congregation).toBe('Riverside Congregation');
       expect(result.user?.congregationId).toBe('cong-1');
+
+      expect(hashPassword).toHaveBeenCalledWith('Valid1Pass');
     });
 
-    it('registers a new user without congregation when congregationId not found', async () => {
+    it('throws ValidationError when congregationId is not found', async () => {
       vi.mocked(prisma.user.findUnique)
         .mockResolvedValueOnce(null as never)
         .mockResolvedValueOnce(null as never);
 
-      // congregation lookup returns null (not in DB)
       vi.mocked(prisma.congregation.findUnique).mockResolvedValue(null as never);
 
-      vi.mocked(prisma.user.create).mockResolvedValue(mockUser as never);
+      await expect(
+        service.registerUser({
+          email: 'test@example.com',
+          password: 'Password123',
+          firstName: 'John',
+          lastName: 'Williams',
+          congregationId: 'nonexistent',
+        })
+      ).rejects.toThrow(ValidationError);
 
-      const result = await service.registerUser({
-        email: 'test@example.com',
-        password: 'Valid1Pass',
-        firstName: 'John',
-        lastName: 'Doe',
-        congregationId: 'nonexistent-cong',
-      });
-
-      // congregationId is not applied when congregation is not found
-      expect(result.user).toEqual(mockUser);
-      const createCall = vi.mocked(prisma.user.create).mock.calls[0][0];
-      expect(createCall.data.congregationId).toBeNull();
+      expect(prisma.user.create).not.toHaveBeenCalled();
     });
 
     it('calls generateUserId and uses it when creating user', async () => {
@@ -258,13 +252,18 @@ describe('AuthService', () => {
         .mockResolvedValueOnce(null as never)
         .mockResolvedValueOnce(null as never);
 
+      vi.mocked(prisma.congregation.findUnique).mockResolvedValue({
+        name: 'North South West',
+      } as never);
+
       vi.mocked(prisma.user.create).mockResolvedValue(mockUser as never);
 
       await service.registerUser({
         email: 'test@example.com',
-        password: 'Valid1Pass',
+        password: 'Password123',
         firstName: 'John',
-        lastName: 'Doe',
+        lastName: 'Williams',
+        congregationId: 'cong-1',
       });
 
       expect(generateUserId).toHaveBeenCalled();
@@ -322,9 +321,9 @@ describe('AuthService', () => {
     });
 
     it('throws ValidationError when email is missing', async () => {
-      await expect(
-        service.loginUser({ email: '', password: 'Valid1Pass' })
-      ).rejects.toThrow(ValidationError);
+      await expect(service.loginUser({ email: '', password: 'Valid1Pass' })).rejects.toThrow(
+        ValidationError
+      );
     });
   });
 

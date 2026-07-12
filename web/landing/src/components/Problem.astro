@@ -1,0 +1,49 @@
+---
+// Problem.astro — "One app, five departments" pitch paragraph.
+---
+
+<section class="section">
+  <div class="container">
+    <h2 class="title">One app, five departments</h2>
+    <p class="body">
+      Whether you're filling attendant posts across multiple sessions, assigning
+      audio operators to mixers, figuring out who's running cameras,
+      coordinating stage assignments, or organizing parking coverage — the work
+      behind an assembly doesn't stop when the program starts. AssemblyOps gives
+      every department the tools to schedule volunteers, track attendance, and
+      stay coordinated — all from one app.
+    </p>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: var(--section-pad-y) 0;
+  }
+  .container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .body {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  @media (min-width: 640px) {
+    .title {
+      font-size: 2.25rem;
+    }
+  }
+</style>

@@ -25,7 +25,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent, createTestVolunteerUser } from '../testHelpers.js';
+import { createTestEvent, createTestVolunteerUser, registerTestUser } from '../testHelpers.js';
 import type { Application } from 'express';
 
 describe('Message Operations', () => {
@@ -42,36 +42,12 @@ describe('Message Operations', () => {
 
   beforeAll(async () => {
     app = await createTestApp();
-    const email = `message-test-${Date.now()}@example.com`;
-
     // Register user (overseer)
-    const registerRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) { user { id } accessToken }
-          }
-        `,
-        variables: {
-          input: {
-            email,
-            password: 'TestPassword123',
-            firstName: 'Message',
-            lastName: 'Tester',
-            isOverseer: true,
-          },
-        },
-      });
-
-    // Validate user registration response
-    if (!registerRes.body?.data?.registerUser?.accessToken) {
-      throw new Error(
-        `User registration failed: ${JSON.stringify(registerRes.body.errors || registerRes.body)}`
-      );
-    }
-    adminToken = registerRes.body.data.registerUser.accessToken;
-    adminUserId = registerRes.body.data.registerUser.user.id;
+    const reg = await registerTestUser(app, {
+      firstName: 'Message', lastName: 'Tester', isOverseer: true,
+    });
+    adminToken = reg.accessToken;
+    adminUserId = reg.userId;
 
     // Create a test event directly via Prisma
     eventId = await createTestEvent();

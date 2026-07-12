@@ -20,7 +20,7 @@
  */
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent } from '../testHelpers.js';
+import { createTestEvent, registerTestUser, createTestCongregation } from '../testHelpers.js';
 import type { Application } from 'express';
 
 let app: Application;
@@ -32,35 +32,10 @@ describe('Volunteer Operations', () => {
 
   beforeAll(async () => {
     app = await createTestApp();
-    const email = `vol-test-${Date.now()}@example.com`;
-
     // Register overseer user
-    const registerRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) {
-              accessToken
-            }
-          }
-        `,
-        variables: {
-          input: {
-            email,
-            password: 'TestPassword123!',
-            firstName: 'Vol',
-            lastName: 'Tester',
-            isOverseer: true,
-          },
-        },
-      });
-
-    if (registerRes.body.errors) {
-      console.error('Register failed:', registerRes.body.errors);
-      return;
-    }
-    accessToken = registerRes.body.data.registerUser.accessToken;
+    accessToken = (await registerTestUser(app, {
+      firstName: 'Vol', lastName: 'Tester', isOverseer: true,
+    })).accessToken;
 
     // Create a test event directly via Prisma
     eventId = await createTestEvent();
@@ -110,6 +85,7 @@ describe('Volunteer Operations', () => {
             firstName: 'Second',
             lastName: 'Volunteer',
             isOverseer: false,
+            congregationId: await createTestCongregation(),
           },
         },
       });
@@ -261,28 +237,9 @@ describe('Volunteer Operations', () => {
 
     beforeAll(async () => {
       // Register a third user who will request to join
-      const email = `join-req-${Date.now()}@example.com`;
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Join',
-              lastName: 'Requester',
-              isOverseer: false,
-            },
-          },
-        });
-      requestUserToken = registerRes.body.data.registerUser.accessToken;
+      requestUserToken = (await registerTestUser(app, {
+        firstName: 'Join', lastName: 'Requester',
+      })).accessToken;
     });
 
     it('should allow a user to request to join an event', async () => {
@@ -339,28 +296,9 @@ describe('Volunteer Operations', () => {
 
     it('should allow the overseer to deny a join request', async () => {
       // Register a fresh user and submit a new request to deny
-      const email = `deny-req-${Date.now()}@example.com`;
-      const regRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Deny',
-              lastName: 'Requester',
-              isOverseer: false,
-            },
-          },
-        });
-      const denyUserToken = regRes.body.data.registerUser.accessToken;
+      const denyUserToken = (await registerTestUser(app, {
+        firstName: 'Deny', lastName: 'Requester',
+      })).accessToken;
 
       const reqRes = await request(app)
         .post('/graphql')

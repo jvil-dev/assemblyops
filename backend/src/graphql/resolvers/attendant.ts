@@ -9,14 +9,11 @@
  *   - Safety incidents/lost persons: Volunteer (report) or Overseer (resolve)
  *
  * Query Resolvers:
- *   - safetyIncidents(eventId, resolved?): Safety incidents for an event
  *   - lostPersonAlerts(eventId, resolved?): Lost person alerts for an event
  *   - attendantMeetings(eventId): Meetings for an event
  *   - myAttendantMeetings(eventId): Volunteer's meetings
  *
  * Mutation Resolvers:
- *   - reportSafetyIncident: Volunteer reports incident
- *   - resolveSafetyIncident: Overseer resolves incident
  *   - createLostPersonAlert: Volunteer reports lost person
  *   - resolveLostPersonAlert: Overseer resolves alert
  *   - createAttendantMeeting: Create a meeting (overseer or assistant overseer)
@@ -38,7 +35,6 @@ import {
 } from '../guards/auth.js';
 import { decryptField } from '../../utils/encryption.js';
 import {
-  ReportSafetyIncidentInput,
   CreateLostPersonAlertInput,
   CreateAttendantMeetingInput,
   UpdateAttendantMeetingInput,
@@ -85,23 +81,6 @@ async function requireMeetingMgmtAccess(context: Context, eventId: string): Prom
 
 const attendantResolvers = {
   Query: {
-    safetyIncidents: async (
-      _parent: unknown,
-      { eventId, resolved }: { eventId: string; resolved?: boolean },
-      context: Context
-    ) => {
-      requireAuth(context);
-      const eventAdmin = await context.prisma.eventAdmin.findUnique({
-        where: { userId_eventId: { userId: context.user!.id, eventId } },
-      });
-      if (!eventAdmin) {
-        await resolveAttendantVolunteer(context, eventId);
-      }
-
-      const attendantService = new AttendantService(context.prisma);
-      return attendantService.getSafetyIncidents(eventId, resolved);
-    },
-
     lostPersonAlerts: async (
       _parent: unknown,
       { eventId, resolved }: { eventId: string; resolved?: boolean },
@@ -146,33 +125,6 @@ const attendantResolvers = {
   },
 
   Mutation: {
-    reportSafetyIncident: async (
-      _parent: unknown,
-      { input }: { input: ReportSafetyIncidentInput },
-      context: Context
-    ) => {
-      requireAuth(context);
-
-      const { eventVolunteerId } = await resolveAttendantVolunteer(context, input.eventId);
-
-      const attendantService = new AttendantService(context.prisma);
-      return attendantService.reportSafetyIncident(eventVolunteerId, input);
-    },
-
-    resolveSafetyIncident: async (
-      _parent: unknown,
-      { id, resolutionNotes }: { id: string; resolutionNotes?: string },
-      context: Context
-    ) => {
-      requireAdmin(context);
-
-      const attendantService = new AttendantService(context.prisma);
-      const eventId = await attendantService.getIncidentEventId(id);
-      await requireEventAccess(context, eventId);
-
-      return attendantService.resolveSafetyIncident(id, context.user!.id, resolutionNotes);
-    },
-
     createLostPersonAlert: async (
       _parent: unknown,
       { input }: { input: CreateLostPersonAlertInput },
@@ -266,11 +218,7 @@ const attendantResolvers = {
       return attendantService.updateMeetingNotes(id, notes);
     },
 
-    deleteAttendantMeeting: async (
-      _parent: unknown,
-      { id }: { id: string },
-      context: Context
-    ) => {
+    deleteAttendantMeeting: async (_parent: unknown, { id }: { id: string }, context: Context) => {
       requireAuth(context);
 
       const attendantService = new AttendantService(context.prisma);

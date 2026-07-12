@@ -15,7 +15,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent, createTestVolunteerUser } from '../testHelpers.js';
+import { createTestEvent, createTestVolunteerUser, registerTestUser } from '../testHelpers.js';
 import type { Application } from 'express';
 
 describe('Captain Operations', () => {
@@ -37,26 +37,9 @@ describe('Captain Operations', () => {
     const email = `captain-test-${Date.now()}@example.com`;
 
     // Register user (overseer)
-    const registerRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) { accessToken }
-          }
-        `,
-        variables: {
-          input: {
-            email,
-            password: 'TestPassword123',
-            firstName: 'Captain',
-            lastName: 'Tester',
-            isOverseer: true,
-          },
-        },
-      });
-
-    adminToken = registerRes.body.data.registerUser.accessToken;
+    adminToken = (await registerTestUser(app, {
+      firstName: 'Captain', lastName: 'Tester', isOverseer: true,
+    })).accessToken;
 
     // Create a test event directly via Prisma
     eventId = await createTestEvent();

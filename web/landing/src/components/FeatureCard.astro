@@ -1,0 +1,33 @@
+---
+// FeatureCard.astro — white rounded card with title + body, used in the Features grid.
+interface Props {
+  title: string;
+  body: string;
+}
+const { title, body } = Astro.props;
+---
+
+<article class="card">
+  <h3 class="title">{title}</h3>
+  <p class="body">{body}</p>
+</article>
+
+<style>
+  .card {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-card);
+  }
+  .title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .body {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+</style>

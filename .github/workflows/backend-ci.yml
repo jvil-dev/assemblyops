@@ -1,8 +1,11 @@
-name: CI
+name: Backend CI
 
 on:
   pull_request:
     branches: [main, development]
+    paths:
+        - "backend/**"
+        - ".github/workflows/backend-ci.yml"
 
 jobs:
   lint-and-test:

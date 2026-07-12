@@ -36,15 +36,15 @@ Before you begin, ensure you have:
 
 ### Setting Up Your Development Environment
 
-1. **Fork the repository** on GitHub
+1. **Clone the repository**:
 
-2. **Clone your fork**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/assembly-ops.git
-   cd assembly-ops
+   git clone git@github.com:jvil-dev/assemblyops.git
+   cd assemblyops
    ```
 
-3. **Set up the backend**:
+2. **Set up the backend**:
+
    ```bash
    cd backend
    npm install
@@ -56,7 +56,7 @@ Before you begin, ensure you have:
    npm run dev
    ```
 
-4. **Set up the iOS app** (optional):
+3. **Set up the iOS app** (optional):
    ```bash
    cd ../ios/JW_AssemblyOps
    # Open AssemblyOps.xcodeproj in Xcode
@@ -68,23 +68,33 @@ Before you begin, ensure you have:
 
 ### Branching Strategy
 
-- `main` - Production-ready code
-- `development` - Latest development work
-- Feature branches: `feature/your-feature-name`
-- Bug fixes: `fix/issue-description`
+```
+main  ← always-deployable trunk. Railway auto-deploys on merge.
+  └─ <type>/<issue-id>-<short-description>
+```
+
+- **GitHub Flow:** feature branches are cut from `main` and PR'd back to `main`. No long-lived integration branch.
+- `<type>` is `feat`, `fix`, `chore`, or `refactor` (matches commit prefixes), e.g. `feat/42-venue-pool`.
+- **One tier per branch** — a branch touches `backend/` **or** `web/…`, not both.
+- Keep branches short-lived; `main` stays releasable at all times (hotfixes are just normal branches off `main`).
 
 ### Making Changes
 
-1. **Create a feature branch**:
+1. **Cut a branch from `main`**:
+
    ```bash
-   git checkout -b feature/your-feature-name
+   git checkout main && git pull
+   git checkout -b feat/<issue-id>-<short-description>
    ```
 
-2. **Make your changes** following the coding standards
+2. **Open a PR** (ready for review, not draft) with `Closes #<issue-id>` in the body.
 
-3. **Write tests** for new functionality
+3. **Make your changes** following the coding standards and the issue's acceptance criteria.
 
-4. **Run tests and linters**:
+4. **Write tests** for logic-heavy code.
+
+5. **Run tests and linters** (in `backend/`):
+
    ```bash
    npm run lint
    npm run format
@@ -92,9 +102,9 @@ Before you begin, ensure you have:
    npm run build
    ```
 
-5. **Commit your changes** with clear, descriptive messages:
+6. **Commit your changes** — one concern per commit, subject + body, conventional prefix:
    ```bash
-   git commit -m "feat: Add volunteer assignment bulk update"
+   git commit   # opens the .gitmessage template
    ```
 
 ## Coding Standards
@@ -159,60 +169,60 @@ npm run test:watch
 
 ### Pull Request Process
 
-1. **Update your branch** with the latest from `development`:
+1. **Keep your branch current** with `main`:
+
    ```bash
-   git checkout development
-   git pull origin development
-   git checkout your-branch
-   git rebase development
+   git fetch && git rebase origin/main
    ```
 
-2. **Push to your fork**:
-   ```bash
-   git push origin your-branch
-   ```
+2. **Open the PR against `main`.** The body auto-loads from `.github/pull_request_template.md` — fill the four sections:
+   - `## Summary` — why, not what
+   - `## Acceptance Criteria` — copied from the issue, checked off
+   - `## Test Plan` — manual + automated steps you ran
+   - `## Out of Scope` — what this PR deliberately doesn't do
 
-3. **Create a Pull Request** on GitHub:
-   - Use a clear, descriptive title
-   - Reference any related issues (e.g., "Fixes #123")
-   - Describe what changes were made and why
-   - Include screenshots for UI changes
-   - List any breaking changes
+   Title format: `type(scope): imperative summary` (under 70 chars). One PR = one issue; reference it with `Closes #<id>`.
 
-4. **Address review feedback**:
-   - Respond to comments
-   - Make requested changes
-   - Push updates to the same branch
+3. **Self-review the diff** in the GitHub UI before requesting review. `Closes #<id>` auto-closes the issue on merge (`main` is the default branch).
 
-5. **Wait for approval** from maintainers
+4. **Merge strategy: merge commit — never squash, never rebase-merge.** The full commit timeline is preserved on all branches.
+
+### Releases
+
+`main` is continuously deployed to Railway on every merge, so there's no promotion step. Cut a release by **tagging `main`** at a chosen point:
+
+- `git tag -a vX.Y.Z -m "<notes>" && git push origin vX.Y.Z`
+- Semver: breaking → major, new feature → minor, fix only → patch.
 
 ### Commit Message Format
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
-<type>(<scope>): <description>
+<type>(<scope>): <imperative summary> (#issue)
 
-[optional body]
-
-[optional footer]
+<body — what changed and why>
 ```
 
-**Types**:
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation only
-- `style`: Code style changes (formatting, no logic change)
-- `refactor`: Code refactoring
-- `perf`: Performance improvements
-- `test`: Adding or updating tests
-- `chore`: Maintenance tasks
+Every commit needs a **subject and a body**. The subject is imperative, under 72 chars; the trailing `(#issue)` is optional. The body explains the change so a reader needn't open the diff.
+
+**Types**: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
+**Scopes**: `backend`, `ios`, `admin`, `infra` (omit for full-stack changes)
+
+**One concern per commit.** When a feature spans layers, commit one layer at a time (config → migrations → model → service → controller → security → tests) and stage only that layer's files — never `git add .`.
+
+A `.gitmessage` template ships with the repo. Enable it once so every `git commit` prefills the format:
+
+```
+git config commit.template .gitmessage
+```
 
 **Examples**:
+
 ```
-feat(backend): Add bulk volunteer assignment endpoint
-fix(ios): Resolve crash on event join request
-docs: Update README with Docker setup instructions
+feat(backend): add bulk volunteer assignment endpoint (#42)
+fix(ios): resolve crash on event join request
+docs: update README with Docker setup instructions
 ```
 
 ## Reporting Issues
@@ -246,6 +256,7 @@ For new features, describe:
 ### Security Issues
 
 **Do not** report security vulnerabilities as public issues. Instead:
+
 - See [SECURITY.md](./SECURITY.md) for reporting instructions
 - Contact maintainers privately
 - Allow time for a fix before public disclosure

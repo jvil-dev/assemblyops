@@ -111,10 +111,9 @@ export class AuthService {
         where: { id: validated.congregationId },
         select: { name: true },
       });
-      if (cong) {
-        congregationId = validated.congregationId;
-        congregationName = cong.name;
-      }
+      if (!cong) throw new ValidationError('Congregation not found');
+      congregationId = validated.congregationId;
+      congregationName = cong.name;
     }
 
     const user = await this.prisma.user.create({
@@ -470,7 +469,12 @@ export class AuthService {
   // INTERNAL HELPERS
   // ─────────────────────────────────────────────
 
-  private async issueTokens(user: { id: string; email: string; isOverseer: boolean; isAppAdmin?: boolean }) {
+  private async issueTokens(user: {
+    id: string;
+    email: string;
+    isOverseer: boolean;
+    isAppAdmin?: boolean;
+  }) {
     await this.tokenService.deleteAllUserTokens(user.id);
     const tokens = generateTokens({
       sub: user.id,

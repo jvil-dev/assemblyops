@@ -35,12 +35,12 @@ import { circuitTypeDefs } from './circuit.js';
 import { congregationTypeDefs } from './congregation.js';
 import { volunteerProfileTypeDefs } from './volunteerProfile.js';
 import { attendantTypeDefs } from './attendant.js';
+import { incidentTypeDefs } from './incident.js';
 import { areaTypeDefs } from './area.js';
 import { walkThroughTypeDefs } from './walkThrough.js';
 import { postSessionStatusTypeDefs } from './postSessionStatus.js';
 import { floorPlanTypeDefs } from './floorPlan.js';
 import adminTypeDefs from './admin.js';
-import gcpTypeDefs from './gcp.js';
 import { audioVideoTypeDefs } from './audioVideo.js';
 import { shiftTypeDefs } from './shift.js';
 import { captainSchedulingTypeDefs } from './captainScheduling.js';
@@ -88,12 +88,12 @@ const typeDefs = [
   congregationTypeDefs,
   volunteerProfileTypeDefs,
   attendantTypeDefs,
+  incidentTypeDefs,
   areaTypeDefs,
   walkThroughTypeDefs,
   postSessionStatusTypeDefs,
   floorPlanTypeDefs,
   adminTypeDefs,
-  gcpTypeDefs,
   audioVideoTypeDefs,
   shiftTypeDefs,
   captainSchedulingTypeDefs,

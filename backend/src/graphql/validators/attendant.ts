@@ -4,7 +4,6 @@
  * Zod schemas for validating attendant department inputs before processing.
  *
  * Schemas:
- *   - reportSafetyIncidentSchema: Validate incident type, description (1-2000), location
  *   - createLostPersonAlertSchema: Validate person name, age, contact info, location
  *   - createAttendantMeetingSchema: Validate session, date, attendee IDs (min 1)
  *   - updateAttendantMeetingSchema: Validate partial meeting updates (date, notes, attendees)
@@ -19,26 +18,6 @@
  * Used by: ../../services/attendantService.ts
  */
 import { z } from 'zod';
-
-export const reportSafetyIncidentSchema = z.object({
-  eventId: z.string().min(1),
-  type: z.enum([
-    'BUILDING_DEFECT',
-    'WET_FLOOR',
-    'UNSAFE_CONDITION',
-    'MEDICAL_EMERGENCY',
-    'DISRUPTIVE_INDIVIDUAL',
-    'BOMB_THREAT',
-    'VIOLENT_INDIVIDUAL',
-    'SEVERE_WEATHER',
-    'ACTIVE_SHOOTER',
-    'OTHER',
-  ]),
-  description: z.string().min(1).max(2000),
-  location: z.string().max(200).optional(),
-  postId: z.string().min(1).optional(),
-  sessionId: z.string().min(1).optional(),
-});
 
 export const createLostPersonAlertSchema = z.object({
   eventId: z.string().min(1),
@@ -69,7 +48,6 @@ export const updateAttendantMeetingSchema = z.object({
   attendeeIds: z.array(z.string().min(1)).min(1).optional(),
 });
 
-export type ReportSafetyIncidentInput = z.infer<typeof reportSafetyIncidentSchema>;
 export type CreateLostPersonAlertInput = z.infer<typeof createLostPersonAlertSchema>;
 export type CreateAttendantMeetingInput = z.infer<typeof createAttendantMeetingSchema>;
 export type UpdateAttendantMeetingInput = z.infer<typeof updateAttendantMeetingSchema>;

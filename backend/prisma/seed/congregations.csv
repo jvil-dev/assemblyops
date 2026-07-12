@@ -1,119 +1,375 @@
-name,state,circuitCode,language
-Italian - Boston MA,Massachusetts,CT-3-B-I,it
+name,state,circuit,lang
+Allingtown - West Haven CT,Connecticut,,en
+Beardsley Park - Bridgeport CT,Connecticut,,en
+Berlin - CT,Connecticut,,en
+Bethel - CT,Connecticut,,en
+Branford - CT,Connecticut,,en
+Canton - CT,Connecticut,,en
+Cedar Spanish - Branford CT,Connecticut,,es
+Central - Hartford CT,Connecticut,,en
+Central - New Britain CT,Connecticut,,en
+Central English - Stamford CT,Connecticut,,en
+Central Haitian Creole - Norwich CT,Connecticut,,ht
+Central Mandarin Chinese - Wethersfield CT,Connecticut,,ch
+Central Spanish - New Haven CT,Connecticut,,es
+Central Spanish - Stamford CT,Connecticut,,es
+City Point - New Haven CT,Connecticut,,en
+Colchester - CT,Connecticut,,en
+Columbia - CT,Connecticut,,en
+Cranbury Park - Norwalk CT,Connecticut,,en
+Danielson - CT,Connecticut,,en
+Danielson CT,Connecticut,,en
+East - Bristol CT,Connecticut,,en
+East - Naugatuck CT,Connecticut,,en
+East - Stamford CT,Connecticut,,en
+East English - Danbury CT,Connecticut,,en
+East English - Waterbury CT,Connecticut,,en
+East Rock - New Haven CT,Connecticut,,en
+East Shore - East Haven CT,Connecticut,,en
+East Spanish - Danbury CT,Connecticut,,es
+East Spanish - Norwalk CT,Connecticut,,es
+East Twi - Hartford CT,Connecticut,,tw
+Enfield - CT,Connecticut,,en
+English - East Hartford CT,Connecticut,,en
+English - New London CT,Connecticut,,en
+English - Norwich CT,Connecticut,,en
+English - Shelton CT,Connecticut,,en
+English - Trumbull CT,Connecticut,,en
+English - Willimantic CT,Connecticut,,en
+Fairfield - CT,Connecticut,,en
+French - New Haven CT,Connecticut,,fr
+Granby - CT,Connecticut,,en
+Groton - CT,Connecticut,,en
+Haitian Creole - Bridgeport CT,Connecticut,,ht
+Haitian Creole - Stamford CT,Connecticut,,ht
+Hartford Haitian Creole - Hartford CT,Connecticut,,ht
+Highland Spanish - Waterbury CT,Connecticut,,es
+Huntington Spanish - Bridgeport CT,Connecticut,,es
+Italian - Hartford CT,Connecticut,,it
+Jewett City - CT,Connecticut,,en
+Lake Forest - Bridgeport CT,Connecticut,,en
+Lake Whitney - Hamden CT,Connecticut,,en
+Lakewood Spanish - Waterbury CT,Connecticut,,es
+Manchester - CT,Connecticut,,en
+Mystic - CT,Connecticut,,en
+New Fairfield - CT,Connecticut,,en
+Newington - CT,Connecticut,,en
+Noble Spanish - Bridgeport CT,Connecticut,,es
+North - Bloomfield CT,Connecticut,,en
+North - Meriden CT,Connecticut,,en
+North - Middletown CT,Connecticut,,en
+North - New Britain CT,Connecticut,,en
+North - New Milford CT,Connecticut,,en
+North - Waterbury CT,Connecticut,,en
+North English - Hartford CT,Connecticut,,en
+North Jamaican Creole - Hartford CT,Connecticut,,jam
+North Spanish - Hartford CT,Connecticut,,es
+North Spanish - New Britain CT,Connecticut,,es
+Orange - CT,Connecticut,,en
+Paradise Green - Stratford CT,Connecticut,,en
+Plainfield - CT,Connecticut,,en
+Plainville - CT,Connecticut,,en
+Plymouth - CT,Connecticut,,en
+Polish - New Britain CT,Connecticut,,pl
+Portuguese - Bridgeport CT,Connecticut,,pt
+Portuguese - Danbury CT,Connecticut,,pt
+Portuguese - Naugatuck CT,Connecticut,,pt
+Preston - CT,Connecticut,,en
+Putnam - CT,Connecticut,,en
+Putnam CT,Connecticut,,en
+Seaside - Bridgeport CT,Connecticut,,en
+Shelter Rock - Danbury CT,Connecticut,,en
+Sign Language - Bridgeport CT,Connecticut,,ase
+Soundview - Norwalk CT,Connecticut,,en
+South - Meriden CT,Connecticut,,en
+South - Middletown CT,Connecticut,,en
+South - New Milford CT,Connecticut,,en
+South - Stratford CT,Connecticut,,en
+South - Waterbury CT,Connecticut,,en
+South English - Hartford CT,Connecticut,,en
+South Spanish - Danbury CT,Connecticut,,es
+South Spanish - Hartford CT,Connecticut,,es
+South Spanish - New Britain CT,Connecticut,,es
+South Windsor - CT,Connecticut,,en
+Spanish - Bristol CT,Connecticut,,es
+Spanish - East Hartford CT,Connecticut,,es
+Spanish - Meriden CT,Connecticut,,es
+Spanish - New London CT,Connecticut,,es
+Spanish - Shelton CT,Connecticut,,es
+Spanish - West Haven CT,Connecticut,,es
+Spanish - Willimantic CT,Connecticut,,es
+Spring Hill Korean - Trumbull CT,Connecticut,,ko
+Stafford Springs - CT,Connecticut,,en
+Stafford Springs CT,Connecticut,,en
+Stonington - CT,Connecticut,,en
+Torringford Spanish - Torrington CT,Connecticut,,es
+Torrington - CT,Connecticut,,en
+Vernon - CT,Connecticut,,en
+Wallingford - CT,Connecticut,,en
+Warehouse Point - CT,Connecticut,,en
+Waterside Spanish - Stamford CT,Connecticut,,es
+Waterville - Waterbury CT,Connecticut,,en
+West - Bristol CT,Connecticut,,en
+West - Naugatuck CT,Connecticut,,en
+West - Seymour CT,Connecticut,,en
+West - Stamford CT,Connecticut,,en
+West English - Danbury CT,Connecticut,,en
+West English - Waterbury CT,Connecticut,,en
+West Hartford - CT,Connecticut,,en
+West River Swahili - New Haven CT,Connecticut,,sw
+West Rock - New Haven CT,Connecticut,,en
+West Sign Language - Hartford CT,Connecticut,,ase
+West Spanish - Bridgeport CT,Connecticut,,es
+West Spanish - Danbury CT,Connecticut,,es
+West Spanish - Hartford CT,Connecticut,,es
+West Spanish - Norwalk CT,Connecticut,,es
+Westbrook - CT,Connecticut,,en
+Wethersfield - CT,Connecticut,,en
+Windsor - CT,Connecticut,,en
+Winsted - CT,Connecticut,,en
+Wintergreen Hills - Hamden CT,Connecticut,,en
+Woodbury - CT,Connecticut,,en
+Woodin Hill Spanish - Hamden CT,Connecticut,,es
+Woodmont - Milford CT,Connecticut,,en
+West Sign Language - Hartford CT,Conneticut,NY-42-B-ASL,ase
+Brandywine - Wilmington DE,Delaware,,en
+Central Mandarin Chinese - Wilmington DE,Delaware,,ch
+Christiana - Newark DE,Delaware,,en
+Christiana Jamaican Creole - Newark DE,Delaware,,jam
+Christiana Sign Language - Newark DE,Delaware,,ase
+Claymont Spanish - Wilmington DE,Delaware,,es
+Clayton - DE,Delaware,,en
+English - Dagsboro DE,Delaware,,en
+English - Milford DE,Delaware,,en
+Felton - DE,Delaware,,en
+Georgetown - DE,Delaware,,en
+Iron Hill - Newark DE,Delaware,,en
+Korean Group - Penny Hill - Wilmington DE,Delaware,,ko
+Limestone - Newark DE,Delaware,,en
+Manor Park - New Castle DE,Delaware,,en
+Mill Creek - Wilmington DE,Delaware,,en
+Milltown Spanish - Wilmington DE,Delaware,,es
+Newark Spanish - Wilmington DE,Delaware,,es
+North - Dover DE,Delaware,,en
+North - New Castle DE,Delaware,,en
+North - Wilmington DE,Delaware,,en
+North Haitian Creole - Seaford DE,Delaware,,ht
+Nottingham - Newark DE,Delaware,,en
+Penny Hill - Wilmington DE,Delaware,,en
+Pike Creek - Wilmington DE,Delaware,,en
+Red Lion - Bear DE,Delaware,,en
+Smyrna - DE,Delaware,,en
+South - Dover DE,Delaware,,en
+South - New Castle DE,Delaware,,en
+South - Wilmington DE,Delaware,,en
+Spanish - Bear DE,Delaware,,es
+Spanish - Dagsboro DE,Delaware,,es
+Spanish - Dover DE,Delaware,,es
+Spanish - Milford DE,Delaware,,es
+White Clay - Newark DE,Delaware,,en
+Airport French - Auburn ME,Maine,,fr
+Albion - ME,Maine,,en
+Auburn - ME,Maine,,en
+Back Cove Lingala - Portland ME,Maine,,ln
+Bangor - ME,Maine,,en
+Bar Harbor - ME,Maine,,en
+Bath - ME,Maine,,en
+Belfast - ME,Maine,,en
+Bucksport - ME,Maine,,en
+Buxton - ME,Maine,,en
+Calais - ME,Maine,,en
+Caribou - ME,Maine,,en
+Casco Bay French - Portland ME,Maine,,fr
+Central - Portland ME,Maine,,en
+Corinna - ME,Maine,,en
+East - Augusta ME,Maine,,en
+Ellsworth - ME,Maine,,en
+English - Brunswick ME,Maine,,en
+Fairfield - ME,Maine,,en
+Farmington - ME,Maine,,en
+Fort Kent - ME,Maine,,en
+Houlton - ME,Maine,,en
+Kennebunk - ME,Maine,,en
+Kittery - ME,Maine,,en
+Lewiston - ME,Maine,,en
+Limington - ME,Maine,,en
+Lincoln - ME,Maine,,en
+Lisbon Portuguese - Lewiston ME,Maine,,pt
+Machias - ME,Maine,,en
+Milo - ME,Maine,,en
+Monmouth - ME,Maine,,en
+Newcastle - ME,Maine,,en
+North Windham - ME,Maine,,en
+North Yarmouth - ME,Maine,,en
+Norway - ME,Maine,ME-3,en
+Oaks Park Portuguese - Portland ME,Maine,,pt
+Old Town - ME,Maine,,en
+Pittsfield - ME,Maine,,en
+Presque Isle - ME,Maine,,en
+Rockland - ME,Maine,,en
+Rumford - ME,Maine,,en
+Saco - ME,Maine,,en
+Sanford - ME,Maine,,en
+Searsport - ME,Maine,,en
+Skowhegan - ME,Maine,,en
+South Portland - ME,Maine,,en
+Spanish - Portland ME,Maine,,es
+Springvale - ME,Maine,,en
+Steuben - ME,Maine,,en
+Thomaston - ME,Maine,,en
+Waterville - ME,Maine,,en
+West - Augusta ME,Maine,,en
+West - Portland ME,Maine,,en
+Back Creek - Elkton MD,Maryland,,en
+Catoctin - Frederick MD,Maryland,,en
+Central French - Frederick MD,Maryland,,fr
+Cumberland - MD,Maryland,,en
+East - Bel Air MD,Maryland,,en
+East - Reisterstown MD,Maryland,,en
+Elkton - MD,Maryland,,en
+English - Owings Mills MD,Maryland,,en
+Freeland - MD,Maryland,,en
+Frostburg - MD,Maryland,,en
+Glade Valley - Frederick MD,Maryland,,en
+Grantsville - MD,Maryland,,en
+Harford Spanish - Bel Air MD,Maryland,,es
+McCoole - MD,Maryland,,en
+North - Bel Air MD,Maryland,,en
+Oakland - MD,Maryland,,en
+Orchard Hills - Hagerstown MD,Maryland,,en
+Pleasant Valley - Hagerstown MD,Maryland,,en
+Rising Sun - MD,Maryland,,en
+Spanish - Frederick MD,Maryland,,es
+Spanish - Owings Mills MD,Maryland,,es
+Washington Spanish - Hagerstown MD,Maryland,,es
+West - Bel Air MD,Maryland,,en
+West - Frederick MD,Maryland,,en
+West - Reisterstown MD,Maryland,,en
+Westminster - MD,Maryland,,en
+Acres - Springfield MA,Massachusetts,MA-9,en
+Amesbury - MA,Massachusetts,ME-2,en
+Amherst - MA,Massachusetts,MA-3,en
+Attleboro - MA,Massachusetts,,en
+Berkley - MA,Massachusetts,,en
+Berkshire Spanish - Pittsfield MA,Massachusetts,,es
+Blue Hills - Boston MA,Massachusetts,MA-2,en
+Bridgewater - MA,Massachusetts,MA-2,en
+Brighton - Boston MA,Massachusetts,MA-2,en
 Burlington - MA,Massachusetts,MA-1,en
+Burncoat - Worcester MA,Massachusetts,MA-13,en
+Cambodian - Lowell MA,Massachusetts,NH-1-B-CB,bas
 Cambridge - MA,Massachusetts,MA-1,en
+Canton Haitian Creole - Stoughton MA,Massachusetts,MA-14-CR,ht
+Central - Brockton MA,Massachusetts,MA-11,en
+Central - Leominster MA,Massachusetts,MA-13,en
+Central - Worcester MA,Massachusetts,MA-13,en
+Central Armenian - Boston MA,Massachusetts,NY-45-U,hy
+Central French - Boston MA,Massachusetts,NY-20-F,fr
+Central Haitian Creole - Boston MA,Massachusetts,MA-14-CR,ht
+Central Haitian Creole - New Bedford MA,Massachusetts,MA-14-CR,ht
+Central Kabuverdianu - Boston MA,Massachusetts,MA-7-B-KBV,kea
+Central Kabuverdianu - New Bedford MA,Massachusetts,MA-7-B-KBV,kea
+Central Mandarin Chinese - Boston MA,Massachusetts,NY-44-A-CHM,ch
+Central Portuguese - Leominster MA,Massachusetts,MA-7-A-T,pt
+Central Spanish - Boston MA,Massachusetts,MA-6-S,es
+Central Spanish - Lawrence MA,Massachusetts,MA-10-S,es
+Chelmsford - MA,Massachusetts,NH-1-A,en
+College Square - Springfield MA,Massachusetts,MA-9,en
+County Sign Language - New Bedford MA,Massachusetts,NY-42-B-ASL,ase
+Cummins - Boston MA,Massachusetts,MA-2,en
+Dighton - MA,Massachusetts,MA-11,en
+Dorchester Haitian Creole - Boston MA,Massachusetts,,ht
+Dorchester Kabuverdianu - Boston MA,Massachusetts,MA-7-B-KBV,kea
+Dorchester Spanish - Boston MA,Massachusetts,MA-6-S,es
+Douglas - MA,Massachusetts,MA-13,en
+East - Chicopee MA,Massachusetts,MA-9,en
 East - Lynn MA,Massachusetts,MA-1,en
+East - Westfield MA,Massachusetts,MA-3,en
+East Boston Spanish - Boston MA,Massachusetts,MA-10-S,es
+East Campello - Brockton MA,Massachusetts,MA-11,en
+East Kabuverdianu - Brockton MA,Massachusetts,MA-7-B-KBV,kea
+East Longmeadow - Springfield MA,Massachusetts,MA-9,en
+Eastham - MA,Massachusetts,MA-8,en
+English - Ashland MA,Massachusetts,MA-13,en
+English - Buzzards Bay MA,Massachusetts,MA-8,en
+English - Fitchburg MA,Massachusetts,NH-1-A,en
+English - Holyoke MA,Massachusetts,MA-3,en
 English - Lawrence MA,Massachusetts,MA-1,en
+English - Methuen MA,Massachusetts,ME-2,en
+English - New Bedford MA,Massachusetts,MA-8,en
+English - Newton MA,Massachusetts,MA-2,en
+English - Northborough MA,Massachusetts,,en
+English - Northbourough MA,Massachusetts,MA-13,en
 English - Peabody MA,Massachusetts,MA-1,en
 English - Revere MA,Massachusetts,MA-1,en
 English - Saugus MA,Massachusetts,MA-1,en
 English - Somerville MA,Massachusetts,MA-1,en
-Gloucester - MA,Massachusetts,MA-1,en
-Lexington - MA,Massachusetts,MA-1,en
-Malden - MA,Massachusetts,MA-1,en
-Metropolitan - Boston MA,Massachusetts,MA-1,en
-Salem - MA,Massachusetts,MA-1,en
-Stoneham - MA,Massachusetts,MA-1,en
-West - Lynn MA,Massachusetts,MA-1,en
-Wilmington - MA,Massachusetts,MA-1,en
-Broad Street Spanish - Nashua NH,New Hampshire,MA-10-S,es
-Central Spanish - Lawrence MA,Massachusetts,MA-10-S,es
-East Boston Spanish - Boston MA,Massachusetts,MA-10-S,es
-Fellsway Spanish - Stoneham MA,Massachusetts,MA-10-S,es
-Jackson Spanish - Lawrence MA,Massachusetts,MA-10-S,es
-North Spanish - Lawrence MA,Massachusetts,MA-10-S,es
-South Spanish - Lawrence MA,Massachusetts,MA-10-S,es
-Southeast Spanish - Lawrence MA,Massachusetts,MA-10-S,es
-Spanish - Haverhill MA,Massachusetts,MA-10-S,es
-Spanish - Lowell MA,Massachusetts,MA-10-S,es
-Spanish - Lynn MA,Massachusetts,MA-10-S,es
-Spanish - Manchester NH,New Hampshire,MA-10-S,es
-Spanish - Methuen MA,Massachusetts,MA-10-S,es
-Spanish - Peabody MA,Massachusetts,MA-10-S,es
-Spanish - Revere MA,Massachusetts,MA-10-S,es
-Central - Brockton MA,Massachusetts,MA-11,en
-Dighton - MA,Massachusetts,MA-11,en
-East Campello - Brockton MA,Massachusetts,MA-11,en
-Franklin - MA,Massachusetts,MA-11,en
-Mansfield - MA,Massachusetts,MA-11,en
-North Attleboro - MA,Massachusetts,MA-11,en
-Sharon - MA,Massachusetts,MA-11,en
-Stoughton - MA,Massachusetts,MA-11,en
-Burncoat - Worcester MA,Massachusetts,MA-13,en
-Central - Leominster MA,Massachusetts,MA-13,en
-Central - Worcester MA,Massachusetts,MA-13,en
-Douglas - MA,Massachusetts,MA-13,en
-English - Ashland MA,Massachusetts,MA-13,en
-English - Northbourough MA,Massachusetts,MA-13,en
-Leicester - MA,Massachusetts,MA-13,en
-Northbridge - MA,Massachusetts,MA-13,en
-Oxford - MA,Massachusetts,MA-13,en
-South English - Worcester MA,Massachusetts,MA-13,en
-Webster - MA,Massachusetts,MA-13,en
-West - Worcester MA,Massachusetts,MA-13,en
-Canton Haitian Creole - Stoughton MA,Massachusetts,MA-14-CR,ht
-Central Haitian Creole - Boston MA,Massachusetts,MA-14-CR,ht
-Central Haitian Creole - New Bedford MA,Massachusetts,MA-14-CR,ht
-Haitian Creole - Brockton MA,Massachusetts,MA-14-CR,ht
-Haitian Creole - Mattapan MA,Massachusetts,MA-14-CR,ht
-Haitian Creole - Somerville MA,Massachusetts,MA-14-CR,ht
-North Haitian Creole - Lawrence MA,Massachusetts,MA-14-CR,ht
-Pearl Haitian Creole - Stoughton MA,Massachusetts,MA-14-CR,ht
-South Haitian Creole - Boston MA,Massachusetts,MA-14-CR,ht
-Summer Haitian Creole - Rockland MA,Massachusetts,MA-14-CR,ht
-West Haitian Creole - Lowell MA,Massachusetts,MA-14-CR,ht
-West Haitian Creole - Worcester MA,Massachusetts,MA-14-CR,ht
-Feeding Hills Spanish - Agawam MA,Massachusetts,MA-15-S,es
-Mount Tom Spanish - Holyoke MA,Massachusetts,MA-15-S,es
-Parker Spanish - Springfield MA,Massachusetts,MA-15-S,es
-South Spanish - Springfield MA,Massachusetts,MA-15-S,es
-South Spanish - Worcester MA,Massachusetts,MA-15-S,es
-Spanish - Chicopee MA,Massachusetts,MA-15-S,es
-Spanish - Fitchburg MA,Massachusetts,MA-15-S,es
-Spanish - Framingham MA,Massachusetts,MA-15-S,es
-Spanish - Leominster MA,Massachusetts,MA-15-S,es
-Spanish - Newton MA,Massachusetts,MA-15-S,es
-Spanish - Northborough MA,Massachusetts,MA-15-S,es
-West Spanish - Springfield MA,Massachusetts,MA-15-S,es
-Blue Hills - Boston MA,Massachusetts,MA-2,en
-Bridgewater - MA,Massachusetts,MA-2,en
-Brighton - Boston MA,Massachusetts,MA-2,en
-Cummins - Boston MA,Massachusetts,MA-2,en
-English - Newton MA,Massachusetts,MA-2,en
-Franklin Field - Boston MA,Massachusetts,MA-2,en
-Holbrook - MA,Massachusetts,MA-2,en
-Hyde Park - Boston MA,Massachusetts,MA-2,en
-Jamaica Plain English - Boston MA,Massachusetts,MA-2,en
-Mattapan - Boston MA,Massachusetts,MA-2,en
-Quincy - MA,Massachusetts,MA-2,en
-Rockland - MA,Massachusetts,MA-2,en
-Shawmut - Boston MA,Massachusetts,MA-2,en
-South End - Boston MA,Massachusetts,MA-2,en
-Washington Park - Boston MA,Massachusetts,MA-2,en
-Amherst - MA,Massachusetts,MA-3,en
-East - Westfield MA,Massachusetts,MA-3,en
-English - Holyoke MA,Massachusetts,MA-3,en
+English - Taunton MA,Massachusetts,,en
+Fairhaven - MA,Massachusetts,MA-8,en
 Feeding Hills - Agawam MA,Massachusetts,MA-3,en
+Feeding Hills Spanish - Agawam MA,Massachusetts,MA-15-S,es
+Fellsway Spanish - Stoneham MA,Massachusetts,MA-10-S,es
+Forest Park - Springfield MA,Massachusetts,MA-9,en
+Franklin - MA,Massachusetts,MA-11,en
+Franklin Field - Boston MA,Massachusetts,MA-2,en
+Gardner - MA,Massachusetts,NH-1-A,en
+Gloucester - MA,Massachusetts,MA-1,en
 Great Barrington - MA,Massachusetts,MA-3,en
 Greenfield - MA,Massachusetts,MA-3,en
-Keene - NH,New Hampshire,MA-3,en
-Lee - MA,Massachusetts,MA-3,en
-North Adams - MA,Massachusetts,MA-3,en
-Northampton - MA,Massachusetts,MA-3,en
-Orange - MA,Massachusetts,MA-3,en
-Pittsfield - MA,Massachusetts,MA-3,en
-Shelbourne Falls - MA,Massachusetts,MA-3,en
-West - Westfield MA,Massachusetts,MA-3,en
-West Swanzey - NH,New Hampshire,MA-3,en
-Central Spanish - Boston MA,Massachusetts,MA-6-S,es
-Dorchester Spanish - Boston MA,Massachusetts,MA-6-S,es
+Haitian Creole - Brockton MA,Massachusetts,MA-14-CR,ht
+Haitian Creole - Lynn MA,Massachusetts,,ht
+Haitian Creole - Mattapan MA,Massachusetts,MA-14-CR,ht
+Haitian Creole - Somerville MA,Massachusetts,MA-14-CR,ht
+Haitian Creole Group - Central - Leominster MA,Massachusetts,,ht
+Harwich - MA,Massachusetts,MA-8,en
+Highlands - Lowell MA,Massachusetts,NH-1-A,en
+Holbrook - MA,Massachusetts,MA-2,en
+Hopedale - MA,Massachusetts,,en
+Hyannis - MA,Massachusetts,MA-8,en
+Hyde Park - Boston MA,Massachusetts,MA-2,en
+Italian - Boston MA,Massachusetts,CT-3-B-I,it
+Jackson Spanish - Lawrence MA,Massachusetts,MA-10-S,es
+Jamaica Plain English - Boston MA,Massachusetts,MA-2,en
 Jamaica Plain Spanish - Boston MA,Massachusetts,MA-6-S,es
-Spanish - Brockton MA,Massachusetts,MA-6-S,es
-Spanish - New Bedford MA,Massachusetts,MA-6-S,es
-Spanish - Roxbury MA,Massachusetts,MA-6-S,es
-Spanish - Somerville MA,Massachusetts,MA-6-S,es
-Spanish - Tiverton RI,Rhode Island,MA-6-S,es
-Central Portuguese - Leominster MA,Massachusetts,MA-7-A-T,pt
+Lee - MA,Massachusetts,MA-3,en
+Leicester - MA,Massachusetts,MA-13,en
+Lexington - MA,Massachusetts,MA-1,en
+Liberty Heights - Springfield MA,Massachusetts,MA-9,en
+Ludlow - MA,Massachusetts,MA-9,en
+Malden - MA,Massachusetts,MA-1,en
+Mansfield - MA,Massachusetts,MA-11,en
+Martha's Vineyard - MA,Massachusetts,MA-8,en
+Martha's Vineyard MA,Massachusetts,,en
+Mashpee - MA,Massachusetts,MA-8,en
+Mattapan - Boston MA,Massachusetts,MA-2,en
+Maynard - MA,Massachusetts,NH-1-A,en
+Metropolitan - Boston MA,Massachusetts,MA-1,en
+Middleboro - MA,Massachusetts,MA-8,en
+Mount Tom Spanish - Holyoke MA,Massachusetts,MA-15-S,es
+Nantucket - MA,Massachusetts,MA-8,en
+Newburyport - MA,Massachusetts,ME-2,en
+North - Fall River MA,Massachusetts,MA-8,en
+North - Haverhill MA,Massachusetts,ME-2,en
+North Adams - MA,Massachusetts,MA-3,en
+North Attleboro - MA,Massachusetts,MA-11,en
+North Dartmouth - MA,Massachusetts,MA-8,en
+North Easton - Stoughton MA,Massachusetts,,en
+North English - Springfield MA,Massachusetts,MA-9,en
+North Haitian Creole - Lawrence MA,Massachusetts,MA-14-CR,ht
+North Haitian Creole - Springfield MA,Massachusetts,,ht
+North Kabuverdianu - Taunton MA,Massachusetts,MA-7-B-KBV,kea
+North Spanish - Lawrence MA,Massachusetts,MA-10-S,es
+Northampton - MA,Massachusetts,MA-3,en
+Northbridge - MA,Massachusetts,MA-13,en
+Orange - MA,Massachusetts,MA-3,en
+Oxford - MA,Massachusetts,MA-13,en
+Palmer - MA,Massachusetts,MA-9,en
+Parker Spanish - Springfield MA,Massachusetts,MA-15-S,es
+Pearl Haitian Creole - Stoughton MA,Massachusetts,MA-14-CR,ht
+Pepperell - MA,Massachusetts,NH-1-A,en
+Pioneer Valley Swahili - Springfield MA,Massachusetts,NY-50-A-SW,sw
+Pittsfield - MA,Massachusetts,MA-3,en
+Plymouth - MA,Massachusetts,MA-8,en
 Portuguese - Ashland MA,Massachusetts,MA-7-A-T,pt
 Portuguese - Fall River MA,Massachusetts,MA-7-A-T,pt
 Portuguese - Hyannis MA,Massachusetts,MA-7-A-T,pt
@@ -123,97 +379,1449 @@ Portuguese - Randolph MA,Massachusetts,MA-7-A-T,pt
 Portuguese - Saugus MA,Massachusetts,MA-7-A-T,pt
 Portuguese - Taunton MA,Massachusetts,MA-7-A-T,pt
 Portuguese - Worcester MA,Massachusetts,MA-7-A-T,pt
-West Portuguese - Boston MA,Massachusetts,MA-7-A-T,pt
-Central Kabuverdianu - Boston MA,Massachusetts,MA-7-B-KBV,kea
-Central Kabuverdianu - New Bedford MA,Massachusetts,MA-7-B-KBV,kea
-Dorchester Kabuverdianu - Boston MA,Massachusetts,MA-7-B-KBV,kea
-East Kabuverdianu - Brockton MA,Massachusetts,MA-7-B-KBV,kea
-North Kabuverdianu - Taunton MA,Massachusetts,MA-7-B-KBV,kea
-South Kabuverdianu - Brockton MA,Massachusetts,MA-7-B-KBV,kea
-East - Tiverton RI,Rhode Island,MA-8,en
-Eastham - MA,Massachusetts,MA-8,en
-English - Buzzards Bay MA,Massachusetts,MA-8,en
-English - New Bedford MA,Massachusetts,MA-8,en
-Fairhaven - MA,Massachusetts,MA-8,en
-Harwich - MA,Massachusetts,MA-8,en
-Hyannis - MA,Massachusetts,MA-8,en
-Martha's Vineyard - MA,Massachusetts,MA-8,en
-Mashpee - MA,Massachusetts,MA-8,en
-Middleboro - MA,Massachusetts,MA-8,en
-Nantucket - MA,Massachusetts,MA-8,en
-North - Fall River MA,Massachusetts,MA-8,en
-North Dartmouth - MA,Massachusetts,MA-8,en
-Plymouth - MA,Massachusetts,MA-8,en
-Sandwich - MA,Massachusetts,MA-8,en
-Waquoit - East Falmouth MA,Massachusetts,MA-8,en
-Wareham - MA,Massachusetts,MA-8,en
-West - Falmouth MA,Massachusetts,MA-8,en
-West - Tiverton RI,Rhode Island,MA-8,en
-Acres - Springfield MA,Massachusetts,MA-9,en
-College Square - Springfield MA,Massachusetts,MA-9,en
-East - Chicopee MA,Massachusetts,MA-9,en
-East Longmeadow - Springfield MA,Massachusetts,MA-9,en
-Forest Park - Springfield MA,Massachusetts,MA-9,en
-Liberty Heights - Springfield MA,Massachusetts,MA-9,en
-Ludlow - MA,Massachusetts,MA-9,en
-North English - Springfield MA,Massachusetts,MA-9,en
-Palmer - MA,Massachusetts,MA-9,en
+Quincy - MA,Massachusetts,MA-2,en
+Quinebaug Valley - Southbridge MA,Massachusetts,,en
 Quinebaugh Valley - Southbridge MA,Massachusetts,MA-9,en
-Ware - MA,Massachusetts,MA-9,en
-West - Chicopee MA,Massachusetts,MA-9,en
-Amesbury - MA,Massachusetts,ME-2,en
-Dover - NH,New Hampshire,ME-2,en
-English - Methuen MA,Massachusetts,ME-2,en
-Exeter - NH,New Hampshire,ME-2,en
-Newburyport - MA,Massachusetts,ME-2,en
-North - Haverhill MA,Massachusetts,ME-2,en
-Portsmouth - NH,New Hampshire,ME-2,en
+Rockland - MA,Massachusetts,MA-2,en
+Russian - Boston MA,Massachusetts,NY-45-U,ru
+Salem - MA,Massachusetts,MA-1,en
+Sandwich - MA,Massachusetts,MA-8,en
+Seekonk - MA,Massachusetts,,en
+Sharon - MA,Massachusetts,MA-11,en
+Shawmut - Boston MA,Massachusetts,MA-2,en
+Shelbourne Falls - MA,Massachusetts,MA-3,en
+Shelburne Falls - MA,Massachusetts,,en
+Sign Language - Boston MA,Massachusetts,,ase
+Sign Language - Lawrence MA,Massachusetts,NY-42-B-ASL,ase
 South - Haverhill MA,Massachusetts,ME-2,en
-Norway - ME,Maine,ME-3,en
-Chelmsford - MA,Massachusetts,NH-1,en
-English - Fitchburg MA,Massachusetts,NH-1,en
-Gardner - MA,Massachusetts,NH-1,en
-Highlands - Lowell MA,Massachusetts,NH-1,en
-Maynard - MA,Massachusetts,NH-1,en
-Pepperell - MA,Massachusetts,NH-1,en
-Whalom - Leominster MA,Massachusetts,NH-1,en
-Derry - NH,New Hampshire,NH-1-A,en
-English - Nashua NH,New Hampshire,NH-1-A,en
-Goffstown - NH,New Hampshire,NH-1-A,en
-Hollis - NH,New Hampshire,NH-1-A,en
-Hudson - NH,New Hampshire,NH-1-A,en
-Londonderry - NH,New Hampshire,NH-1-A,en
-Merrimack - NH,New Hampshire,NH-1-A,en
-North - Manchester NH,New Hampshire,NH-1-A,en
-South - Manchester NH,New Hampshire,NH-1-A,en
-West - Manchester NH,New Hampshire,NH-1-A,en
-Wilton - NH,New Hampshire,NH-1-A,en
-Cambodian - Lowell MA,Massachusetts,NH-1-B-CB,bas
+South End - Boston MA,Massachusetts,MA-2,en
+South English - Worcester MA,Massachusetts,MA-13,en
+South Haitian Creole - Boston MA,Massachusetts,MA-14-CR,ht
+South Kabuverdianu - Brockton MA,Massachusetts,MA-7-B-KBV,kea
+South Spanish - Lawrence MA,Massachusetts,MA-10-S,es
+South Spanish - Springfield MA,Massachusetts,MA-15-S,es
+South Spanish - Worcester MA,Massachusetts,MA-15-S,es
+Southeast Spanish - Lawrence MA,Massachusetts,MA-10-S,es
+Spanish - Brockton MA,Massachusetts,MA-6-S,es
+Spanish - Chicopee MA,Massachusetts,MA-15-S,es
+Spanish - Fitchburg MA,Massachusetts,MA-15-S,es
+Spanish - Framingham MA,Massachusetts,MA-15-S,es
+Spanish - Haverhill MA,Massachusetts,MA-10-S,es
+Spanish - Leominster MA,Massachusetts,MA-15-S,es
+Spanish - Lowell MA,Massachusetts,MA-10-S,es
+Spanish - Lynn MA,Massachusetts,MA-10-S,es
+Spanish - Methuen MA,Massachusetts,MA-10-S,es
+Spanish - New Bedford MA,Massachusetts,MA-6-S,es
+Spanish - Newton MA,Massachusetts,MA-15-S,es
+Spanish - Northborough MA,Massachusetts,MA-15-S,es
+Spanish - Peabody MA,Massachusetts,MA-10-S,es
+Spanish - Revere MA,Massachusetts,MA-10-S,es
+Spanish - Roxbury MA,Massachusetts,MA-6-S,es
+Spanish - Somerville MA,Massachusetts,MA-6-S,es
+Spanish Group - Hyannis - MA,Massachusetts,,es
+Stoneham - MA,Massachusetts,MA-1,en
+Stoughton - MA,Massachusetts,MA-11,en
+Summer Haitian Creole - Rockland MA,Massachusetts,MA-14-CR,ht
+Swahili Group - Burncoat - Worcester MA,Massachusetts,,sw
+Twi - Worcester MA,Massachusetts,NY-49-A-TW,tw
+Waquoit - East Falmouth MA,Massachusetts,MA-8,en
+Ware - MA,Massachusetts,MA-9,en
+Wareham - MA,Massachusetts,MA-8,en
+Washington Park - Boston MA,Massachusetts,MA-2,en
+Webster - MA,Massachusetts,MA-13,en
+West - Chicopee MA,Massachusetts,MA-9,en
+West - Falmouth MA,Massachusetts,MA-8,en
+West - Lynn MA,Massachusetts,MA-1,en
+West - Westfield MA,Massachusetts,MA-3,en
+West - Worcester MA,Massachusetts,MA-13,en
+West Haitian Creole - Lowell MA,Massachusetts,MA-14-CR,ht
+West Haitian Creole - Worcester MA,Massachusetts,MA-14-CR,ht
+West Portuguese - Boston MA,Massachusetts,MA-7-A-T,pt
+West Spanish - Springfield MA,Massachusetts,MA-15-S,es
+Whalom - Leominster MA,Massachusetts,NH-1-A,en
+Wilmington - MA,Massachusetts,MA-1,en
+"Edmundston, NB",NB,,fr
+"Fundy Coast, Oak Bay, NB",NB,,en
+"Grand Falls, NB",NB,,fr
+"Millville, NB",NB,,en
+"Nashwaak, Fredericton, NB",NB,,en
+"O'Dell Park, Fredericton, NB",NB,,en
+"Oromocto, NB",NB,,en
+"Perth-Andover, NB",NB,,en
+"St Stephen, NB",NB,,en
+"Woodstock, NB",NB,,en
+Brentwood - NH,New Hampshire,,en
+Broad Street Spanish - Nashua NH,New Hampshire,MA-10-S,es
 Campton - NH,New Hampshire,NH-2,en
 Claremont - NH,New Hampshire,NH-2,en
+Colebrook - NH,New Hampshire,,en
+Derry - NH,New Hampshire,NH-1-A,en
+Derry NH,New Hampshire,,en
+Dover - NH,New Hampshire,ME-2,en
 East - Concord NH,New Hampshire,NH-2,en
+English - Nashua NH,New Hampshire,NH-1-A,en
+Exeter - NH,New Hampshire,ME-2,en
+Goffstown - NH,New Hampshire,NH-1-A,en
 Gorham - NH,New Hampshire,NH-2,en
+Hollis - NH,New Hampshire,NH-1-A,en
+Hudson - NH,New Hampshire,NH-1-A,en
+Keene - NH,New Hampshire,MA-3,en
 Lancaster - NH,New Hampshire,NH-2,en
 Lebanon - NH,New Hampshire,NH-2,en
+Londonderry - NH,New Hampshire,NH-1-A,en
 Madison - NH,New Hampshire,NH-2,en
 Meredith - NH,New Hampshire,NH-2,en
+Merrimack - NH,New Hampshire,NH-1-A,en
+Merrimack River Swahili (Congo) - Concord NH,New Hampshire,NY-50-A-SW,sw
 North - Franklin NH,New Hampshire,NH-2,en
+North - Manchester NH,New Hampshire,NH-1-A,en
 North - Rochester NH,New Hampshire,NH-2,en
 Pembroke - NH,New Hampshire,NH-2,en
+Portsmouth - NH,New Hampshire,ME-2,en
 South - Franklin NH,New Hampshire,NH-2,en
+South - Manchester NH,New Hampshire,NH-1-A,en
+Spanish - Manchester NH,New Hampshire,MA-10-S,es
 West - Concord NH,New Hampshire,NH-2,en
+West - Manchester NH,New Hampshire,NH-1-A,en
+West Swanzey - NH,New Hampshire,MA-3,en
 Wilmont - NH,New Hampshire,NH-2,en
+Wilmot - NH,New Hampshire,,en
+Wilton - NH,New Hampshire,NH-1-A,en
 Wolfeboro - NH,New Hampshire,NH-2,en
 Woodsville - NH,New Hampshire,NH-2,en
-Central French - Boston MA,Massachusetts,NY-20-F,fr
-County Sign Language - New Bedford MA,Massachusetts,NY-42-B-ASL,ase
-Sign Language - Cranston RI,Rhode Island,NY-42-B-ASL,ase
-Sign Language - Lawrence MA,Massachusetts,NY-42-B-ASL,ase
-West Sign Language - Hartford CT,Conneticut,NY-42-B-ASL,ase
-Central Mandarin Chinese - Boston MA,Massachusetts,NY-44-A-CHM,ch
-Central Armenian - Boston MA,Massachusetts,NY-45-U,hy
-Russian - Boston MA,Massachusetts,NY-45-U,ru
-Twi - Worcester MA,Massachusetts,NY-49-A-TW,tw
-Merrimack River Swahili (Congo) - Concord NH,New Hampshire,NY-50-A-SW,sw
-Pioneer Valley Swahili - Springfield MA,Massachusetts,NY-50-A-SW,sw
+Abbott Korean - Ridgefield NJ,New Jersey,,ko
+Absecon - NJ,New Jersey,,en
+Ampere - East Orange NJ,New Jersey,,en
+Arlington - East Orange NJ,New Jersey,,en
+Atco - NJ,New Jersey,,en
+Atlantic Spanish - Atlantic City NJ,New Jersey,,es
+Bargaintown - NJ,New Jersey,,en
+Bargaintown Spanish - Egg Harbor Township NJ,New Jersey,,es
+Barrington - NJ,New Jersey,,en
+Bayville - NJ,New Jersey,,en
+Belvidere - NJ,New Jersey,,en
+Bergen Tagalog - Englewood NJ,New Jersey,,tl
+Berlin - NJ,New Jersey,,en
+Browns Mills - NJ,New Jersey,,en
+Cape May - NJ,New Jersey,,en
+Carneys Point - NJ,New Jersey,,en
+Carteret - NJ,New Jersey,,en
+Centerton - Bridgeton NJ,New Jersey,,en
+Central - Englewood NJ,New Jersey,,en
+Central - Paterson NJ,New Jersey,,en
+Central Haitian Creole - Newark NJ,New Jersey,,ht
+Central Pidgin (West Africa) - Elizabeth NJ,New Jersey,,pcm
+Central Spanish - Elizabeth NJ,New Jersey,,es
+Central Spanish - Jersey City NJ,New Jersey,,es
+Central Spanish - Newark NJ,New Jersey,,es
+Central Spanish - North Bergen NJ,New Jersey,,es
+Central Spanish - Passaic NJ,New Jersey,,es
+Central Spanish - Paterson NJ,New Jersey,,es
+Chambersburg - Trenton NJ,New Jersey,,en
+Chancellor Avenue - Newark NJ,New Jersey,,en
+Cherry Blossom Spanish - Belleville NJ,New Jersey,,es
+Clinton - NJ,New Jersey,,en
+Clinton Hill - Newark NJ,New Jersey,,en
+Delaware River Portuguese - Phillipsburg NJ,New Jersey,,pt
+Delran - NJ,New Jersey,,en
+Downtown - Bridgeton NJ,New Jersey,,en
+East - Englewood NJ,New Jersey,,en
+East - Hackensack NJ,New Jersey,,en
+East - Jersey City NJ,New Jersey,,en
+East - Toms River NJ,New Jersey,,en
+East - Willingboro NJ,New Jersey,,en
+East English - Newark NJ,New Jersey,,en
+East English - Passaic NJ,New Jersey,,en
+East Spanish - Newark NJ,New Jersey,,es
+East Spanish - North Bergen NJ,New Jersey,,es
+East Spanish - Passaic NJ,New Jersey,,es
+East Spanish - Paterson NJ,New Jersey,,es
+East Spanish - Union City NJ,New Jersey,,es
+Egg Harbor City - NJ,New Jersey,,en
+Elmwood - East Orange NJ,New Jersey,,en
+English - Atlantic City NJ,New Jersey,,en
+English - Bayonne NJ,New Jersey,,en
+English - Burlington NJ,New Jersey,,en
+English - Cherry Hill NJ,New Jersey,,en
+English - Cranford NJ,New Jersey,,en
+English - Dover NJ,New Jersey,,en
+English - Garfield NJ,New Jersey,,en
+English - Hackettstown NJ,New Jersey,,en
+English - Lyndhurst NJ,New Jersey,,en
+English - Mahwah NJ,New Jersey,,en
+English - Maple Shade NJ,New Jersey,,en
+English - Moorestown NJ,New Jersey,,en
+English - Morristown NJ,New Jersey,,en
+English - Mount Holly NJ,New Jersey,,en
+English - North Bergen NJ,New Jersey,,en
+English - Perth Amboy NJ,New Jersey,,en
+English - Rahway NJ,New Jersey,,en
+English - Ridgefield NJ,New Jersey,,en
+English - Springfield NJ,New Jersey,,en
+English - Tuckerton NJ,New Jersey,,en
+English - Union City NJ,New Jersey,,en
+English - Vineland NJ,New Jersey,,en
+English - West New York NJ,New Jersey,,en
+English - Woodcliff Lake NJ,New Jersey,,en
+Erial - NJ,New Jersey,,en
+Fair Lawn - NJ,New Jersey,,en
+Fountain Woods Haitian Creole - Burlington NJ,New Jersey,,ht
+Franklin - NJ,New Jersey,,en
+Franklinville - NJ,New Jersey,,en
+Georgian Group - Russian - Springfield NJ,New Jersey,,ka
+Glassboro - NJ,New Jersey,,en
+Glasstown Spanish - Vineland NJ,New Jersey,,es
+Glenwood - East Orange NJ,New Jersey,,en
+Golfwood Spanish - Carneys Point NJ,New Jersey,,es
+Haddonfield - NJ,New Jersey,,en
+Haitian Creole - Hamilton NJ,New Jersey,,ht
+Haitian Creole - Irvington NJ,New Jersey,,ht
+Haitian Creole - Newark NJ,New Jersey,,ht
+Haitian Creole - Verona NJ,New Jersey,,ht
+Hamilton - Trenton NJ,New Jersey,,en
+Hamilton Spanish - Trenton NJ,New Jersey,,es
+Harrison - NJ,New Jersey,,en
+Hawthorne - NJ,New Jersey,,en
+Hilltop - Blackwood NJ,New Jersey,,en
+Hindi - Jersey City NJ,New Jersey,,hi
+Hudson Tagalog - Jersey City NJ,New Jersey,,tl
+Italian - Ridgefield NJ,New Jersey,,it
+Ivy Hill - Newark NJ,New Jersey,,en
+Jamaican Creole Group - South - Montclair NJ,New Jersey,,jam
+Japanese - Woodcliff Lake NJ,New Jersey,,ja
+Klockner Twi - Hamilton NJ,New Jersey,,tw
+Lake Hiawatha - NJ,New Jersey,,en
+Lakeview Spanish - Clifton NJ,New Jersey,,es
+Lebanon - NJ,New Jersey,,en
+Lumberton - NJ,New Jersey,,en
+Magnolia Haitian Creole - Elizabeth NJ,New Jersey,,ht
+Malaga Spanish - Vineland NJ,New Jersey,,es
+Mantua - NJ,New Jersey,,en
+Meadowlands Spanish - East Rutherford NJ,New Jersey,,es
+Millville - NJ,New Jersey,,en
+Morris Mandarin Chinese - Towaco NJ,New Jersey,,ch
+Mount Ephraim - Camden NJ,New Jersey,,en
+Mount Ephraim Spanish - Camden NJ,New Jersey,,es
+Mount Hope Spanish - Dover NJ,New Jersey,,es
+New Egypt - NJ,New Jersey,,en
+Newfield - NJ,New Jersey,,en
+Newton - NJ,New Jersey,,en
+North - Irvington NJ,New Jersey,,en
+North - Jersey City NJ,New Jersey,,en
+North - Montclair NJ,New Jersey,,en
+North - Orange NJ,New Jersey,,en
+North - Willingboro NJ,New Jersey,,en
+North English - Elizabeth NJ,New Jersey,,en
+North English - Newark NJ,New Jersey,,en
+North French - Newark NJ,New Jersey,,fr
+North Haitian Creole - Hillside NJ,New Jersey,,ht
+North Hudson Spanish - North Bergen NJ,New Jersey,,es
+North Spanish - Camden NJ,New Jersey,,es
+North Spanish - Cape May NJ,New Jersey,,es
+North Spanish - Elizabeth NJ,New Jersey,,es
+North Spanish - Passaic NJ,New Jersey,,es
+North Spanish - Paterson NJ,New Jersey,,es
+North Spanish - Perth Amboy NJ,New Jersey,,es
+North Spanish - Union City NJ,New Jersey,,es
+Northeast Spanish - Union City NJ,New Jersey,,es
+Northern Valley - Closter NJ,New Jersey,,en
+Northwest Spanish - Union City NJ,New Jersey,,es
+Nottingham - Trenton NJ,New Jersey,,en
+Nutley - NJ,New Jersey,,en
+Oraton - East Orange NJ,New Jersey,,en
+Paramus - NJ,New Jersey,,en
+Pascack Valley - Emerson NJ,New Jersey,,en
+Pemberton - NJ,New Jersey,,en
+Pine Hill - NJ,New Jersey,,en
+Portuguese - Elizabeth NJ,New Jersey,,pt
+Portuguese - Newark NJ,New Jersey,,pt
+Portuguese - Springfield NJ,New Jersey,,pt
+Randolph - NJ,New Jersey,,en
+Ringwood - NJ,New Jersey,,en
+Roselle - NJ,New Jersey,,en
+Roselle Park - NJ,New Jersey,,en
+Russian - Springfield NJ,New Jersey,,ru
+Saddle River Park - Saddle Brook NJ,New Jersey,,en
+Salem - NJ,New Jersey,,en
+Sicklerville - NJ,New Jersey,,en
+Sign Language - Jersey City NJ,New Jersey,,ase
+South - Irvington NJ,New Jersey,,en
+South - Montclair NJ,New Jersey,,en
+South - Orange NJ,New Jersey,,en
+South - Paterson NJ,New Jersey,,en
+South - Teaneck NJ,New Jersey,,en
+South English - Elizabeth NJ,New Jersey,,en
+South Haitian Creole - Williamstown NJ,New Jersey,,ht
+South Spanish - Elizabeth NJ,New Jersey,,es
+South Spanish - Newark NJ,New Jersey,,es
+South Spanish - Paterson NJ,New Jersey,,es
+South Spanish - Perth Amboy NJ,New Jersey,,es
+South Spanish - Union City NJ,New Jersey,,es
+Spanish - Bayonne NJ,New Jersey,,es
+Spanish - Bridgeton NJ,New Jersey,,es
+Spanish - Closter NJ,New Jersey,,es
+Spanish - Cranford NJ,New Jersey,,es
+Spanish - Dover NJ,New Jersey,,es
+Spanish - Englewood NJ,New Jersey,,es
+Spanish - Garfield NJ,New Jersey,,es
+Spanish - Guttenberg NJ,New Jersey,,es
+Spanish - Hackettstown NJ,New Jersey,,es
+Spanish - Hammonton NJ,New Jersey,,es
+Spanish - Hillside NJ,New Jersey,,es
+Spanish - Hoboken NJ,New Jersey,,es
+Spanish - Lyndhurst NJ,New Jersey,,es
+Spanish - Montclair NJ,New Jersey,,es
+Spanish - Moorestown NJ,New Jersey,,es
+Spanish - Morristown NJ,New Jersey,,es
+Spanish - Mount Holly NJ,New Jersey,,es
+Spanish - Orange NJ,New Jersey,,es
+Spanish - Rahway NJ,New Jersey,,es
+Spanish - Somerdale NJ,New Jersey,,es
+Spanish - Toms River NJ,New Jersey,,es
+Spanish - West New York NJ,New Jersey,,es
+Springfield Ga - Newark NJ,New Jersey,,ga
+Stanhope - NJ,New Jersey,,en
+Strawbridge Lake Park Tagalog - Moorestown NJ,New Jersey,,tl
+Sussex - NJ,New Jersey,,en
+Towaco - NJ,New Jersey,,en
+Turnersville - NJ,New Jersey,,en
+Twi - Newark NJ,New Jersey,,tw
+Union - NJ,New Jersey,,en
+Uptown Spanish - Jersey City NJ,New Jersey,,es
+Vailsburg - Newark NJ,New Jersey,,en
+Vernon - NJ,New Jersey,,en
+Weequahic - Newark NJ,New Jersey,,en
+West - Hackensack NJ,New Jersey,,en
+West - Passaic NJ,New Jersey,,en
+West - Paterson NJ,New Jersey,,en
+West - Toms River NJ,New Jersey,,en
+West - Willingboro NJ,New Jersey,,en
+West English - Newark NJ,New Jersey,,en
+West Hudson Portuguese - Lyndhurst NJ,New Jersey,,pt
+West Milford - NJ,New Jersey,,en
+West Spanish - Elizabeth NJ,New Jersey,,es
+West Spanish - Hackensack NJ,New Jersey,,es
+West Spanish - Jersey City NJ,New Jersey,,es
+West Spanish - Newark NJ,New Jersey,,es
+West Spanish - North Bergen NJ,New Jersey,,es
+West Spanish - Paterson NJ,New Jersey,,es
+West Spanish - Perth Amboy NJ,New Jersey,,es
+West Spanish - Teaneck NJ,New Jersey,,es
+Westfield - Camden NJ,New Jersey,,en
+Williamstown - NJ,New Jersey,,en
+Woodland - Newark NJ,New Jersey,,en
+Wyckoff - NJ,New Jersey,,en
+Adams - NY,New York,,en
+Addisleigh Park - New York NY,New York,,en
+Adelphi Spanish - New York NY,New York,,es
+Albany Haitian Creole - New York NY,New York,,ht
+Albemarle Haitian Creole - New York NY,New York,,ht
+Alcott - New York NY,New York,,en
+Allerton - New York NY,New York,,en
+Amherst - NY,New York,,en
+Amityville - NY,New York,,en
+Amsterdam - NY,New York,,en
+Amsterdam - New York NY,New York,,en
+Arcade - NY,New York,,en
+Arden Valley - Monroe NY,New York,,en
+Arlington - Poughkeepsie NY,New York,,en
+Arnett - Rochester NY,New York,,en
+Ashokan - Shokan NY,New York,,en
+Astoria English - New York NY,New York,,en
+Astoria Spanish - New York NY,New York,,es
+Astoria Thai - New York NY,New York,,th
+Atlantic Spanish - New York NY,New York,,es
+Au Sable Valley - NY,New York,,en
+Auburn - NY,New York,,en
+Audubon Spanish - New York NY,New York,,es
+Averill Park - NY,New York,,en
+Avon - NY,New York,,en
+Babylon - NY,New York,,en
+Bainbridge Spanish - New York NY,New York,,es
+Baisley Park - New York NY,New York,,en
+Baldwin Jamaican Creole - Baldwin NY,New York,,jam
+Ballston Spa - NY,New York,,en
+Batavia - NY,New York,,en
+Bath - NY,New York,,en
+Bay Ridge English - New York NY,New York,,en
+Bay Ridge Spanish - New York NY,New York,,es
+Bayside English - New York NY,New York,,en
+Bedford Park Spanish - New York NY,New York,,es
+Bedford Spanish - New York NY,New York,,es
+Bellmore - NY,New York,,en
+Bellport - NY,New York,,en
+Belmont Twi - New York NY,New York,,tw
+Bensonhurst English - New York NY,New York,,en
+Bensonhurst Georgian - New York NY,New York,,ka
+Bensonhurst Russian - New York NY,New York,,ru
+Bethlehem - NY,New York,,en
+Bethpage - NY,New York,,en
+Beverly Haitian Creole - New York NY,New York,,ht
+Black River - NY,New York,,en
+Black Rock Forest - Cornwall NY,New York,,en
+Bleecker Spanish - New York NY,New York,,es
+Blue Creek - Cortland NY,New York,,en
+Bradhurst - New York NY,New York,,en
+Bradhurst Spanish - New York NY,New York,,es
+Brewster Hill Spanish - Brewster NY,New York,,es
+Broadway English - New York NY,New York,,en
+Bronx Center - New York NY,New York,,en
+Bronx Concourse French - New York NY,New York,,fr
+Bronx Park - New York NY,New York,,en
+Bronx River Jamaican Creole - New York NY,New York,,jam
+Bronx Sign Language - New York NY,New York,,ase
+Bronx Spanish - New York NY,New York,,es
+Bronx Twi - New York NY,New York,,tw
+Bronxwood Jamaican Creole - New York NY,New York,,jam
+Bronxwood Spanish - New York NY,New York,,es
+Brooklyn Center - New York NY,New York,,en
+Brooklyn Mandarin Chinese - New York NY,New York,,ch
+Brooklyn Sign Language - New York NY,New York,,ase
+Brookside - Uniondale NY,New York,,en
+Bruckner English - New York NY,New York,,en
+Bruckner Spanish - New York NY,New York,,es
+Bushwick English - New York NY,New York,,en
+Bushwick Spanish - New York NY,New York,,es
+Cairo - NY,New York,,en
+Cambria Heights - New York NY,New York,,en
+Cambridge - NY,New York,,en
+Canandaigua - NY,New York,,en
+Canarsie English - New York NY,New York,,en
+Canarsie Haitian Creole - New York NY,New York,,ht
+Canisteo - NY,New York,,en
+Carmel - NY,New York,,en
+Castle Hill - New York NY,New York,,en
+Catskill - NY,New York,,en
+Centereach - NY,New York,,en
+Central - Buffalo NY,New York,,en
+Central - Hempstead NY,New York,,en
+Central - Hinsdale NY,New York,,en
+Central - Poughkeepsie NY,New York,,en
+Central - Utica NY,New York,,en
+Central - Yonkers NY,New York,,en
+Central Concourse - New York NY,New York,,en
+Central Haitian Creole - Spring Valley NY,New York,,ht
+Central Haitian Creole - Uniondale NY,New York,,ht
+Central Mandarin Chinese - White Plains NY,New York,,ch
+Central Spanish - Brentwood NY,New York,,es
+Central Square - NY,New York,,en
+Central Swahili - Syracuse NY,New York,,sw
+Central Tagalog - White Plains NY,New York,,tl
+Cheektowaga - Buffalo NY,New York,,en
+Chelsea Spanish - New York NY,New York,,es
+Cherry Lane Korean - Airmont NY,New York,,ko
+Cherry Lane Tagalog - Airmont NY,New York,,tl
+Chester - NY,New York,,en
+Circleville - NY,New York,,en
+Claremont Park - New York NY,New York,,en
+Clason Point - New York NY,New York,,en
+Clifton Park - NY,New York,,en
+Clinton - New York NY,New York,,en
+Co-op City - New York NY,New York,,en
+Cobleskill - NY,New York,,en
+Coes Neck Park - Uniondale NY,New York,,en
+Cold Spring Harbor - NY,New York,,en
+College Point Spanish - New York NY,New York,,es
+Colonial - New York NY,New York,,en
+Colonie - NY,New York,,en
+Columbia - New York NY,New York,,en
+Conewango - NY,New York,,en
+Corning - NY,New York,,en
+Corona English - New York NY,New York,,en
+Corona Spanish - New York NY,New York,,es
+Courtlandt - New York NY,New York,,en
+Crotona Park Ga - New York NY,New York,,ga
+Crown Heights - New York NY,New York,,en
+Cumberland - New York NY,New York,,en
+Cunningham Park - New York NY,New York,,en
+Cypress Hills - New York NY,New York,,en
+Cypress Spanish - New York NY,New York,,es
+Dansville - NY,New York,,en
+Deer Park Avenue Twi - Deer Park NY,New York,,tw
+Delavan - Buffalo NY,New York,,en
+Depew - Buffalo NY,New York,,en
+Deposit - NY,New York,,en
+Ditmas Park - New York NY,New York,,en
+Dix Hills - NY,New York,,en
+Dobbs Ferry - NY,New York,,en
+Dolgeville - NY,New York,,en
+Dorchester - New York NY,New York,,en
+Dover Plains - NY,New York,,en
+Duanesburg - NY,New York,,en
+Dyckman Spanish - New York NY,New York,,es
+East - Beacon NY,New York,,en
+East - Bloomingburg NY,New York,,en
+East - Jamestown NY,New York,,en
+East - Norwich NY,New York,,en
+East - Patchogue NY,New York,,en
+East - Poughkeepsie NY,New York,,en
+East - Saratoga Springs NY,New York,,en
+East - Syracuse NY,New York,,en
+East - Wappingers Falls NY,New York,,en
+East - White Plains NY,New York,,en
+East Aurora - NY,New York,,en
+East Bronx - New York NY,New York,,en
+East Central Park Spanish - New York NY,New York,,es
+East Elmhurst - New York NY,New York,,en
+East Elmhurst Spanish - New York NY,New York,,es
+East Flatbush Jamaican Creole - New York NY,New York,,jam
+East Gun Hill - New York NY,New York,,en
+East Harlem - New York NY,New York,,en
+East Karen (S'gaw) - Utica NY,New York,,ksw
+East Manhattan English - New York NY,New York,,en
+East Manhattan Spanish - New York NY,New York,,es
+East Meadow - Hempstead NY,New York,,en
+East New York - New York NY,New York,,en
+East Spanish - Rochester NY,New York,,es
+East Spanish - White Plains NY,New York,,es
+East Suffolk Haitian Creole - Central Islip NY,New York,,ht
+East Tremont Spanish - New York NY,New York,,es
+Eastern Parkway - New York NY,New York,,en
+Eastport - NY,New York,,en
+Ebbets Field - New York NY,New York,,en
+Edenwald - New York NY,New York,,en
+Eggert - Buffalo NY,New York,,en
+Ellenville - NY,New York,,en
+Ellison Park - Rochester NY,New York,,en
+Elmhurst Mandarin Chinese - New York NY,New York,,ch
+Elmhurst Spanish - New York NY,New York,,es
+Elmira - NY,New York,,en
+Elmont Spanish - New York NY,New York,,es
+Eltingville - New York NY,New York,,en
+English - Albion NY,New York,,en
+English - Cedarhurst NY,New York,,en
+English - Central Islip NY,New York,,en
+English - Copiague NY,New York,,en
+English - Dunkirk NY,New York,,en
+English - Farmingdale NY,New York,,en
+English - Floral Park NY,New York,,en
+English - Glen Cove NY,New York,,en
+English - Haverstraw NY,New York,,en
+English - Mastic Beach NY,New York,,en
+English - Monticello NY,New York,,en
+English - Mount Sinai NY,New York,,en
+English - New Rochelle NY,New York,,en
+English - Nyack NY,New York,,en
+English - Ossining NY,New York,,en
+English - Pawling NY,New York,,en
+English - Pine Bush NY,New York,,en
+English - Port Chester NY,New York,,en
+English - Port Washington NY,New York,,en
+English - Rockville Centre NY,New York,,en
+English - Waterloo NY,New York,,en
+English - Westbury NY,New York,,en
+English - Whitehall NY,New York,,en
+English - Wyandanch NY,New York,,en
+Far Rockaway English - New York NY,New York,,en
+Far Rockaway Haitian Creole - New York NY,New York,,ht
+Far Rockaway Spanish - New York NY,New York,,es
+Farmers Boulevard - New York NY,New York,,en
+Findlay Spanish - New York NY,New York,,es
+Finger Lakes Pennsylvania German - Penn Yan NY,New York,,pdc
+Fishkill - NY,New York,,en
+Flatbush English - New York NY,New York,,en
+Flatbush Haitian Creole - New York NY,New York,,ht
+Flatbush Spanish - New York NY,New York,,es
+Flushing Cantonese Chinese - New York NY,New York,,yue
+Flushing English - New York NY,New York,,en
+Flushing Korean - New York NY,New York,,ko
+Flushing Spanish - New York NY,New York,,es
+Foch - New York NY,New York,,en
+Fordham Heights - New York NY,New York,,en
+Fordham Spanish - New York NY,New York,,es
+Forest - New York NY,New York,,en
+Forest Hills Spanish - New York NY,New York,,es
+Forest Park Spanish - New York NY,New York,,es
+Fort Hamilton Spanish - New York NY,New York,,es
+Fort Plain - NY,New York,,en
+Foster - New York NY,New York,,en
+Fostertown - Newburgh NY,New York,,en
+Franklin - New York NY,New York,,en
+Fresh Pond - New York NY,New York,,en
+Fulton - NY,New York,,en
+Fulton Spanish - New York NY,New York,,es
+Genesee Valley - Rochester NY,New York,,en
+Getty Square Spanish - Yonkers NY,New York,,es
+Glen Falls - Williamsville NY,New York,,en
+Glendale - New York NY,New York,,en
+Glenmere Lake - Florida NY,New York,,en
+Glens Falls - NY,New York,,en
+Gloversville - NY,New York,,en
+Gowanus - New York NY,New York,,en
+Gramatan Jamaican Creole - Mount Vernon NY,New York,,jam
+Grandview - New York NY,New York,,en
+Greece - Rochester NY,New York,,en
+Greek - New York NY,New York,,el
+Greenburgh - White Plains NY,New York,,en
+Greenpoint Spanish - New York NY,New York,,es
+Greenville - NY,New York,,en
+Greenwood Spanish - New York NY,New York,,es
+Greystone Spanish - Yonkers NY,New York,,es
+Haitian Creole - Nyack NY,New York,,ht
+Hamburg - NY,New York,,en
+Hamden - NY,New York,,en
+Hamilton - NY,New York,,en
+Hamilton Spanish - New York NY,New York,,es
+Hamlin - NY,New York,,en
+Harlem Heights - New York NY,New York,,en
+Havemeyer - New York NY,New York,,en
+Hawks Nest - Port Jervis NY,New York,,en
+Hempstead Lake Haitian Creole - West Hempstead NY,New York,,ht
+Hempstead Lake Tagalog - West Hempstead NY,New York,,tl
+Henrietta - NY,New York,,en
+Heritage Trail - Middletown NY,New York,,en
+Herkimer - NY,New York,,en
+High Bridge - New York NY,New York,,en
+Highland - NY,New York,,en
+Hillside English - New York NY,New York,,en
+Hindi - New York NY,New York,,hi
+Hollis - New York NY,New York,,en
+Holliswood Gardens - New York NY,New York,,en
+Hook Creek - New York NY,New York,,en
+Hopewell Junction - NY,New York,,en
+Horseheads - NY,New York,,en
+Hudson - NY,New York,,en
+Hudson Hills Albanian - Ossining NY,New York,,sq
+Hudson Valley Haitian Creole - Newburgh NY,New York,,ht
+Hudson Valley Sign Language - Middletown NY,New York,,ase
+Hudson View - Kingston NY,New York,,en
+Hudson View Spanish - New York NY,New York,,es
+Hunts Point - New York NY,New York,,en
+Hyde Park - NY,New York,,en
+Interborough - New York NY,New York,,en
+Intervale Spanish - New York NY,New York,,es
+Irondequoit - NY,New York,,en
+Islip - NY,New York,,en
+Italian - Yonkers NY,New York,,it
+Ithaca - NY,New York,,en
+Jamaica English - New York NY,New York,,en
+Jamaica French - New York NY,New York,,fr
+Jamaica Spanish - New York NY,New York,,es
+Japanese - New Rochelle NY,New York,,ja
+Jefferson English - New York NY,New York,,en
+Jefferson Spanish - New York NY,New York,,es
+Jerome Spanish - New York NY,New York,,es
+Johnson City - NY,New York,,en
+Johnstown - NY,New York,,en
+Kenmore - Buffalo NY,New York,,en
+Kensington - New York NY,New York,,en
+Kerhonkson - NY,New York,,en
+Kings Highway English - New York NY,New York,,en
+Kings Highway Ukrainian - New York NY,New York,,uk
+Kingsbridge Spanish - New York NY,New York,,es
+Kingston Haitian Creole - New York NY,New York,,ht
+Kissena Park English - New York NY,New York,,en
+Kissena Park Spanish - New York NY,New York,,es
+Korean - New Rochelle NY,New York,,ko
+La Guardia Spanish - New York NY,New York,,es
+La Salle - Niagara Falls NY,New York,,en
+Laconia Spanish - New York NY,New York,,es
+Lafayette English - New York NY,New York,,en
+Lafayette Spanish - Airmont NY,New York,,es
+Lafayette Spanish - New York NY,New York,,es
+Lake Ronkonkoma - NY,New York,,en
+Lakeshore - Rochester NY,New York,,en
+Lakeview - Syracuse NY,New York,,en
+Lakewood - New York NY,New York,,en
+Lancaster - NY,New York,,en
+Latham - NY,New York,,en
+Laurelton - New York NY,New York,,en
+Lewisboro - NY,New York,,en
+Liberty - NY,New York,,en
+Liberty - New York NY,New York,,en
+Lincoln Park Spanish - Yonkers NY,New York,,es
+Linden Haitian Creole - New York NY,New York,,ht
+Linden Spanish - New York NY,New York,,es
+Lindenhurst - NY,New York,,en
+Liverpool - NY,New York,,en
+Locust Manor Jamaican Creole - New York NY,New York,,jam
+Long Island City English - New York NY,New York,,en
+Long Island City Spanish - New York NY,New York,,es
+Long Island Mandarin Chinese - Westbury NY,New York,,ch
+Lower Harlem - New York NY,New York,,en
+Lower Manhattan English - New York NY,New York,,en
+Malone - NY,New York,,en
+Manhattan Haitian Creole - New York NY,New York,,ht
+Manhattan Russian - New York NY,New York,,ru
+Manhattan Sign Language - New York NY,New York,,ase
+Manhattan Spanish - New York NY,New York,,es
+Manhattanville - New York NY,New York,,en
+Manorville - NY,New York,,en
+Maplewood Park - Rochester NY,New York,,en
+Marcy Spanish - New York NY,New York,,es
+Mariner's Harbor - New York NY,New York,,en
+Massena - NY,New York,,en
+Masten Park - Buffalo NY,New York,,en
+Mastic - NY,New York,,en
+Meadowbrook - New Windsor NY,New York,,en
+Meadowbrook - Uniondale NY,New York,,en
+Metropolitan - New York NY,New York,,en
+Mid-Hudson Russian - Hopewell Junction NY,New York,,ru
+Mid-Island - New York NY,New York,,en
+Middleport - NY,New York,,en
+Midtown Spanish - New York NY,New York,,es
+Midwood English - New York NY,New York,,en
+Mill Basin English - New York NY,New York,,en
+Mill Basin Haitian Creole - New York NY,New York,,ht
+Milton - NY,New York,,en
+Minnewaska - Pine Bush NY,New York,,en
+Monroe - Rochester NY,New York,,en
+Montgomery - NY,New York,,en
+Morris Heights - New York NY,New York,,en
+Mount Hope - Middletown NY,New York,,en
+Mountain Lakes - Warwick NY,New York,,en
+Murdock - New York NY,New York,,en
+Nagle Spanish - New York NY,New York,,es
+National Street Spanish - New York NY,New York,,es
+New Hyde Park - NY,New York,,en
+New Paltz - NY,New York,,en
+New Springville - New York NY,New York,,en
+Newark - NY,New York,,en
+Niagara Spanish - Buffalo NY,New York,,es
+North - Albany NY,New York,,en
+North - Binghamton NY,New York,,en
+North - Coram NY,New York,,en
+North - Fairport NY,New York,,en
+North - Oneonta NY,New York,,en
+North - Peekskill NY,New York,,en
+North - Riverhead NY,New York,,en
+North - Rome NY,New York,,en
+North - Schenectady NY,New York,,en
+North - Troy NY,New York,,en
+North - Yonkers NY,New York,,en
+North Bronx - New York NY,New York,,en
+North Brooklyn French - New York NY,New York,,fr
+North English - Middletown NY,New York,,en
+North Flushing Mandarin Chinese - New York NY,New York,,ch
+North Spanish - Middletown NY,New York,,es
+North Spanish - Newburgh NY,New York,,es
+North Syracuse - NY,New York,,en
+North Tonawanda - NY,New York,,en
+North Valley Stream - New York NY,New York,,en
+Northern Boulevard Spanish - New York NY,New York,,es
+Northport - NY,New York,,en
+Northwest - Niagara Falls NY,New York,,en
+Oneida - NY,New York,,en
+Onondaga Hill - Syracuse NY,New York,,en
+Orange Lake Spanish - Newburgh NY,New York,,es
+Orchard Park - NY,New York,,en
+Orchard Valley - Warwick NY,New York,,en
+Otter Kill Creek - Washingtonville NY,New York,,en
+Ozone Park English - New York NY,New York,,en
+Ozone Park Spanish - New York NY,New York,,es
+Paris Hill - Utica NY,New York,,en
+Park Circle - New York NY,New York,,en
+Park Hill Spanish - Yonkers NY,New York,,es
+Parkchester - New York NY,New York,,en
+Parkside - New York NY,New York,,en
+Parkside Haitian Creole - Mount Vernon NY,New York,,ht
+Parkview - New York NY,New York,,en
+Parkway - Rochester NY,New York,,en
+Parsons Spanish - New York NY,New York,,es
+Patterson - NY,New York,,en
+Pelham Parkway Spanish - New York NY,New York,,es
+Penn Yan - NY,New York,,en
+Pennsylvania English - New York NY,New York,,en
+Pennsylvania Spanish - New York NY,New York,,es
+Pittsford - NY,New York,,en
+Plattsburgh - NY,New York,,en
+Pleasant Valley - NY,New York,,en
+Plum Point - New Windsor NY,New York,,en
+Polish - New York NY,New York,,pl
+Port Jefferson - NY,New York,,en
+Port Jervis - NY,New York,,en
+Port Richmond English - New York NY,New York,,en
+Port Richmond Spanish - New York NY,New York,,es
+Portuguese - New York NY,New York,,pt
+Potsdam - NY,New York,,en
+Prospect Spanish - New York NY,New York,,es
+Putnam Lake Tagalog - Brewster NY,New York,,tl
+Queens Plaza - New York NY,New York,,en
+Queens Russian - New York NY,New York,,ru
+Queens Sign Language - New York NY,New York,,ase
+Queens Spanish - New York NY,New York,,es
+Queens Tagalog - New York NY,New York,,tl
+Queens Twi - New York NY,New York,,tw
+Queens Village English - New York NY,New York,,en
+Queens Village Haitian Creole - New York NY,New York,,ht
+Queens Village Spanish - New York NY,New York,,es
+Ransomville - NY,New York,,en
+Red Hook - NY,New York,,en
+Remsen - New York NY,New York,,en
+Remsen Haitian Creole - New York NY,New York,,ht
+Rensselaer - NY,New York,,en
+Rhinebeck - NY,New York,,en
+Rhinelander - New York NY,New York,,en
+Richmond Hill Punjabi - New York NY,New York,,pa
+Richmond Hill Spanish - New York NY,New York,,es
+Ridgeway - Rochester NY,New York,,en
+Ridgewood English - New York NY,New York,,en
+Ridgewood Spanish - New York NY,New York,,es
+River View - Newburgh NY,New York,,en
+Riverdale Twi - Yonkers NY,New York,,tw
+Riverside - Utica NY,New York,,en
+Riverside Park - Port Jervis NY,New York,,en
+Riverside Spanish - Highland NY,New York,,es
+Rochester - New York NY,New York,,en
+Rock Glen - NY,New York,,en
+Rockaway Beach - New York NY,New York,,en
+Rockaway Boulevard - New York NY,New York,,en
+Rosedale English - New York NY,New York,,en
+Round Hill - Chester NY,New York,,en
+Russian - New Rochelle NY,New York,,ru
+Russian - Nyack NY,New York,,ru
+Russian - Rochester NY,New York,,ru
+Ryerson Spanish - Warwick NY,New York,,es
+Saint Albans English - New York NY,New York,,en
+Salamanca - NY,New York,,en
+Saranac Lake - NY,New York,,en
+Saratoga - New York NY,New York,,en
+Saugerties - NY,New York,,en
+Scarsdale - NY,New York,,en
+Schodack - NY,New York,,en
+Sedgwick Spanish - New York NY,New York,,es
+Seton Falls - New York NY,New York,,en
+Seven Lakes - Monroe NY,New York,,en
+Sheffield - New York NY,New York,,en
+Sigel Park - New York NY,New York,,en
+Sign Language - Albany NY,New York,,ase
+Sign Language - Rochester NY,New York,,ase
+Silver Stream - New Windsor NY,New York,,en
+Smithtown - NY,New York,,en
+Somers - NY,New York,,en
+Soundview - New York NY,New York,,en
+South - Albany NY,New York,,en
+South - Binghamton NY,New York,,en
+South - Fairport NY,New York,,en
+South - Mount Vernon NY,New York,,en
+South - Newburgh NY,New York,,en
+South - Oneonta NY,New York,,en
+South - Peekskill NY,New York,,en
+South - Poughkeepsie NY,New York,,en
+South - Riverhead NY,New York,,en
+South - Rome NY,New York,,en
+South - Schenectady NY,New York,,en
+South - Syracuse NY,New York,,en
+South - Troy NY,New York,,en
+South - Yonkers NY,New York,,en
+South Brooklyn Spanish - New York NY,New York,,es
+South English - Middletown NY,New York,,en
+South Flushing Mandarin Chinese - New York NY,New York,,ch
+South Glens Falls - NY,New York,,en
+South Shore Spanish - New York NY,New York,,es
+South Spanish - Middletown NY,New York,,es
+South Spanish - Newburgh NY,New York,,es
+South Spanish - Rochester NY,New York,,es
+Southeast - Buffalo NY,New York,,en
+Spanish - Albany NY,New York,NY-43-A-S,es
+Spanish - Albion NY,New York,,es
+Spanish - Binghamton NY,New York,,es
+Spanish - Cedarhurst NY,New York,,es
+Spanish - Central Islip NY,New York,,es
+Spanish - Copiague NY,New York,,es
+Spanish - Cornwall NY,New York,,es
+Spanish - Dunkirk NY,New York,,es
+Spanish - Freeport NY,New York,,es
+Spanish - Goshen NY,New York,,es
+Spanish - Haverstraw NY,New York,,es
+Spanish - Hempstead NY,New York,,es
+Spanish - Huntington NY,New York,,es
+Spanish - Jericho NY,New York,,es
+Spanish - Kingston NY,New York,,es
+Spanish - Monroe NY,New York,,es
+Spanish - Monticello NY,New York,,es
+Spanish - Mount Sinai NY,New York,,es
+Spanish - Mount Vernon NY,New York,,es
+Spanish - New Rochelle NY,New York,,es
+Spanish - Ossining NY,New York,,es
+Spanish - Patchogue NY,New York,,es
+Spanish - Pawling NY,New York,,es
+Spanish - Peekskill NY,New York,,es
+Spanish - Pine Bush NY,New York,,es
+Spanish - Port Chester NY,New York,,es
+Spanish - Port Washington NY,New York,,es
+Spanish - Poughkeepsie NY,New York,,es
+Spanish - Riverhead NY,New York,,es
+Spanish - Rockville Centre NY,New York,,es
+Spanish - Roosevelt NY,New York,,es
+Spanish - Schenectady NY,New York,,es
+Spanish - Shokan NY,New York,,es
+Spanish - Southampton NY,New York,,es
+Spanish - Spring Valley NY,New York,,es
+Spanish - Syracuse NY,New York,,es
+Spanish - Uniondale NY,New York,,es
+Spanish - Utica NY,New York,,es
+Spanish - Wappingers Falls NY,New York,,es
+Spanish - Waterloo NY,New York,,es
+Spanish - West Hempstead NY,New York,,es
+Spanish - Westbury NY,New York,,es
+Spanish - Wyandanch NY,New York,,es
+Springfield Gardens - New York NY,New York,,en
+Springville - NY,New York,,en
+Stapleton - New York NY,New York,,en
+Starin - Buffalo NY,New York,,en
+Staten Island Russian - New York NY,New York,,ru
+Staten Island Tagalog - New York NY,New York,,tl
+Sterling Mine - Sloatsburg NY,New York,,en
+Sterling Ridge - Monroe NY,New York,,en
+Stony Creek - Warwick NY,New York,,en
+Stony Point - NY,New York,,en
+Strauss - New York NY,New York,,en
+Summitville - Wurtsboro NY,New York,,en
+Sumner - New York NY,New York,,en
+Sunnyside English - New York NY,New York,,en
+Sunnyside Spanish - New York NY,New York,,es
+Sunset English - New York NY,New York,,en
+Sylvan Lake - Lagrangeville NY,New York,,en
+Tanglewood - West Hempstead NY,New York,,en
+Taylor Spanish - New York NY,New York,,es
+Teller Spanish - New York NY,New York,,es
+Thompson Ridge - Wallkill NY,New York,,en
+Throgs Neck Spanish - New York NY,New York,,es
+Ticonderoga - NY,New York,,en
+Tilden - New York NY,New York,,en
+Times Plaza - New York NY,New York,,en
+Tonawanda - NY,New York,,en
+University Heights Spanish - New York NY,New York,,es
+Upper Concourse - New York NY,New York,,en
+Upper Harlem - New York NY,New York,,en
+Upper Manhattan - New York NY,New York,,en
+Utica - New York NY,New York,,en
+Van Dyke - New York NY,New York,,en
+Van Nest - New York NY,New York,,en
+Vanderbilt - New York NY,New York,,en
+Vanderveer - New York NY,New York,,en
+Verrazano Spanish - New York NY,New York,,es
+Vestal - NY,New York,,en
+Wakefield - New York NY,New York,,en
+Walden - NY,New York,,en
+Wallkill - NY,New York,,en
+Warrensburg - NY,New York,,en
+Washington Heights - New York NY,New York,,en
+Washington Heights Spanish - New York NY,New York,,es
+Water Mill - NY,New York,,en
+Watkins Glen - NY,New York,,en
+Waverly - NY,New York,,en
+Webster Spanish - New York NY,New York,,es
+Wellsville - NY,New York,,en
+West - Beacon NY,New York,,en
+West - Bloomingburg NY,New York,,en
+West - Buffalo NY,New York,,en
+West - Jamestown NY,New York,,en
+West - Kingston NY,New York,,en
+West - Lockport NY,New York,,en
+West - Mount Vernon NY,New York,,en
+West - Newburgh NY,New York,,en
+West - Patchogue NY,New York,,en
+West - Poughkeepsie NY,New York,,en
+West - Rochester NY,New York,,en
+West - Spring Valley NY,New York,,en
+West - Syracuse NY,New York,,en
+West - Wappingers Falls NY,New York,,en
+West Broadway Spanish - New York NY,New York,,es
+West Bronx Spanish - New York NY,New York,,es
+West Central Park Spanish - New York NY,New York,,es
+West Farms Spanish - New York NY,New York,,es
+West Hudson French - Airmont NY,New York,,fr
+West Manhattan English - New York NY,New York,,en
+West Spanish - Rochester NY,New York,,es
+West Spanish - White Plains NY,New York,,es
+Westchester Portuguese - Mount Vernon NY,New York,,pt
+Westside - New York NY,New York,,en
+Wheatfield - NY,New York,,en
+Whitney Avenue Spanish - New York NY,New York,,es
+Willert Park - Buffalo NY,New York,,en
+Williamsbridge - New York NY,New York,,en
+Willis Spanish - New York NY,New York,,es
+Woodside Spanish - New York NY,New York,,es
+Wyckoff Heights Spanish - New York NY,New York,,es
+Yorktown Heights - NY,New York,,en
+East - Campbell OH,Ohio,,en
+East Palestine - OH,Ohio,,en
+Hubbard - OH,Ohio,,en
+New Springfield - OH,Ohio,,en
+Spanish - Youngstown OH,Ohio,,es
+Steubenville - OH,Ohio,,en
+"Alta Vista, Ottawa, ON",Ontario,,en
+"Arlington Woods, Ottawa, ON",Ontario,,en
+"Carleton Place, ON",Ontario,,en
+"Castle Heights, Ottawa, ON",Ontario,,en
+"Cedarhill, Ottawa, ON",Ontario,,en
+"Central Tagalog, Ottawa, ON",Ontario,,tl
+"Centretown Swahili, Ottawa, ON",Ontario,,sw
+"Champlain, Cornwall, ON",Ontario,,fr
+"Chinese, Ottawa, ON",Ontario,,ch
+"Créole, Ottawa, ON",Ontario,,ht
+Dunnville - ON,Ontario,,en
+"East, Kemptville, ON",Ontario,,en
+"Est, Ottawa, ON",Ontario,,fr
+"Est, Rockland, ON",Ontario,,fr
+"Fallowfield Spanish, Ottawa, ON",Ontario,,es
+"Fonthill, Welland, ON",Ontario,,en
+"Forest Park, Casselman, ON",Ontario,,en
+Fort Erie - ON,Ontario,,en
+"Gladstone, Ottawa, ON",Ontario,,en
+"Glendale Spanish, St Catharines, ON",Ontario,,es
+"Gloucester Arabic, Ottawa, ON",Ontario,,ar
+"Hunt Club, Ottawa, ON",Ontario,,en
+"Innes, Ottawa, ON",Ontario,,en
+"Inverary, ON",Ontario,,en
+"Island Park, Ottawa, ON",Ontario,,en
+"Kanata Lakes, Ottawa, ON",Ontario,,en
+"Lakeshore, St Catharines, ON",Ontario,,en
+"Long Island, Ottawa, ON",Ontario,,en
+"Maple Grove, Ottawa, ON",Ontario,,en
+Merritt Park - Welland ON,Ontario,,en
+"Midtown, Ottawa, ON",Ontario,,ar
+"Montebello, St Catharines, ON",Ontario,,en
+"Mount Hermon, Ottawa, ON",Ontario,,ar
+"Nepean, Ottawa, ON",Ontario,,en
+"North, Kingston, ON",Ontario,,en
+"Orleans, Ottawa, ON",Ontario,,en
+"Ouest, Ottawa, ON",Ontario,,fr
+"Perth, ON",Ontario,,en
+"Picton, ON",Ontario,,en
+"Pineview, Brockville, ON",Ontario,,en
+Port Colborne - ON,Ontario,,en
+"Prescott, ON",Ontario,,en
+"Queenston Heights, Niagara Falls, ON",Ontario,,en
+"Rideau, Kingston, ON",Ontario,,en
+"Rideau, Ottawa, ON",Ontario,,en
+"Riverside, Welland, ON",Ontario,,en
+"Riverview Park, Ottawa, ON",Ontario,,en
+"Rivière-Nation, Casselman, ON",Ontario,,fr
+"Seaway, Cornwall, ON",Ontario,,en
+"Sharbot Lake, ON",Ontario,,en
+"Sherwood, Ottawa, ON",Ontario,,en
+"Smiths Falls, ON",Ontario,,en
+"St. Lawrence, Cornwall, ON",Ontario,,en
+"Stamford Centre, Niagara Falls, ON",Ontario,,en
+"Stittsville, Ottawa, ON",Ontario,,en
+"Thousand Islands, Brockville, ON",Ontario,,en
+"West, Kemptville, ON",Ontario,,en
+"West, Kingston, ON",Ontario,,en
+"West, Napanee, ON",Ontario,,en
+"West, Rockland, ON",Ontario,,en
+"Westlane, Niagara Falls, ON",Ontario,,en
+Albrightsville - PA,Pennsylvania,,en
+Aliquippa - PA,Pennsylvania,,en
+Allegheny - Pittsburgh PA,Pennsylvania,,en
+Allison Park - PA,Pennsylvania,,en
+Ambridge - PA,Pennsylvania,,en
+Andorra - Philadelphia PA,Pennsylvania,,en
+Angora Park - Philadelphia PA,Pennsylvania,,en
+Arabic - Allentown PA,Pennsylvania,,ar
+Aramingo - Philadelphia PA,Pennsylvania,,en
+Ardmore - PA,Pennsylvania,,en
+Asbury Heights - Erie PA,Pennsylvania,,en
+Asbury Woods - Erie PA,Pennsylvania,,en
+Avonmore - PA,Pennsylvania,,en
+Bayview - Erie PA,Pennsylvania,,en
+Beaver Falls - PA,Pennsylvania,,en
+Bedford - PA,Pennsylvania,,en
+Benscreek - Johnstown PA,Pennsylvania,,en
+Berks - Philadelphia PA,Pennsylvania,,en
+Bethel Park - PA,Pennsylvania,,en
+Blairsville - PA,Pennsylvania,,en
+Bloomsburg - PA,Pennsylvania,,en
+Boyertown - PA,Pennsylvania,,en
+Braddock - PA,Pennsylvania,,en
+Bradford - PA,Pennsylvania,,en
+Brandywine - York PA,Pennsylvania,,en
+Brewerytown - Philadelphia PA,Pennsylvania,,en
+Bridgeville - PA,Pennsylvania,,en
+Brodheadsville - PA,Pennsylvania,,en
+Brookville - PA,Pennsylvania,,en
+Burholme - Philadelphia PA,Pennsylvania,,en
+Butler - PA,Pennsylvania,,en
+Buttonwood Spanish - Reading PA,Pennsylvania,,es
+Cambridge Springs - PA,Pennsylvania,,en
+Camp Hill - PA,Pennsylvania,,en
+Carbondale - PA,Pennsylvania,,en
+Carlisle - PA,Pennsylvania,,en
+Carmichaels - PA,Pennsylvania,,en
+Cedar Crest - Allentown PA,Pennsylvania,,en
+Cedar Crest Spanish - Allentown PA,Pennsylvania,,es
+Centerville - PA,Pennsylvania,,en
+Central - Allentown PA,Pennsylvania,,en
+Central - Bethlehem PA,Pennsylvania,,en
+Central - Easton PA,Pennsylvania,,en
+Central - Pottstown PA,Pennsylvania,,en
+Central Chinese Mandarin - Pittsburgh PA,Pennsylvania,,ch
+Central English - Reading PA,Pennsylvania,,en
+Central Russian - Pittsburgh PA,Pennsylvania,,ru
+Central Sign Language - Reading PA,Pennsylvania,,ase
+Chester - PA,Pennsylvania,,en
+Chinese - Philadelphia PA,Pennsylvania,,ch
+Clairton - PA,Pennsylvania,,en
+Clearview - Hanover PA,Pennsylvania,,en
+Cleona - Lebanon PA,Pennsylvania,,en
+Cobbs Creek Park - Philadelphia PA,Pennsylvania,,en
+Connellsville - PA,Pennsylvania,,en
+Conshohocken - PA,Pennsylvania,,en
+Coventry - Pottstown PA,Pennsylvania,,en
+Dallas - PA,Pennsylvania,,en
+Delaware Valley Swahili - Philadelphia PA,Pennsylvania,,sw
+Downingtown - PA,Pennsylvania,,en
+Doylestown - PA,Pennsylvania,,en
+Duryea - PA,Pennsylvania,,en
+East - Coatesville PA,Pennsylvania,,en
+East - Green Lane PA,Pennsylvania,,en
+East - Reading PA,Pennsylvania,,en
+East - Wilkes-Barre PA,Pennsylvania,,en
+East End - Pittsburgh PA,Pennsylvania,,en
+East English - Allentown PA,Pennsylvania,,en
+East Falls - Philadelphia PA,Pennsylvania,,en
+East Hills - Johnstown PA,Pennsylvania,,en
+East Mayfair - Philadelphia PA,Pennsylvania,,en
+East Park - Philadelphia PA,Pennsylvania,,en
+East Spanish - Hazleton PA,Pennsylvania,,es
+East Spanish - Lancaster PA,Pennsylvania,,es
+East Stroudsburg - PA,Pennsylvania,,en
+Eastvue - Pittsburgh PA,Pennsylvania,,en
+Eastwick - Philadelphia PA,Pennsylvania,,en
+Elizabethville - PA,Pennsylvania,,en
+Elliottsburg - PA,Pennsylvania,,en
+Ellsworth - Philadelphia PA,Pennsylvania,,en
+Emmaus - PA,Pennsylvania,,en
+Engleside - Lancaster PA,Pennsylvania,,en
+English - Bensalem PA,Pennsylvania,,en
+English - Chambersburg PA,Pennsylvania,,en
+English - Fairview Village PA,Pennsylvania,,en
+English - Gettysburg PA,Pennsylvania,,en
+English - Hazleton PA,Pennsylvania,,en
+English - Kennett Square PA,Pennsylvania,,en
+English - Media PA,Pennsylvania,,en
+English - Mount Pocono PA,Pennsylvania,,en
+English - West Chester PA,Pennsylvania,,en
+Ephrata - PA,Pennsylvania,,en
+Fairmount Park - Philadelphia PA,Pennsylvania,,en
+Fairmount Park Tagalog - Philadelphia PA,Pennsylvania,,tl
+Fairmount Spanish - Philadelphia PA,Pennsylvania,,es
+Fawn Grove - PA,Pennsylvania,,en
+Fern Rock - Philadelphia PA,Pennsylvania,,en
+Forks - PA,Pennsylvania,,en
+Franklin - PA,Pennsylvania,,en
+Fruitville Pike - Lancaster PA,Pennsylvania,,en
+Garfield Heights - Pittsburgh PA,Pennsylvania,,en
+Germantown - Philadelphia PA,Pennsylvania,,en
+Girard - PA,Pennsylvania,,en
+Grandview Park - Erie PA,Pennsylvania,,en
+Greensburg - PA,Pennsylvania,,en
+Haitian Creole - Philadelphia PA,Pennsylvania,,ht
+Hamburg - PA,Pennsylvania,,en
+Hatboro - PA,Pennsylvania,,en
+Haverford - Philadelphia PA,Pennsylvania,,en
+Haverford Twi - Philadelphia PA,Pennsylvania,,tw
+Honesdale - PA,Pennsylvania,,en
+Horsham - PA,Pennsylvania,,en
+Hunting Park Spanish - Philadelphia PA,Pennsylvania,,es
+Huntingdon - PA,Pennsylvania,,en
+Huntingdon Valley - PA,Pennsylvania,,en
+Indiana - PA,Pennsylvania,,en
+Industry - PA,Pennsylvania,,en
+Ivy Hill - Philadelphia PA,Pennsylvania,,en
+Jermyn - PA,Pennsylvania,,en
+Juniata Park Spanish - Philadelphia PA,Pennsylvania,,es
+Juniata River Pennsylvania German - Mifflintown PA,Pennsylvania,,pdc
+Kane - PA,Pennsylvania,,en
+Kingsessing - Philadelphia PA,Pennsylvania,,en
+Kirby Park Spanish - Wilkes-Barre PA,Pennsylvania,,es
+Kittanning - PA,Pennsylvania,,en
+Kutztown - PA,Pennsylvania,,en
+Lake Marburg - Hanover PA,Pennsylvania,,en
+Lansdale - PA,Pennsylvania,,en
+Lansdowne - PA,Pennsylvania,,en
+Larchwood - Philadelphia PA,Pennsylvania,,en
+Latrobe - PA,Pennsylvania,,en
+Laureldale Spanish - Reading PA,Pennsylvania,,es
+Lawncrest Spanish - Philadelphia PA,Pennsylvania,,es
+Lehigh - Allentown PA,Pennsylvania,,en
+Lehigh Spanish - Philadelphia PA,Pennsylvania,,es
+Lewistown - PA,Pennsylvania,,en
+Liberty Spanish - Allentown PA,Pennsylvania,,es
+Lincoln Park - Reading PA,Pennsylvania,,en
+Lower Burrell - PA,Pennsylvania,,en
+Lower Paxton - Harrisburg PA,Pennsylvania,,en
+Macungie - PA,Pennsylvania,,en
+Marshalls Creek - PA,Pennsylvania,,en
+McKeesport - PA,Pennsylvania,,en
+Meadville - PA,Pennsylvania,,en
+Mechanicsburg - PA,Pennsylvania,,en
+Melrose - Melrose Park PA,Pennsylvania,,en
+Middletown - PA,Pennsylvania,,en
+Mifflinville - PA,Pennsylvania,,en
+Mill Creek - Levittown PA,Pennsylvania,,en
+Mill Hall - PA,Pennsylvania,,en
+Milton - PA,Pennsylvania,,en
+Monessen - PA,Pennsylvania,,en
+Montrose - PA,Pennsylvania,,en
+Morrisville - PA,Pennsylvania,,en
+Mount Airy - Philadelphia PA,Pennsylvania,,en
+Mount Cobb - PA,Pennsylvania,,en
+Mount Penn - Reading PA,Pennsylvania,,en
+Mount Pleasant - Harrisburg PA,Pennsylvania,,en
+Mount Pleasant - Philadelphia PA,Pennsylvania,,en
+Mountain Side - Harrisburg PA,Pennsylvania,,en
+Muncy - PA,Pennsylvania,,en
+Natrona Heights - PA,Pennsylvania,,en
+Nazareth - PA,Pennsylvania,,en
+Neshaminy Valley - PA,Pennsylvania,,en
+New Castle - PA,Pennsylvania,,en
+New Florence - PA,Pennsylvania,,en
+New Holland - PA,Pennsylvania,,en
+New Kensington - PA,Pennsylvania,,en
+Newtown - PA,Pennsylvania,,en
+Nicetown - Philadelphia PA,Pennsylvania,,en
+North - Altoona PA,Pennsylvania,,en
+North - Milford PA,Pennsylvania,,en
+North - Mount Joy PA,Pennsylvania,,en
+North - Scranton PA,Pennsylvania,,en
+North East - PA,Pennsylvania,,en
+North English - Philadelphia PA,Pennsylvania,,en
+North English - Reading PA,Pennsylvania,,en
+North Hills - Pittsburgh PA,Pennsylvania,,en
+North Mount Pleasant - Philadelphia PA,Pennsylvania,,en
+Northern Liberties - Philadelphia PA,Pennsylvania,,en
+Northumberland - PA,Pennsylvania,,en
+Northwest - Philadelphia PA,Pennsylvania,,en
+Oakdale - PA,Pennsylvania,,en
+Oil City - PA,Pennsylvania,,en
+Orefield - PA,Pennsylvania,,en
+Oreland - PA,Pennsylvania,,en
+Overbrook - Philadelphia PA,Pennsylvania,,en
+Palmerton - PA,Pennsylvania,,en
+Palmyra - PA,Pennsylvania,,en
+Paradise - Hanover PA,Pennsylvania,,en
+Pattersonville - PA,Pennsylvania,,en
+Pennypack Park - Philadelphia PA,Pennsylvania,,en
+Pennypack Park Spanish - Philadelphia PA,Pennsylvania,,es
+Penrose - Philadelphia PA,Pennsylvania,,en
+Philipsburg - PA,Pennsylvania,,en
+Phoenixville - PA,Pennsylvania,,en
+Pigeon Hills - Hanover PA,Pennsylvania,,en
+Pineview - Erie PA,Pennsylvania,,en
+Plum Borough - Pittsburgh PA,Pennsylvania,,en
+Portuguese - Philadelphia PA,Pennsylvania,,pt
+Pottsville - PA,Pennsylvania,,en
+Presque Isle Nepali - Erie PA,Pennsylvania,,ne
+Prospect - York PA,Pennsylvania,,en
+Punxsutawney - PA,Pennsylvania,,en
+Quakertown - PA,Pennsylvania,,en
+Quarryville - PA,Pennsylvania,,en
+Red Lion - PA,Pennsylvania,,en
+Ridge - Philadelphia PA,Pennsylvania,,en
+Ridley Park - PA,Pennsylvania,,en
+River View - Harrisburg PA,Pennsylvania,,en
+Roosevelt - Philadelphia PA,Pennsylvania,,en
+Roseto - PA,Pennsylvania,,en
+Royersford - PA,Pennsylvania,,en
+Russian - Philadelphia PA,Pennsylvania,,ru
+Saint Benedict - PA,Pennsylvania,,en
+Salisbury Spanish - Allentown PA,Pennsylvania,,es
+Sandy Creek - Pittsburgh PA,Pennsylvania,,en
+Saucon Valley - Allentown PA,Pennsylvania,,en
+Schuylkill - Philadelphia PA,Pennsylvania,,en
+Shamokin - PA,Pennsylvania,,en
+Sharon - PA,Pennsylvania,,en
+Sheraden - Pittsburgh PA,Pennsylvania,,en
+Shippenville - PA,Pennsylvania,,en
+Sign Language - Allentown PA,Pennsylvania,,ase
+Sign Language - Philadelphia PA,Pennsylvania,,ase
+Slatington - PA,Pennsylvania,,en
+Somerset - PA,Pennsylvania,,en
+Souderton - PA,Pennsylvania,,en
+South - Altoona PA,Pennsylvania,,en
+South - Milford PA,Pennsylvania,,en
+South - Mount Joy PA,Pennsylvania,,en
+South - Philadelphia PA,Pennsylvania,,en
+South - Scranton PA,Pennsylvania,,en
+South English - Reading PA,Pennsylvania,,en
+South Haitian Creole - Reading PA,Pennsylvania,,ht
+South Hills - Pittsburgh PA,Pennsylvania,,en
+South Mountain - Allentown PA,Pennsylvania,,en
+South Spanish - Reading PA,Pennsylvania,,es
+South Wyoming Valley - Wilkes-Barre PA,Pennsylvania,,en
+Spanish - Bensalem PA,Pennsylvania,,es
+Spanish - Bethlehem PA,Pennsylvania,,es
+Spanish - Easton PA,Pennsylvania,,es
+Spanish - Erie PA,Pennsylvania,,es
+Spanish - Fairview Village PA,Pennsylvania,,es
+Spanish - Gettysburg PA,Pennsylvania,,es
+Spanish - Harrisburg PA,Pennsylvania,,es
+Spanish - Kennett Square PA,Pennsylvania,,es
+Spanish - Lebanon PA,Pennsylvania,,es
+Spanish - Media PA,Pennsylvania,,es
+Spanish - Mount Joy PA,Pennsylvania,,es
+Spanish - Mount Pocono PA,Pennsylvania,,es
+Spanish - Muhlenberg PA,Pennsylvania,,es
+Spanish - Norristown PA,Pennsylvania,,es
+Spanish - Scranton PA,Pennsylvania,,es
+Spanish - West Chester PA,Pennsylvania,,es
+Spanish - Wilkes-Barre PA,Pennsylvania,,es
+Spanish - York PA,Pennsylvania,,es
+Spring Grove - PA,Pennsylvania,,en
+Springdale - York PA,Pennsylvania,,en
+Springfield - Philadelphia PA,Pennsylvania,,en
+State College - PA,Pennsylvania,,en
+Stroudsburg - PA,Pennsylvania,,en
+Swahili Group - South - Mount Joy PA,Pennsylvania,,sw
+Swatara - Harrisburg PA,Pennsylvania,,en
+Tacony Creek Park - Philadelphia PA,Pennsylvania,,en
+Tamaqua - PA,Pennsylvania,,en
+Tannersville - PA,Pennsylvania,,en
+Terrace - Pittsburgh PA,Pennsylvania,,en
+Tioga - Philadelphia PA,Pennsylvania,,en
+Tobyhanna - PA,Pennsylvania,,en
+Towanda - PA,Pennsylvania,,en
+Trafford - PA,Pennsylvania,,en
+Tunkhannock - PA,Pennsylvania,,en
+Ukrainian Group - Russian - Philadelphia PA,Pennsylvania,,uk
+Union City - PA,Pennsylvania,,en
+Uniontown - PA,Pennsylvania,,en
+University - Philadelphia PA,Pennsylvania,,en
+Upper Darby - PA,Pennsylvania,,en
+Uptown Spanish - Philadelphia PA,Pennsylvania,,es
+Walnut Hill Jamaican Creole - Philadelphia PA,Pennsylvania,,jam
+Warminster - PA,Pennsylvania,,en
+Warren - PA,Pennsylvania,,en
+Washington - PA,Pennsylvania,,en
+Wayne - PA,Pennsylvania,,en
+Waynesboro - PA,Pennsylvania,,en
+Waynesburg - PA,Pennsylvania,,en
+West - Bethlehem PA,Pennsylvania,,en
+West - Coatesville PA,Pennsylvania,,en
+West - Green Lane PA,Pennsylvania,,en
+West - Levittown PA,Pennsylvania,,en
+West - Mansfield PA,Pennsylvania,,en
+West - Norristown PA,Pennsylvania,,en
+West Allegheny - Pittsburgh PA,Pennsylvania,,en
+West Belfield - Philadelphia PA,Pennsylvania,,en
+West Carrick - Pittsburgh PA,Pennsylvania,,en
+West English - Philadelphia PA,Pennsylvania,,en
+West Erie - Philadelphia PA,Pennsylvania,,en
+West French - Philadelphia PA,Pennsylvania,,fr
+West Germantown - Philadelphia PA,Pennsylvania,,en
+West Haitian Creole - Philadelphia PA,Pennsylvania,,ht
+West Mifflin - PA,Pennsylvania,,en
+West Mount Airy - Philadelphia PA,Pennsylvania,,en
+West Spanish - Hazleton PA,Pennsylvania,,es
+West Spanish - Lancaster PA,Pennsylvania,,es
+West Spanish - Pittsburgh PA,Pennsylvania,,es
+West York - York PA,Pennsylvania,,en
+Whitehall - PA,Pennsylvania,,en
+Whitehall Spanish - Allentown PA,Pennsylvania,,es
+Wildwood - Williamsport PA,Pennsylvania,,en
+Willow Grove - PA,Pennsylvania,,en
+Windber - PA,Pennsylvania,,en
+Wissinoming - Philadelphia PA,Pennsylvania,,en
+Wister - Philadelphia PA,Pennsylvania,,en
+Womelsdorf - PA,Pennsylvania,,en
+Woodhaven - Philadelphia PA,Pennsylvania,,en
+Worcester - PA,Pennsylvania,,en
+Wynnefield Heights - Philadelphia PA,Pennsylvania,,en
+Yeadon - PA,Pennsylvania,,en
+Yorkana - York PA,Pennsylvania,,en
+Zelienople - PA,Pennsylvania,,en
+Zionhill - PA,Pennsylvania,,en
+"Amqui, QC",Quebec,,fr
+"Bellerive, Salaberry-de-Valleyfield, QC",Quebec,,fr
+"Bellevue, Gatineau, QC",Quebec,,fr
+"Bellevue, Sherbrooke, QC",Quebec,,fr
+"Cabano, QC",Quebec,,fr
+"Centre, Gatineau, QC",Quebec,,fr
+"Chelsea, Gatineau, QC",Quebec,,en
+"Coaticook, QC",Quebec,,fr
+"Disraeli, QC",Quebec,,fr
+"Du Parc, Richmond, QC",Quebec,,fr
+"East Angus, QC",Quebec,,fr
+"Espagnol, Gatineau, QC",Quebec,,es
+"Est, Cowansville, QC",Quebec,,fr
+"Farnham, QC",Quebec,,fr
+"Glenwood Park, Aylmer, QC",Quebec,,en
+Hemmingford - QC,Quebec,,en
+"Hispana, Sherbrooke, QC",Quebec,,es
+"Iberville, QC",Quebec,,fr
+"La Malbaie, QC",Quebec,,fr
+"La Mitis, Rimouski, QC",Quebec,,fr
+"Lac-Etchemin, QC",Quebec,,fr
+"Lac-Mégantic, QC",Quebec,,fr
+"Lennoxville, Sherbrooke, QC",Quebec,,en
+"Lucerne Créole, Gatineau, QC",Quebec,,ht
+"Lucerne, Aylmer, QC",Quebec,,fr
+"Magog, QC",Quebec,,fr
+"Mont-Bleu, Gatineau, QC",Quebec,,fr
+"Montmagny, QC",Quebec,,fr
+"Mountainview, Gatineau, QC",Quebec,,en
+"Nord, Sherbrooke, QC",Quebec,,fr
+"Outaouais, Gatineau, QC",Quebec,,fr
+"Parc-Victoria, Sherbrooke, QC",Quebec,,fr
+"Port-Joli, Saint-Jean-Port-Joli, QC",Quebec,,fr
+"Rimouski, QC",Quebec,,fr
+"Rivière-du-Loup, QC",Quebec,,fr
+Rockburn - QC,Quebec,,en
+"Saint-Damien, Saint-Damien-de-Buckland, QC",Quebec,,fr
+"Saint-Georges-de-Beauce, Saint-Georges, QC",Quebec,,fr
+"Saint-Luc, QC",Quebec,,fr
+"Sainte-Marie-de-Beauce, Sainte-Marie, QC",Quebec,,fr
+"Stanstead, QC",Quebec,,en
+"Thetford-Mines, Thetford Mines, QC",Quebec,,fr
+"West, Cowansville, QC",Quebec,,en
+Central Spanish - Providence RI,Rhode Island,,es
+Coventry - RI,Rhode Island,,en
+East - Tiverton RI,Rhode Island,MA-8,en
+East Russian - Providence RI,Rhode Island,,ru
+Elmhurst - Providence RI,Rhode Island,,en
+Huntington View - Providence RI,Rhode Island,,en
+Johnston - RI,Rhode Island,,en
+Kent Heights - East Providence RI,Rhode Island,,en
+Lincoln - RI,Rhode Island,,en
+Mount Pleasant Spanish - Providence RI,Rhode Island,,es
+Newport - RI,Rhode Island,,en
+North Spanish - Providence RI,Rhode Island,,es
 Parkview - Providence RI,Rhode Island,RI-1,en
+Pawtucket Kabuverdianu - East Providence RI,Rhode Island,,kea
+Portuguese - East Providence RI,Rhode Island,,pt
+Sign Language - Cranston RI,Rhode Island,NY-42-B-ASL,ase
+South Providence Haitian Creole - Providence RI,Rhode Island,,ht
+South Spanish - Providence RI,Rhode Island,,es
+Spanish - Central Falls RI,Rhode Island,,es
+Spanish - Pawtucket RI,Rhode Island,,es
+Spanish - Tiverton RI,Rhode Island,MA-6-S,es
+Wakefield - RI,Rhode Island,,en
+Warren - RI,Rhode Island,,en
+Warwick - RI,Rhode Island,,en
+West - Tiverton RI,Rhode Island,MA-8,en
+West - Woonsocket RI,Rhode Island,,en
+West Spanish - Providence RI,Rhode Island,,es
+West Warwick - RI,Rhode Island,,en
+Westerly - RI,Rhode Island,,en
+Bellows Falls - VT,Vermont,,en
+Bennington - VT,Vermont,,en
+Brattleboro - VT,Vermont,,en
+Cambridge - VT,Vermont,,en
+Enosburg Falls - VT,Vermont,,en
+Hardwick - VT,Vermont,,en
+Lyndonville - VT,Vermont,,en
+Middlebury - VT,Vermont,,en
+Montpelier - VT,Vermont,,en
+Moretown - VT,Vermont,,en
+Morrisville - VT,Vermont,,en
+Newport - VT,Vermont,,en
+North - Burlington VT,Vermont,,en
+Royalton - VT,Vermont,,en
+Rutland - VT,Vermont,,en
+South - Burlington VT,Vermont,,en
+Spanish - Burlington VT,Vermont,,es
+Swanton - VT,Vermont,,en
+Berkeley Springs - WV,West Virginia,,en
+East - Martinsburg WV,West Virginia,,en
+Fairmont - WV,West Virginia,,en
+Follansbee - WV,West Virginia,,en
+Grafton - WV,West Virginia,,en
+Kingwood - WV,West Virginia,,en
+Morgantown - WV,West Virginia,,en
+Moundsville - WV,West Virginia,,en
+Spanish - Martinsburg WV,West Virginia,,es
+West - Martinsburg WV,West Virginia,,en
+Wheeling - WV,West Virginia,,en

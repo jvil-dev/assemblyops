@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent } from '../testHelpers.js';
+import { createTestEvent, createTestCongregation } from '../testHelpers.js';
 import prisma from '../../config/database.js';
 import type { Application } from 'express';
 
@@ -20,10 +20,12 @@ describe('Auth GraphQL', () => {
   let userToken: string;
   let userEmail: string;
   let testEventId: string;
+  let congregationId: string;
 
   beforeAll(async () => {
     app = await createTestApp();
     userEmail = `test-${Date.now()}@test.com`;
+    congregationId = await createTestCongregation();
 
     // Register user
     const registerRes = await graphqlRequest(
@@ -42,6 +44,7 @@ describe('Auth GraphQL', () => {
           firstName: 'Test',
           lastName: 'User',
           isOverseer: true,
+          congregationId,
         },
       }
     );
@@ -94,6 +97,7 @@ describe('Auth GraphQL', () => {
       });
     }
     await prisma.user.deleteMany({ where: { email: { contains: 'test-' } } });
+    await prisma.congregation.deleteMany({ where: { name: { startsWith: 'Test Cong' } } });
     await closeTestApp();
     await prisma.$disconnect();
   });
@@ -117,6 +121,7 @@ describe('Auth GraphQL', () => {
             password: 'Test123!',
             firstName: 'Another',
             lastName: 'User',
+            congregationId,
           },
         }
       );

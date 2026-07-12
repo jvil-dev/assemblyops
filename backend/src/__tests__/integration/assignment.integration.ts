@@ -24,7 +24,7 @@
  */
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent } from '../testHelpers.js';
+import { createTestEvent, registerTestUser } from '../testHelpers.js';
 import type { Application } from 'express';
 
 let app: Application;
@@ -40,35 +40,10 @@ describe('Assignment Operations', () => {
 
   beforeAll(async () => {
     app = await createTestApp();
-    const email = `assignment-test-${Date.now()}@example.com`;
-
     // Register user (overseer)
-    const registerRes = await request(app)
-      .post('/graphql')
-      .send({
-        query: `
-          mutation Register($input: RegisterUserInput!) {
-            registerUser(input: $input) {
-              accessToken
-            }
-          }
-        `,
-        variables: {
-          input: {
-            email,
-            password: 'TestPassword123!',
-            firstName: 'Assignment',
-            lastName: 'Tester',
-            isOverseer: true,
-          },
-        },
-      });
-
-    if (registerRes.body.errors) {
-      console.error('Register failed:', registerRes.body.errors);
-      return;
-    }
-    accessToken = registerRes.body.data.registerUser.accessToken;
+    accessToken = (await registerTestUser(app, {
+      firstName: 'Assignment', lastName: 'Tester', isOverseer: true,
+    })).accessToken;
 
     // Create a test event directly via Prisma
     eventId = await createTestEvent();

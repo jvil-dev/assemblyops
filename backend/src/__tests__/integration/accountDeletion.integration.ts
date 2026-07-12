@@ -11,7 +11,7 @@
  */
 import request from 'supertest';
 import { createTestApp, closeTestApp } from '../setup.js';
-import { createTestEvent } from '../testHelpers.js';
+import { createTestEvent, registerTestUser } from '../testHelpers.js';
 import prisma from '../../config/database.js';
 import type { Application } from 'express';
 
@@ -32,27 +32,10 @@ describe('Account Deletion & Department Removal', () => {
 
   describe('deleteAccount mutation', () => {
     it('should delete a password-based user account with correct password', async () => {
-      const email = `test-delete-${Date.now()}@test.com`;
       const password = 'TestPassword123!';
-
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                user { id }
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: { email, password, firstName: 'Delete', lastName: 'Me' },
-          },
-        });
-
-      const { accessToken, user } = registerRes.body.data.registerUser;
-      const userId = user.id;
+      const { accessToken, userId } = await registerTestUser(app, {
+        password, firstName: 'Delete', lastName: 'Me',
+      });
 
       const deleteRes = await request(app)
         .post('/graphql')
@@ -77,24 +60,9 @@ describe('Account Deletion & Department Removal', () => {
     });
 
     it('should reject deletion with wrong password', async () => {
-      const email = `test-wrongpw-${Date.now()}@test.com`;
-
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: { email, password: 'TestPassword123!', firstName: 'Wrong', lastName: 'PW' },
-          },
-        });
-
-      const { accessToken } = registerRes.body.data.registerUser;
+      const { accessToken } = await registerTestUser(app, {
+        firstName: 'Wrong', lastName: 'PW',
+      });
 
       const deleteRes = await request(app)
         .post('/graphql')
@@ -113,24 +81,9 @@ describe('Account Deletion & Department Removal', () => {
     });
 
     it('should reject deletion without password for password-based user', async () => {
-      const email = `test-nopw-${Date.now()}@test.com`;
-
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: { email, password: 'TestPassword123!', firstName: 'No', lastName: 'PW' },
-          },
-        });
-
-      const { accessToken } = registerRes.body.data.registerUser;
+      const { accessToken } = await registerTestUser(app, {
+        firstName: 'No', lastName: 'PW',
+      });
 
       const deleteRes = await request(app)
         .post('/graphql')
@@ -164,27 +117,10 @@ describe('Account Deletion & Department Removal', () => {
     });
 
     it('should cascade-delete related EventVolunteer records', async () => {
-      const email = `test-cascade-${Date.now()}@test.com`;
       const password = 'TestPassword123!';
-
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                user { id }
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: { email, password, firstName: 'Cascade', lastName: 'Test' },
-          },
-        });
-
-      const { accessToken, user } = registerRes.body.data.registerUser;
-      const userId = user.id;
+      const { accessToken, userId } = await registerTestUser(app, {
+        password, firstName: 'Cascade', lastName: 'Test',
+      });
 
       const eventId = await createTestEvent();
       const ev = await prisma.eventVolunteer.create({
@@ -222,30 +158,9 @@ describe('Account Deletion & Department Removal', () => {
     let departmentId: string;
 
     beforeAll(async () => {
-      const email = `test-deptremoval-${Date.now()}@test.com`;
-
-      const registerRes = await request(app)
-        .post('/graphql')
-        .send({
-          query: `
-            mutation Register($input: RegisterUserInput!) {
-              registerUser(input: $input) {
-                accessToken
-              }
-            }
-          `,
-          variables: {
-            input: {
-              email,
-              password: 'TestPassword123!',
-              firstName: 'Dept',
-              lastName: 'Remover',
-              isOverseer: true,
-            },
-          },
-        });
-
-      overseerToken = registerRes.body.data.registerUser.accessToken;
+      overseerToken = (await registerTestUser(app, {
+        firstName: 'Dept', lastName: 'Remover', isOverseer: true,
+      })).accessToken;
       eventId = await createTestEvent();
 
       const purchaseRes = await request(app)
