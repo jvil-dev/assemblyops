@@ -41,4 +41,4 @@ Postgres on Neon (project `icy-sea-11544625`, aws-us-east-1, PG16). Pooled `DATA
 
 ## Workflow
 
-Branch off `development` → draft PR with `Closes #<id>` → **merge commit, never squash**. `development → main` is a deliberate release. See `CONTRIBUTING.md` and `.github/` templates for issue / PR / commit format.
+GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<type>/<issue-id>-<desc>`) → PR back to `main` → **merge commit, never squash**. One tier per branch (`backend/` or `web/…`, not both). Railway auto-deploys `main` on merge. See `CONTRIBUTING.md` and `.github/` templates for issue / PR / commit format.

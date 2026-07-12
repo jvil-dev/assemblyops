@@ -69,26 +69,25 @@ Before you begin, ensure you have:
 ### Branching Strategy
 
 ```
-main              ← production only. Never commit or PR directly.
-  └─ development  ← integration. All feature PRs target this.
-       └─ <type>/<issue-id>-<short-description>
+main  ← always-deployable trunk. Railway auto-deploys on merge.
+  └─ <type>/<issue-id>-<short-description>
 ```
 
-- Feature branches are cut from `development` and PR'd back to `development`.
+- **GitHub Flow:** feature branches are cut from `main` and PR'd back to `main`. No long-lived integration branch.
 - `<type>` is `feat`, `fix`, `chore`, or `refactor` (matches commit prefixes), e.g. `feat/42-venue-pool`.
-- `hotfix/<issue-id>-<short-description>` is the exception — cut from `main`, PR'd to `main`, then synced back to `development`.
-- `development → main` is a deliberate release promotion, not part of daily issue work.
+- **One tier per branch** — a branch touches `backend/` **or** `web/…`, not both.
+- Keep branches short-lived; `main` stays releasable at all times (hotfixes are just normal branches off `main`).
 
 ### Making Changes
 
-1. **Cut a branch from `development`**:
+1. **Cut a branch from `main`**:
 
    ```bash
-   git checkout development && git pull
+   git checkout main && git pull
    git checkout -b feat/<issue-id>-<short-description>
    ```
 
-2. **Open a draft PR immediately** with `Closes #<issue-id>` in the body, so the work is visible from the start.
+2. **Open a PR** (ready for review, not draft) with `Closes #<issue-id>` in the body.
 
 3. **Make your changes** following the coding standards and the issue's acceptance criteria.
 
@@ -170,13 +169,13 @@ npm run test:watch
 
 ### Pull Request Process
 
-1. **Keep your branch current** with `development`:
+1. **Keep your branch current** with `main`:
 
    ```bash
-   git fetch && git rebase origin/development
+   git fetch && git rebase origin/main
    ```
 
-2. **Open the PR against `development`.** The body auto-loads from `.github/pull_request_template.md` — fill the four sections:
+2. **Open the PR against `main`.** The body auto-loads from `.github/pull_request_template.md` — fill the four sections:
    - `## Summary` — why, not what
    - `## Acceptance Criteria` — copied from the issue, checked off
    - `## Test Plan` — manual + automated steps you ran
@@ -184,17 +183,15 @@ npm run test:watch
 
    Title format: `type(scope): imperative summary` (under 70 chars). One PR = one issue; reference it with `Closes #<id>`.
 
-3. **Mark ready for review** (un-draft) once acceptance criteria are met. Self-review the diff in the GitHub UI first.
+3. **Self-review the diff** in the GitHub UI before requesting review. `Closes #<id>` auto-closes the issue on merge (`main` is the default branch).
 
 4. **Merge strategy: merge commit — never squash, never rebase-merge.** The full commit timeline is preserved on all branches.
 
 ### Releases
 
-`development → main` is a release, treated deliberately:
+`main` is continuously deployed to Railway on every merge, so there's no promotion step. Cut a release by **tagging `main`** at a chosen point:
 
-- Open the PR from `development` → `main` using the release template:
-  `…/compare/main...development?template=release.md`
-- Title: `Release: vX.Y.Z`. After merge, tag `main`: `git tag -a vX.Y.Z -m "<notes>"`.
+- `git tag -a vX.Y.Z -m "<notes>" && git push origin vX.Y.Z`
 - Semver: breaking → major, new feature → minor, fix only → patch.
 
 ### Commit Message Format
