@@ -1,80 +1,46 @@
 # =============================================================================
-# Docker Compose - Local Development
+# Docker Compose - Local Test Database
 # =============================================================================
 #
-# Runs the API and PostgreSQL database locally for development.
-# NOT for production - use GCP Cloud Run + Cloud SQL instead.
+# Postgres for `npm test`. Matches the service container CI uses, so tests
+# behave the same locally and on GitHub Actions.
+#
+# Local dev does NOT use this — `npm run dev` pulls secrets and a database
+# from the Railway `development` environment (see scripts/railway-dev.sh).
 #
 # Services:
-#   - api: Node.js backend with hot reload (port 4000)
-#   - database: PostgreSQL 16 (port 5432)
+#   - database: PostgreSQL 18 (port 5432)
 #
 # Usage:
-#   docker compose up        # Start all services
-#   docker compose up -d     # Start in background
-#   docker compose down      # Stop all services
-#   docker compose down -v   # Stop and remove volumes (reset DB)
+#   docker compose up -d     # Start (required before `npm test`)
+#   docker compose down      # Stop
+#   docker compose down -v   # Stop and wipe the volume
 #
-# Volumes:
-#   - postgres_data: Persists database data between restarts
-#   - ./src:/app/src:ro: Mounts source code (read-only) for hot reload
-#
-# Network:
-#   - assemblyops-network: Internal network for service communication
-#   - API connects to database via hostname "database" (not localhost)
-#
-# Database Credentials (local dev only):
-#   - User: postgres
-#   - Password: postgres
-#   - Database: assemblyops
+# Credentials (local test only, never secrets):
+#   - User: postgres / Password: postgres / Database: assemblyops_test
 #
 # =============================================================================
 
 services:
-  api:
-    build:
-      context: .
-      target: deps
-    container_name: assemblyops-api
-    ports:
-      - '4000:4000'
-    environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgresql://postgres:postgres@database:5432/assemblyops
-    volumes:
-      - ./src:/app/src:ro
-      - ./prisma:/app/prisma:ro
-    command: npm run dev
-    depends_on:
-      database:
-        condition: service_healthy
-    restart: unless-stopped
-    networks:
-      - assemblyops-network
-
   database:
-    image: postgres:16-alpine
-    container_name: assemblyops-database
+    image: postgres:18-alpine
+    container_name: assemblyops-test-db
     ports:
       - '5432:5432'
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=assemblyops
+      - POSTGRES_DB=assemblyops_test
+    # Postgres 18+ images store data in a version-specific subdirectory, so the
+    # mount goes at /var/lib/postgresql — not /var/lib/postgresql/data.
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_test_data:/var/lib/postgresql
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U postgres']
       interval: 5s
       timeout: 5s
       retries: 5
     restart: unless-stopped
-    networks:
-      - assemblyops-network
-
-networks:
-  assemblyops-network:
-    driver: bridge
 
 volumes:
-  postgres_data:
+  postgres_test_data:
