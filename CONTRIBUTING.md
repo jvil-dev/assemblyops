@@ -58,11 +58,22 @@ Before you begin, ensure you have:
    npm run dev           # runs against the Railway `development` environment
    ```
 
-   Every DB-touching script (`dev`, `test`, `prisma:migrate`, `prisma:seed`, …)
-   wraps `scripts/railway-dev.sh`, which pulls secrets from Railway at run time.
-   See `.env.example` for the key list.
+   `dev` and the `prisma:*` scripts wrap `scripts/railway-dev.sh`, which pulls
+   secrets from Railway at run time. See `.env.example` for the key list.
 
-3. **Set up the iOS app** (optional):
+3. **Run the tests** (needs Docker running):
+
+   ```bash
+   cd backend
+   npm run test:db:up   # starts + migrates a local Postgres 18
+   npm test
+   npm run test:db:down # when you're done
+   ```
+
+   Tests never touch Railway — they use the throwaway database in
+   `docker-compose.yml`, matching CI. Their env lives in `vitest.config.ts`.
+
+4. **Set up the iOS app** (optional):
    ```bash
    cd ../ios/JW_AssemblyOps
    # Open AssemblyOps.xcodeproj in Xcode
