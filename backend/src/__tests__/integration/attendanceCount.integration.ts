@@ -31,7 +31,6 @@ describe('Attendance Count Operations', () => {
 
   beforeAll(async () => {
     app = await createTestApp();
-    const email = `attendance-test-${Date.now()}@example.com`;
 
     // Register user (overseer)
     adminToken = (await registerTestUser(app, {

@@ -21,9 +21,6 @@ import type { Application } from 'express';
 
 let app: Application;
 
-const graphqlRequest = (query: string, variables?: object) =>
-  request(app).post('/graphql').send({ query, variables });
-
 const authRequest = (query: string, variables: object, token: string) =>
   request(app)
     .post('/graphql')
