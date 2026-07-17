@@ -4,7 +4,7 @@ Volunteer scheduling and management for JW assembly/convention committees.
 
 ## Stack
 
-- **Backend** (`backend/`) — Node.js + TypeScript GraphQL API: Apollo Server 5, Prisma 7, PostgreSQL 16. JWT access/refresh + Google/Apple OAuth. RBAC: App Admin / Department Overseer / Volunteer.
+- **Backend** (`backend/`) — Node.js + TypeScript GraphQL API: Apollo Server 5, Prisma 7, PostgreSQL 18. JWT access/refresh + Google/Apple OAuth. RBAC: App Admin / Department Overseer / Volunteer.
 - **iOS** (`ios/JW_AssemblyOps/`) — SwiftUI native app, Apollo iOS GraphQL client, MVVM, EN/ES localization.
 - **Web** (`web/`) — `web/landing/` Astro marketing site (static) + `web/admin/` Next.js admin portal.
 
@@ -21,15 +21,22 @@ Volunteer scheduling and management for JW assembly/convention committees.
 
 ## Key commands (run in `backend/`)
 
-- `npm run dev` — dev server (hot reload)
-- `npm test` — Vitest (`test:coverage`, `test:watch`)
+- `npm run dev` — dev server (hot reload), against the Railway `development` env
+- `npm run test:db:up` — start + migrate the local test Postgres (Docker); `test:db:down` to stop
+- `npm test` — Vitest against that local DB (`test:coverage`, `test:watch`)
 - `npm run lint` / `npm run lint:fix` / `npm run format`
 - `npm run build`
 - `npm run prisma:generate` / `prisma:migrate` / `prisma:seed` (`prisma:seed:dev`)
 
 ## Database
 
-Postgres on Neon (project `icy-sea-11544625`, aws-us-east-1, PG16). Pooled `DATABASE_URL` / direct `DIRECT_URL`, `DATABASE_SSL=true`. Local dev/test run against a seeded `dev` branch — never production. Env selected by `NODE_ENV` (`.env.development` / `.env.production`).
+Postgres 18 on Railway (project `assemblyops`, us-east4), one `Postgres` service per environment — `production` and `development`. Services reach it over private networking (`postgres.railway.internal`); local machines use the public TCP proxy, exposed as `DATABASE_PUBLIC_URL`.
+
+There are no `.env` files. Local dev pulls secrets from the Railway `development` environment at run time via `scripts/railway-dev.sh`, which the `dev` and `prisma:*` scripts wrap. `.env.example` documents the key list. First run on a new machine: `railway login` && `railway link`.
+
+Tests never touch Railway — they run against a throwaway Postgres 18 from `backend/docker-compose.yml`, matching CI's service container. Test env lives in `vitest.config.ts` (fixtures, not secrets). Railway's proxy costs ~171ms per round trip, which times out `beforeAll` hooks; local is ~13x faster overall.
+
+`DATABASE_URL` (runtime) and `DIRECT_URL` (Prisma migrations, see `prisma.config.ts`) both point at the same host — the split is a leftover from Neon's pooler and no longer means anything.
 
 ## Conventions
 

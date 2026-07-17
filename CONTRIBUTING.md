@@ -47,16 +47,33 @@ Before you begin, ensure you have:
 
    ```bash
    cd backend
-   npm install
-   cp .env.example .env
-   # Edit .env with your local database credentials
+   npm ci
    npm run prisma:generate
-   npm run prisma:migrate
-   npm run prisma:seed
-   npm run dev
+
+   # Secrets come from Railway — there are no .env files.
+   # One-time per machine:
+   railway login
+   railway link          # select the `assemblyops` project
+
+   npm run dev           # runs against the Railway `development` environment
    ```
 
-3. **Set up the iOS app** (optional):
+   `dev` and the `prisma:*` scripts wrap `scripts/railway-dev.sh`, which pulls
+   secrets from Railway at run time. See `.env.example` for the key list.
+
+3. **Run the tests** (needs Docker running):
+
+   ```bash
+   cd backend
+   npm run test:db:up   # starts + migrates a local Postgres 18
+   npm test
+   npm run test:db:down # when you're done
+   ```
+
+   Tests never touch Railway — they use the throwaway database in
+   `docker-compose.yml`, matching CI. Their env lives in `vitest.config.ts`.
+
+4. **Set up the iOS app** (optional):
    ```bash
    cd ../ios/JW_AssemblyOps
    # Open AssemblyOps.xcodeproj in Xcode
@@ -291,7 +308,9 @@ npm run prisma:push      # Push schema changes (dev only)
 
 **Type errors**: Ensure you've regenerated Prisma client and restarted TypeScript server
 
-**Port conflicts**: Change PORT in .env if 4000 is in use
+**Port conflicts**: `PORT` comes from Railway's `development` environment (4000).
+`railway run` overrides any value set in your shell, so `PORT=4001 npm run dev`
+has no effect — change it on the `assemblyops` service in that environment instead.
 
 ## Resources
 

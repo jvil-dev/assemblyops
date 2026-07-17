@@ -1,6 +1,6 @@
 <!--
 Title: type(scope): imperative summary. One PR = one issue
-Target branch: development (feature work) - never main except releases/hotfixes
+Target branch: main — GitHub Flow, main is the always-deployable trunk
 -->
 
 Closes #<issue-id>

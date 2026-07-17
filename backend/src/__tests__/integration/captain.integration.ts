@@ -34,7 +34,6 @@ describe('Captain Operations', () => {
 
   beforeAll(async () => {
     app = await createTestApp();
-    const email = `captain-test-${Date.now()}@example.com`;
 
     // Register user (overseer)
     adminToken = (await registerTestUser(app, {

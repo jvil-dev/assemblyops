@@ -11,7 +11,8 @@
 import { config as loadEnv } from 'dotenv-flow';
 import admin from 'firebase-admin';
 
-loadEnv();
+// silent: env comes from Railway (or vitest config in tests); .env files are optional.
+loadEnv({ silent: true });
 
 const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT;
 

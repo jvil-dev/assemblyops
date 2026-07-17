@@ -26,7 +26,8 @@ import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import pg from 'pg';
 
-loadEnv();
+// silent: env comes from Railway (or vitest config in tests); .env files are optional.
+loadEnv({ silent: true });
 
 // Enable SSL for external connections (Cloud SQL, Supabase, etc.)
 const useSSL = process.env.DATABASE_SSL === 'true';

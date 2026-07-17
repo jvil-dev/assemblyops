@@ -16,12 +16,14 @@
  *   - npm run prisma:generate: Generate Prisma client
  *   - npm run prisma:seed: Run seed script
  *
- * Note: Uses dotenv/config to load .env.<NODE_ENV> file for DATABASE_URL / DIRECT_URL
+ * Note: DATABASE_URL / DIRECT_URL come from the environment — Railway for local
+ * commands (via scripts/railway-dev.sh), or the workflow env in CI.
  */
 import { config as loadEnv } from 'dotenv-flow';
 import { defineConfig } from 'prisma/config';
 
-loadEnv();
+// silent: env comes from Railway (or the CI workflow); .env files are optional.
+loadEnv({ silent: true });
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
