@@ -51,7 +51,7 @@ Before you begin, ensure you have:
    npm run prisma:generate
 
    # Secrets come from Railway — there are no .env files.
-   # One-time per machine, from the repo root:
+   # One-time per machine:
    railway login
    railway link          # select the `assemblyops` project
 
