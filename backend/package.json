@@ -3,20 +3,20 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development tsx watch src/server.ts",
+    "dev": "./scripts/railway-dev.sh tsx watch src/server.ts",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --write \"src/**/*.ts\"",
-    "test": "NODE_ENV=development vitest run",
-    "test:coverage": "NODE_ENV=development vitest run --coverage",
-    "test:watch": "NODE_ENV=development vitest",
+    "test": "./scripts/railway-dev.sh vitest run",
+    "test:coverage": "./scripts/railway-dev.sh vitest run --coverage",
+    "test:watch": "./scripts/railway-dev.sh vitest",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "NODE_ENV=development prisma migrate dev",
-    "prisma:push": "NODE_ENV=development prisma db push",
-    "prisma:seed": "NODE_ENV=development tsx prisma/seed.ts",
-    "prisma:seed:dev": "NODE_ENV=development tsx prisma/seed/dev.ts"
+    "prisma:migrate": "./scripts/railway-dev.sh prisma migrate dev",
+    "prisma:push": "./scripts/railway-dev.sh prisma db push",
+    "prisma:seed": "./scripts/railway-dev.sh tsx prisma/seed.ts",
+    "prisma:seed:dev": "./scripts/railway-dev.sh tsx prisma/seed/dev.ts"
   },
   "engines": {
     "node": ">=20.0.0"
