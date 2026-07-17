@@ -29,7 +29,11 @@ Volunteer scheduling and management for JW assembly/convention committees.
 
 ## Database
 
-Postgres on Neon (project `icy-sea-11544625`, aws-us-east-1, PG16). Pooled `DATABASE_URL` / direct `DIRECT_URL`, `DATABASE_SSL=true`. Local dev/test run against a seeded `dev` branch — never production. Env selected by `NODE_ENV` (`.env.development` / `.env.production`).
+Postgres 18 on Railway (project `assemblyops`, us-east4), one `Postgres` service per environment — `production` and `development`. Services reach it over private networking (`postgres.railway.internal`); local machines use the public TCP proxy, exposed as `DATABASE_PUBLIC_URL`.
+
+There are no `.env` files. Local dev pulls secrets from the Railway `development` environment at run time via `scripts/railway-dev.sh`, which every DB-touching npm script wraps. `.env.example` documents the key list. First run on a new machine: `railway login` && `railway link`.
+
+`DATABASE_URL` (runtime) and `DIRECT_URL` (Prisma migrations, see `prisma.config.ts`) both point at the same host — the split is a leftover from Neon's pooler and no longer means anything.
 
 ## Conventions
 
