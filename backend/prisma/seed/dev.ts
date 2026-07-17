@@ -3,7 +3,8 @@
  * Resets the dev database, then seeds a fixed set of users, events,
  * departments, and volunteers. No real PII; re-runnable to an identical state.
  *
- * Guard: refuses to run when NODE_ENV=production so it can never truncate prod.
+ * Guard: runs only when Railway reports the development environment, so it can
+ * never truncate prod.
  *
  * Usage: npm run prisma:seed:dev
  */
@@ -59,22 +60,29 @@ const DEV_DEPARTMENTS: DepartmentType[] = [
   DepartmentType.PARKING,
 ];
 
-/** Neon endpoint ID for the dev branch */
-const DEV_DB_HOST = 'ep-mute-union-atmvy7kt';
+/** The only Railway environment this seed may touch. */
+const DEV_ENVIRONMENT = 'development';
 
-/** Refuse to run anywhere but a dev/test environment. */
+/**
+ * Refuse to run anywhere but the Railway development environment.
+ *
+ * Keys off RAILWAY_ENVIRONMENT_NAME, which Railway injects into the process.
+ * Never match on the database host: both environments sit behind the same proxy
+ * hostname and differ only by port, so a host check would also match production.
+ */
 function assertSafeEnv(): void {
   if (process.env.NODE_ENV === 'production') {
     throw new Error('Refusing to run dev seed: NODE_ENV=production');
   }
-  const url = process.env.DATABASE_URL;
-  if (!url) {
-    throw new Error('DATABASE_URL is not set - check .env.development');
-  }
-  if (!new URL(url).host.includes(DEV_DB_HOST)) {
+  const environment = process.env.RAILWAY_ENVIRONMENT_NAME;
+  if (environment !== DEV_ENVIRONMENT) {
     throw new Error(
-      `Refusing to run dev seed: DATABASE_URL host is not the dev branch (${DEV_DB_HOST})`
+      `Refusing to run dev seed: RAILWAY_ENVIRONMENT_NAME is "${environment ?? 'unset'}", ` +
+        `expected "${DEV_ENVIRONMENT}". Run it with: npm run prisma:seed:dev`
     );
+  }
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL is not set — run it with: npm run prisma:seed:dev');
   }
 }
 
