@@ -1,15 +1,44 @@
-name: Backend CI
+# CI — one always-running "CI Gate" required check for main.
+# Detects which tiers a PR touches, runs only those tier jobs, and reports a
+# single gate status so path-filtered tiers never deadlock a required check.
+name: CI
 
 on:
-  pull_request:
-    branches: [main, development]
-    paths:
-        - "backend/**"
-        - ".github/workflows/backend-ci.yml"
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read
 
 jobs:
-  lint-and-test:
+  changes:
+    name: Detect changed tiers
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+        pull-requests: read
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      landing: ${{ steps.filter.outputs.landing }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            backend:
+              - "backend/**"
+              - ".github/workflows/ci.yml"
+            landing:
+              - "web/landing/**"
+              - ".github/workflows/ci.yml"
+
+  backend-lint-test:
     name: Lint & Test
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
 
     services:
@@ -87,10 +116,11 @@ jobs:
           path: backend/coverage/
           retention-days: 14
 
-  build:
+  backend-build:
     name: Build Docker Image
+    needs: [changes, backend-lint-test]
+    if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
-    needs: lint-and-test
 
     steps:
       - name: Checkout code
@@ -107,3 +137,37 @@ jobs:
           tags: assemblyops-api:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  landing-build:
+    name: Build Landing
+    needs: changes
+    if: needs.changes.outputs.landing == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web/landing
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/landing/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  ci-gate:
+    name: CI Gate
+    if: always()
+    needs: [backend-lint-test, backend-build, landing-build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify no tier job failed
+        run: |
+          if ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}; then
+            echo "A required tier job failed or was cancelled."
+            exit 1
+          fi
+          echo "All triggered tier jobs passed (or were skipped)."
