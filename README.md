@@ -31,10 +31,10 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 | iOS App        | Swift, SwiftUI, Apollo iOS (GraphQL client)         |
 | Admin Portal   | Next.js 16, React 19, Apollo Client 4, Recharts     |
 | API            | Node.js, Express, Apollo Server 5, GraphQL          |
-| Database       | PostgreSQL 16 with Prisma ORM                       |
+| Database       | PostgreSQL 18 with Prisma ORM                       |
 | Auth           | JWT (access + refresh tokens), OAuth (Google/Apple) |
 | Validation     | Zod runtime schemas                                 |
-| Infrastructure | Google Cloud Run, Cloud SQL (managed Postgres)      |
+| Infrastructure | Railway (API + landing), Railway Postgres 18        |
 | CI/CD          | GitHub Actions                                      |
 
 ## Architecture
@@ -47,22 +47,23 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  Google Cloud Load Balancer                  │
+│                        Railway Edge                         │
+│                    api.assemblyops.org                      │
 └──────────────────────────────┬──────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Cloud Run Service                        │
+│                  Railway Service (assemblyops)              │
 │  ┌───────────────────────────────────────────────────────┐  │
 │  │              Node.js + Apollo Server                  │  │
 │  │                                                       │  │
 │  │   Express → Apollo → Resolvers → Services → Prisma    │  │
 │  └───────────────────────────────────────────────────────┘  │
 └──────────────────────────────┬──────────────────────────────┘
-                               │
+                               │  postgres.railway.internal
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│               Cloud SQL (Managed PostgreSQL)                │
+│                  Railway Postgres 18                        │
 │                  with connection pooling                     │
 └─────────────────────────────────────────────────────────────┘
 ```
