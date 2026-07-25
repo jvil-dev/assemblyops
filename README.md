@@ -1,7 +1,6 @@
 # AssemblyOps
 
-![CI](https://github.com/jvil-dev/assembly-ops/actions/workflows/ci.yml/badge.svg)
-![Deploy](https://github.com/jvil-dev/assembly-ops/actions/workflows/deploy.yml/badge.svg)
+![CI](https://github.com/jvil-dev/assemblyops/actions/workflows/ci.yml/badge.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Web-blue)
 ![Node](https://img.shields.io/badge/node-20%2B-339933?logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
