@@ -6,7 +6,7 @@
  *
  * Startup Flow:
  *   1. Configure Express middleware (helmet, cors, json)
- *   2. Set up /health endpoint for Cloud Run health checks
+ *   2. Set up /health endpoint for Railway health checks
  *   3. Create Apollo Server and attach to /graphql endpoint
  *   4. Start HTTP server on PORT (default 4000)
  *
@@ -39,7 +39,7 @@ import { logger } from './utils/logger.js';
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Trust first proxy (Cloud Run) for accurate client IP in rate limiting
+// Trust first proxy (Railway edge) for accurate client IP in rate limiting
 app.set('trust proxy', 1);
 
 app.use(

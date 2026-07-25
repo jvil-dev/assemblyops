@@ -1,7 +1,6 @@
 # AssemblyOps
 
-![CI](https://github.com/jvil-dev/assembly-ops/actions/workflows/ci.yml/badge.svg)
-![Deploy](https://github.com/jvil-dev/assembly-ops/actions/workflows/deploy.yml/badge.svg)
+![CI](https://github.com/jvil-dev/assemblyops/actions/workflows/ci.yml/badge.svg)
 ![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Web-blue)
 ![Node](https://img.shields.io/badge/node-20%2B-339933?logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
@@ -31,10 +30,10 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 | iOS App        | Swift, SwiftUI, Apollo iOS (GraphQL client)         |
 | Admin Portal   | Next.js 16, React 19, Apollo Client 4, Recharts     |
 | API            | Node.js, Express, Apollo Server 5, GraphQL          |
-| Database       | PostgreSQL 16 with Prisma ORM                       |
+| Database       | PostgreSQL 18 with Prisma ORM                       |
 | Auth           | JWT (access + refresh tokens), OAuth (Google/Apple) |
 | Validation     | Zod runtime schemas                                 |
-| Infrastructure | Google Cloud Run, Cloud SQL (managed Postgres)      |
+| Infrastructure | Railway (API + landing), Railway Postgres 18        |
 | CI/CD          | GitHub Actions                                      |
 
 ## Architecture
@@ -47,23 +46,24 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                  Google Cloud Load Balancer                  │
+│                        Railway Edge                         │
+│                     api.assemblyops.org                     │
 └──────────────────────────────┬──────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Cloud Run Service                        │
+│                Railway Service (assemblyops)                │
 │  ┌───────────────────────────────────────────────────────┐  │
 │  │              Node.js + Apollo Server                  │  │
 │  │                                                       │  │
 │  │   Express → Apollo → Resolvers → Services → Prisma    │  │
 │  └───────────────────────────────────────────────────────┘  │
 └──────────────────────────────┬──────────────────────────────┘
-                               │
+                               │  postgres.railway.internal
                                ▼
 ┌─────────────────────────────────────────────────────────────┐
-│               Cloud SQL (Managed PostgreSQL)                │
-│                  with connection pooling                     │
+│                     Railway Postgres 18                     │
+│                   with connection pooling                   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -72,32 +72,40 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 ### Prerequisites
 
 - **Node.js** 20+
-- **PostgreSQL** 16+ (or Docker)
 - **npm**
+- **Railway CLI** (`npm i -g @railway/cli`) — dev secrets come from Railway, not `.env`
+- **Docker** (for the local test database)
 - **Xcode** 15+ (for iOS development)
 
 ### Backend
 
+There are no `.env` files. Local dev pulls secrets from the Railway `development`
+environment at run time via `scripts/railway-dev.sh`, which the `dev` and
+`prisma:*` scripts wrap. `.env.example` documents the key list for reference only.
+
 ```bash
 cd backend
 npm install
-cp .env.example .env    # Fill in your values (see .env.example for details)
+
+railway login           # First run on a new machine
+railway link            # Select the `assemblyops` project
 
 npm run prisma:generate # Generate Prisma client
-npm run prisma:migrate  # Run database migrations
+npm run prisma:migrate  # Run migrations against the Railway dev database
 npm run prisma:seed     # Seed with event templates
 
 npm run dev             # Start dev server → http://localhost:4000/graphql
 ```
 
-**With Docker:**
+**Running tests** — these never touch Railway. They run against a throwaway
+Postgres 18 container from `backend/docker-compose.yml`, matching CI's service
+container:
 
 ```bash
 cd backend
-docker compose up       # Starts API + PostgreSQL
-# In another terminal:
-npm run prisma:migrate
-npm run prisma:seed
+npm run test:db:up      # Start + migrate the local test database
+npm test                # Vitest (test:coverage, test:watch also available)
+npm run test:db:down    # Stop it when you're done
 ```
 
 See [backend/README.md](./backend/README.md) for full API documentation, environment variables, and available scripts.
@@ -123,11 +131,18 @@ After backend schema changes:
 ```bash
 cd web/admin
 npm install
-cp .env.local.example .env.local  # Set NEXT_PUBLIC_API_URL
-npm run dev                        # → http://localhost:3000
+npm run dev    # → http://localhost:3000
 ```
 
 See [web/admin/README.md](./web/admin/README.md) for pages, project structure, and access control details.
+
+### Landing Site
+
+```bash
+cd web/landing
+npm install
+npm run dev    # Astro dev server
+```
 
 ## User Roles
 
