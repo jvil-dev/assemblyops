@@ -26,10 +26,10 @@
  * Run with: npm run dev (development) or npm start (production)
  */
 import express from 'express';
-import cors from 'cors';
 import helmet from 'helmet';
 import prisma from './config/database.js';
 import { createApolloServer } from './graphql/index.js';
+import { createCorsMiddleware } from './middleware/cors.js';
 import { createRateLimiter, shutdownRateLimiter } from './middleware/rateLimiter.js';
 import { validateJwtSecrets } from './utils/jwt.js';
 import { validateEncryptionKey } from './utils/encryption.js';
@@ -47,25 +47,8 @@ app.use(
     contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false,
   })
 );
-// CORS: restrict to environment-based allowlist
-const allowedOrigins = (
-  process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://localhost:3001,http://localhost:4000'
-)
-  .split(',')
-  .map((o) => o.trim());
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, health checks)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-  })
-);
+// CORS: restrict to environment-based allowlist; 403s anything else
+app.use(...createCorsMiddleware());
 app.use(express.json());
 
 // Password reset: 1 request per 60 seconds

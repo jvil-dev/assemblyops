@@ -6,16 +6,18 @@
  *
  * Connection:
  *   - Reads DATABASE_URL from environment variables
- *   - Enables SSL for Supabase/external connections (detected by URL)
+ *   - Enables SSL when DATABASE_SSL=true
  *   - Uses pg.Pool for connection pooling (better performance)
  *
  * Logging:
  *   - Development: Logs queries, errors, warnings
  *   - Production: Only logs errors
  *
- * Supabase Note:
- *   - Port 6543 (pooled): Use for application runtime
- *   - Port 5432 (direct): Use for Prisma migrations
+ * Railway Note:
+ *   - DATABASE_URL (runtime) and DIRECT_URL (migrations) point at the same
+ *     Postgres 18 host; the split carries no meaning
+ *   - Services connect over postgres.railway.internal; local machines use the
+ *     public TCP proxy exposed as DATABASE_PUBLIC_URL
  *
  * Exports: Default prisma client instance used throughout the app
  *
@@ -29,7 +31,7 @@ import pg from 'pg';
 // silent: env comes from Railway (or vitest config in tests); .env files are optional.
 loadEnv({ silent: true });
 
-// Enable SSL for external connections (Cloud SQL, Supabase, etc.)
+// Enable SSL for external connections that require it
 const useSSL = process.env.DATABASE_SSL === 'true';
 
 const pool = new pg.Pool({
