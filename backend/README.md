@@ -80,7 +80,7 @@ APPLE_CLIENT_ID=
 # Server
 PORT=4000
 NODE_ENV=development
-ALLOWED_ORIGINS=http://localhost:3000,http://localhost:4000
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001,http://localhost:4000
 ```
 
 ## Scripts

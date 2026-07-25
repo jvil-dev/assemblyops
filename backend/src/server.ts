@@ -17,6 +17,7 @@
  *
  * Environment Variables:
  *   - PORT: Server port (default 4000)
+ *   - ALLOWED_ORIGINS: Comma-separated CORS allowlist (default localhost 3000/3001/4000)
  *   - DATABASE_URL: PostgreSQL connection string
  *   - JWT_SECRET: Access token signing key
  *   - JWT_REFRESH_SECRET: Refresh token signing key
@@ -48,7 +49,7 @@ app.use(
 );
 // CORS: restrict to environment-based allowlist
 const allowedOrigins = (
-  process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://localhost:4000'
+  process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://localhost:3001,http://localhost:4000'
 )
   .split(',')
   .map((o) => o.trim());
