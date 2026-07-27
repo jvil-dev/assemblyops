@@ -187,7 +187,7 @@ jobs:
   ci-gate:
     name: CI Gate
     if: always()
-    needs: [backend-lint-test, backend-build, landing-build, app-build]
+    needs: [changes, backend-lint-test, backend-build, landing-build, app-build]
     runs-on: ubuntu-latest
     steps:
       - name: Verify no tier job failed
