@@ -206,22 +206,31 @@ npm run test:watch
 
 ### Releases
 
-`main` is continuously deployed to Railway on every merge, so there's no promotion step. Cut a release by **tagging `main`** at a chosen point:
+`main` is continuously deployed to Railway on every merge, so there's no promotion step and no release PR. Cut a release by **tagging `main`** at a chosen point:
 
-- `git tag -a vX.Y.Z -m "<notes>" && git push origin vX.Y.Z`
+```bash
+gh release create vX.Y.Z --target main --generate-notes
+```
+
 - Semver: breaking → major, new feature → minor, fix only → patch.
+- `--generate-notes` builds the notes from merged PR titles. Merge commits keep the PR title verbatim, so the notes come out right with no extra bookkeeping.
+- This creates the tag through the API, so it works without pushing over SSH.
+
+Notes live on the [Releases page](https://github.com/jvil-dev/assemblyops/releases); there's no changelog file to keep in sync.
 
 ### Commit Message Format
 
 We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
-<type>(<scope>): <imperative summary> (#issue)
+<type>(<scope>): <imperative summary>
 
 <body — what changed and why>
 ```
 
-Every commit needs a **subject and a body**. The subject is imperative, under 72 chars; the trailing `(#issue)` is optional. The body explains the change so a reader needn't open the diff.
+Every commit needs a **subject and a body**. The subject is imperative, under 72 chars. The body explains the change so a reader needn't open the diff.
+
+**No issue reference in the subject.** `Closes #<id>` in the PR body is the only link an issue needs. GitHub appends `(#<pr>)` to merge commit titles, so with subjects kept clean, every `(#N)` in `git log` unambiguously means a PR.
 
 **Types**: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`
 **Scopes**: `backend`, `ios`, `admin`, `infra` (omit for full-stack changes)
@@ -237,7 +246,7 @@ git config commit.template .gitmessage
 **Examples**:
 
 ```
-feat(backend): add bulk volunteer assignment endpoint (#42)
+feat(backend): add bulk volunteer assignment endpoint
 fix(ios): resolve crash on event join request
 docs: update README with Docker setup instructions
 ```

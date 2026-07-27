@@ -1,6 +1,10 @@
-# type(scope): imperative summary (#issue)   ← subject, <72 chars
+# type(scope): imperative summary   ← subject, <72 chars
 #   type:  feat | fix | chore | refactor | test | docs
 #   scope: backend | ios | admin | infra   (omit for full-stack)
+#
+# No issue reference in the subject — `Closes #<id>` in the PR body is the
+# link. GitHub appends (#<pr>) to merge titles, so every (#N) in the log
+# means a PR.
 #
 # Body — what changed and why; enough that a reader needn't open the diff.
 
