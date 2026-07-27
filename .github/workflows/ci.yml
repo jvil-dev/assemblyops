@@ -20,6 +20,7 @@ jobs:
     outputs:
       backend: ${{ steps.filter.outputs.backend }}
       landing: ${{ steps.filter.outputs.landing }}
+      app: ${{ steps.filter.outputs.app }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,6 +34,9 @@ jobs:
               - ".github/workflows/ci.yml"
             landing:
               - "web/landing/**"
+              - ".github/workflows/ci.yml"
+            app:
+              - "web/app/**"
               - ".github/workflows/ci.yml"
 
   backend-lint-test:
@@ -158,10 +162,32 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+  app-build:
+    name: Build App
+    needs: changes
+    if: needs.changes.outputs.app == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web/app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/app/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      # src/gql/ is committed, so the build needs no running backend.
+      - run: npm run build
+
   ci-gate:
     name: CI Gate
     if: always()
-    needs: [backend-lint-test, backend-build, landing-build]
+    needs: [changes, backend-lint-test, backend-build, landing-build, app-build]
     runs-on: ubuntu-latest
     steps:
       - name: Verify no tier job failed

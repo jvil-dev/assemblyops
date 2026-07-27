@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * Design tokens — ported from
+ * ios/JW_AssemblyOps/AssemblyOps/Core/Theme/AppTheme.swift + Assets.xcassets.
+ * Scheme-dependent values live on :root so @theme inline can follow the
+ * light/dark cascade; scheme-independent scales live in the plain @theme block.
+ * ------------------------------------------------------------------------ */
+:root {
+  --ao-canvas-top: #faf7f2;
+  --ao-canvas-bottom: #f5f0e8;
+  --ao-surface: #ffffff;
+  --ao-surface-secondary: #faf7f5;
+  --ao-ink: #1a1a1a;
+  --ao-ink-secondary: #737373;
+  --ao-ink-tertiary: #999999;
+  --ao-divider: rgb(0 0 0 / 0.08);
+  --ao-primary: #1a365d;
+
+  --ao-status-pending: #ff9500;
+  --ao-status-accepted: #34c759;
+  --ao-status-declined: #ff3b30;
+  --ao-status-info: #007aff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ao-canvas-top: #1a1a1a;
+    --ao-canvas-bottom: #141414;
+    --ao-surface: #262626;
+    --ao-surface-secondary: #1f1f1f;
+    --ao-ink: #ffffff;
+    --ao-ink-secondary: rgb(255 255 255 / 0.6);
+    --ao-ink-tertiary: rgb(255 255 255 / 0.4);
+    --ao-divider: rgb(255 255 255 / 0.1);
+    --ao-primary: #2c5282;
+
+    --ao-status-pending: #ff9f0a;
+    --ao-status-accepted: #30d158;
+    --ao-status-declined: #ff453a;
+    --ao-status-info: #0a84ff;
+  }
+}
+
+/* Scheme-aware utilities: bg-surface, text-ink-secondary, border-divider, … */
+@theme inline {
+  --color-canvas-top: var(--ao-canvas-top);
+  --color-canvas-bottom: var(--ao-canvas-bottom);
+  --color-surface: var(--ao-surface);
+  --color-surface-secondary: var(--ao-surface-secondary);
+  --color-ink: var(--ao-ink);
+  --color-ink-secondary: var(--ao-ink-secondary);
+  --color-ink-tertiary: var(--ao-ink-tertiary);
+  --color-divider: var(--ao-divider);
+  --color-primary: var(--ao-primary);
+
+  --color-pending: var(--ao-status-pending);
+  --color-accepted: var(--ao-status-accepted);
+  --color-declined: var(--ao-status-declined);
+  --color-info: var(--ao-status-info);
+}
+
+/* Scheme-independent scales — AppTheme.CornerRadius / Spacing / Typography.
+ * --spacing-* also drives max-w-* and w-*, and it shadows Tailwind's container
+ * scale. `xs` and `xl` collide, so max-w-xl means 24px here, not 36rem — use an
+ * explicit max-w-[…] for container widths. Same applies to --radius-sm, which
+ * overrides Tailwind's rounded-sm. */
+@theme {
+  --radius-badge: 8px;
+  --radius-sm: 12px;
+  --radius-btn: 14px;
+  --radius-card: 16px;
+  --radius-modal: 24px;
+  --radius-pill: 100px;
+
+  --spacing-xs: 4px;
+  --spacing-s: 8px;
+  --spacing-m: 12px;
+  --spacing-l: 16px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 32px;
+  --spacing-screen: 20px;
+  --spacing-card: 20px;
+
+  --spacing-btn-lg: 56px;
+  --spacing-btn-md: 50px;
+  --spacing-btn-sm: 44px;
+
+  /* 17px covers headline/body/bodyMedium — they differ only by weight, so
+     pair with font-normal / font-medium / font-semibold. */
+  --text-caption-sm: 11px;
+  --text-caption-sm--line-height: 1.35;
+  --text-caption: 13px;
+  --text-caption--line-height: 1.35;
+  --text-subheadline: 15px;
+  --text-subheadline--line-height: 1.4;
+  --text-body: 17px;
+  --text-body--line-height: 1.45;
+  --text-title: 22px;
+  --text-title--line-height: 1.25;
+  --text-large-title: 28px;
+  --text-large-title--line-height: 1.2;
+
+  --shadow-card: 0 8px 20px rgb(0 0 0 / 0.06), 0 2px 8px rgb(0 0 0 / 0.04);
+  --shadow-subtle: 0 2px 4px rgb(0 0 0 / 0.05);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  --color-dept-accounts: #166534;
+  --color-dept-attendant: #f97316;
+  --color-dept-audio: #0ea68c;
+  --color-dept-baptism: #38bdf8;
+  --color-dept-cleaning: #14b8a6;
+  --color-dept-committee: #9ca3af;
+  --color-dept-default: #6b7280;
+  --color-dept-firstaid: #ef4444;
+  --color-dept-information: #a16207;
+  --color-dept-installation: #64748b;
+  --color-dept-lostfound: #a855f7;
+  --color-dept-parking: #f5c400;
+  --color-dept-rooming: #6366f1;
+  --color-dept-stage: #8e52d1;
+  --color-dept-trucking: #475569;
+  --color-dept-video: #30aa8a;
+}
+
+/* AppTheme.backgroundGradient — top→bottom across the viewport. */
+body {
+  min-height: 100dvh;
+  background: linear-gradient(
+    to bottom,
+    var(--ao-canvas-top),
+    var(--ao-canvas-bottom)
+  );
+  color: var(--ao-ink);
+}

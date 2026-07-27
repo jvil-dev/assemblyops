@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "AssemblyOps",
+    "subtitle": "Volunteer scheduling for assembly and convention committees.",
+    "healthTitle": "Backend connection",
+    "loading": "Checking…",
+    "error": "Could not reach the API",
+    "status": "Status",
+    "database": "Database",
+    "checkedAt": "Checked at"
+  }
+}

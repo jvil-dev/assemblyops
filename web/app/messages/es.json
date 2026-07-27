@@ -1,0 +1,12 @@
+{
+  "home": {
+    "title": "AssemblyOps",
+    "subtitle": "Programación de voluntarios para comités de asambleas y congresos.",
+    "healthTitle": "Conexión con el servidor",
+    "loading": "Comprobando…",
+    "error": "No se pudo conectar con la API",
+    "status": "Estado",
+    "database": "Base de datos",
+    "checkedAt": "Comprobado a las"
+  }
+}
