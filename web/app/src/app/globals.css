@@ -60,7 +60,11 @@
   --color-info: var(--ao-status-info);
 }
 
-/* Scheme-independent scales — AppTheme.CornerRadius / Spacing / Typography. */
+/* Scheme-independent scales — AppTheme.CornerRadius / Spacing / Typography.
+ * --spacing-* also drives max-w-* and w-*, and it shadows Tailwind's container
+ * scale. `xs` and `xl` collide, so max-w-xl means 24px here, not 36rem — use an
+ * explicit max-w-[…] for container widths. Same applies to --radius-sm, which
+ * overrides Tailwind's rounded-sm. */
 @theme {
   --radius-badge: 8px;
   --radius-sm: 12px;

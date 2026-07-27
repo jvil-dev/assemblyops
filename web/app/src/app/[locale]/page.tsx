@@ -29,7 +29,7 @@ export default function HomePage() {
   const healthy = data?.health.status === 'healthy';
 
   return (
-    <main className="mx-auto flex max-w-xl flex-col gap-xl px-screen py-xxl">
+    <main className="mx-auto flex max-w-[36rem] flex-col gap-xl px-screen py-xxl">
       <header className="flex flex-col gap-s">
         <h1 className="text-large-title font-semibold text-primary">
           {t('title')}
