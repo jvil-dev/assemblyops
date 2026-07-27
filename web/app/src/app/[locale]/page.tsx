@@ -8,7 +8,7 @@
 'use client';
 
 import { useQuery } from '@apollo/client/react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { graphql } from '@/gql';
 
 const HealthQuery = graphql(`
@@ -23,6 +23,7 @@ const HealthQuery = graphql(`
 
 export default function HomePage() {
   const t = useTranslations('home');
+  const locale = useLocale();
   const { data, loading, error } = useQuery(HealthQuery);
 
   const healthy = data?.health.status === 'healthy';
@@ -44,9 +45,7 @@ export default function HomePage() {
         )}
 
         {error && (
-          <p className="text-subheadline text-declined">
-            {t('error')} — {error.message}
-          </p>
+          <p className="text-subheadline text-declined">{t('error')}</p>
         )}
 
         {data && (
@@ -64,7 +63,7 @@ export default function HomePage() {
             </Row>
             <Row label={t('database')}>{data.health.database}</Row>
             <Row label={t('checkedAt')}>
-              {new Date(data.health.timestamp).toLocaleString()}
+              {new Date(data.health.timestamp).toLocaleString(locale)}
             </Row>
           </dl>
         )}
