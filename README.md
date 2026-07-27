@@ -177,9 +177,9 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for development workflow, coding standa
 
 See [SECURITY.md](./SECURITY.md) for our security policy and how to report vulnerabilities.
 
-## Changelog
+## Releases
 
-See [CHANGELOG.md](./CHANGELOG.md) for a detailed history of changes.
+See the [Releases page](https://github.com/jvil-dev/assemblyops/releases) for tagged versions and their notes.
 
 ## License
 
