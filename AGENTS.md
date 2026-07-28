@@ -52,12 +52,12 @@ GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<t
 
 ## Code Review Rules
 
-Rules for Codex review. CI already runs lint, type-check, build, and the Vitest suite — do not report anything those tools catch. Focus on behavior.
+Rules for Codex review. CI runs lint, type-check, build, and Vitest for `backend/`, `web/landing/`, and `web/app/` — do not report what those tools catch on those tiers. `web/admin/` and `ios/` have no CI coverage, so review them for build and type errors too. Otherwise focus on behavior.
 
 ### Authorization
 
 - Every resolver reaching event-, department-, or area-scoped data must pass through a guard from `graphql/guards/auth.ts`. A resolver that queries Prisma directly on a scoped model without one is a finding.
-- `tryRequireAdmin` / `tryRequireDeptAccessByEvent` return a boolean and do **not** throw. They exist for admin-vs-scoped branching. Flag any branch that falls through to unscoped data when the check returns false.
+- `tryRequireAdmin` returns a boolean; `tryRequireDeptAccessByEvent` returns `{ departmentId, userId }` or `null`. Neither throws — they exist for admin-vs-scoped branching. Flag any branch that falls through to unscoped data when the check fails.
 - Widening a guard (`requireDeptAccess` → `requireAuth`) is a finding unless the PR body says why.
 
 ### GraphQL surface
