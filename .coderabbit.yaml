@@ -1,5 +1,7 @@
-# CodeRabbit configuration — AI PR review tuning for AssemblyOps.
-# Reviews feature PRs targeting development and release PRs targeting main.
+# CodeRabbit configuration — secondary PR reviewer for AssemblyOps.
+# Codex is the primary reviewer (see the Code Review Rules in AGENTS.md).
+# CodeRabbit runs alongside it for the walkthrough summary and mechanical
+# catches; its inline comments are advisory and never block a merge.
 # Docs: https://docs.coderabbit.ai/reference/yaml-template
 language: en-US
 early_access: false
@@ -14,24 +16,34 @@ reviews:
     enabled: true
     drafts: false
     base_branches:
-      - development
       - main
   path_filters:
     - "!**/*.generated.*"
     - "!**/generated/**"
+    - "!web/app/src/gql/**"
     - "!ios/**/*.graphql.swift"
   path_instructions:
     - path: "backend/**/*.ts"
       instructions: >
-        No `any` types. All GraphQL inputs must be Zod-validated.
-        Every file needs a header comment describing it.
-        Flag resolvers with business logic that belongs in services/.
-    - path: "web/**/*.dart"
+        Summarize behavior changes to the GraphQL surface. Flag missing file
+        header comments and any `any` type. Leave deep correctness and
+        authorization review to Codex.
+    - path: "web/landing/**"
       instructions: >
-        Follow Flutter/Dart idioms. Every file needs a header comment.
+        Astro static site. Flag missing file header comments. Note anything
+        that would break the static build or add a runtime dependency.
+    - path: "web/app/**"
+      instructions: >
+        Next.js volunteer web app. Flag missing file header comments and any
+        `any` type. Note client/server component boundary mistakes.
+    - path: "web/admin/**"
+      instructions: >
+        Next.js admin portal. Flag missing file header comments and any
+        `any` type.
     - path: "ios/**/*.swift"
       instructions: >
-        SwiftUI + MVVM. Every file needs a header comment.
+        SwiftUI + MVVM. Reference spec only — no active users. Flag missing
+        file header comments; keep other feedback brief.
 
 chat:
   auto_reply: true

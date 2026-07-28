@@ -72,6 +72,11 @@ temp/
 # Worktrees
 .worktrees/
 
+# Agent tooling — per-machine config and local review output.
+# AGENTS.md is committed: it is the shared review contract.
+.codex/
+.codex-review-output.md
+
 # Xcode
 *.xcuserstate
 xcuserdata/
