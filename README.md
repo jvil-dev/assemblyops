@@ -28,6 +28,7 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 | Layer          | Technology                                          |
 | -------------- | --------------------------------------------------- |
 | iOS App        | Swift, SwiftUI, Apollo iOS (GraphQL client)         |
+| Volunteer App  | Next.js 16, React 19, Apollo Client 4, next-intl    |
 | Admin Portal   | Next.js 16, React 19, Apollo Client 4, Recharts     |
 | API            | Node.js, Express, Apollo Server 5, GraphQL          |
 | Database       | PostgreSQL 18 with Prisma ORM                       |
@@ -41,7 +42,7 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │                          Clients                            │
-│  iOS App (SwiftUI + Apollo iOS)  ·  Admin Portal (Next.js)  │
+│  iOS App (SwiftUI)  ·  Volunteer App  ·  Admin Portal       │
 └──────────────────────────────┬──────────────────────────────┘
                                │
                                ▼
@@ -126,6 +127,14 @@ After backend schema changes:
 
 > **Note:** The debug build points to a local network IP for the GraphQL endpoint. Update the URL in `Core/Network/NetworkClient.swift` to match your machine's local IP.
 
+### Volunteer App
+
+```bash
+cd web/app
+npm install
+npm run dev    # → http://localhost:3000
+```
+
 ### Admin Portal
 
 ```bash
@@ -163,6 +172,7 @@ AssemblyOps/
 ├── ios/               # iOS app (SwiftUI + Apollo iOS)
 ├── web/               # Browser apps
 │   ├── landing/       # Marketing site (Astro)
+│   ├── app/           # Volunteer app (Next.js + React)
 │   └── admin/         # Admin portal (Next.js + React)
 ├── backend/           # Node.js GraphQL API
 ├── docs/              # Architecture & development docs
