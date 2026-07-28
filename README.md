@@ -132,7 +132,7 @@ After backend schema changes:
 ```bash
 cd web/app
 npm install
-npm run dev    # → http://localhost:3000
+npm run dev    # → http://localhost:3001
 ```
 
 ### Admin Portal
