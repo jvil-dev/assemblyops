@@ -1,7 +1,7 @@
-# CodeRabbit configuration — secondary PR reviewer for AssemblyOps.
+# CodeRabbit configuration — on-demand second opinion for AssemblyOps.
 # Codex is the primary reviewer (see the Code Review Rules in AGENTS.md).
-# CodeRabbit runs alongside it for the walkthrough summary and mechanical
-# catches; its inline comments are advisory and never block a merge.
+# Auto-review is off: the free-tier hourly cap posts "review limit reached"
+# on PRs it then never reviews. Request a pass with `@coderabbitai review`.
 # Docs: https://docs.coderabbit.ai/reference/yaml-template
 language: en-US
 early_access: false
@@ -13,7 +13,7 @@ reviews:
   poem: false
   collapse_walkthrough: false
   auto_review:
-    enabled: true
+    enabled: false
     drafts: false
     base_branches:
       - main
