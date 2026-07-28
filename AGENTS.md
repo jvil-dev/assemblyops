@@ -52,7 +52,7 @@ GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<t
 
 ## Code Review Rules
 
-Rules for Codex review. CI runs lint, type-check, build, and Vitest for `backend/`, `web/landing/`, and `web/app/` — do not report what those tools catch on those tiers. `web/admin/` and `ios/` have no CI coverage, so review them for build and type errors too. Otherwise focus on behavior.
+Rules for Codex review. CI coverage differs by tier: `backend/` runs lint, Vitest, and a Docker build; `web/app/` runs lint and build; `web/landing/` runs build only; `web/admin/` and `ios/` run nothing. Do not report what a tier's own checks already catch — and do review the gaps, including lint in `web/landing/`, test coverage in either web tier, and anything at all in `web/admin/` and `ios/`. Otherwise focus on behavior.
 
 ### Authorization
 
