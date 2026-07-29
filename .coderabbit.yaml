@@ -36,10 +36,6 @@ reviews:
       instructions: >
         Next.js volunteer web app. Flag missing file header comments and any
         `any` type. Note client/server component boundary mistakes.
-    - path: "web/admin/**"
-      instructions: >
-        Next.js admin portal. Flag missing file header comments and any
-        `any` type.
     - path: "ios/**/*.swift"
       instructions: >
         SwiftUI + MVVM. Reference spec only — no active users. Flag missing

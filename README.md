@@ -29,7 +29,6 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 | -------------- | --------------------------------------------------- |
 | iOS App        | Swift, SwiftUI, Apollo iOS (GraphQL client)         |
 | Volunteer App  | Next.js 16, React 19, Apollo Client 4, next-intl    |
-| Admin Portal   | Next.js 16, React 19, Apollo Client 4, Recharts     |
 | API            | Node.js, Express, Apollo Server 5, GraphQL          |
 | Database       | PostgreSQL 18 with Prisma ORM                       |
 | Auth           | JWT (access + refresh tokens), OAuth (Google/Apple) |
@@ -42,7 +41,7 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │                          Clients                            │
-│  iOS App (SwiftUI)  ·  Volunteer App  ·  Admin Portal       │
+│             iOS App (SwiftUI)  ·  Volunteer App             │
 └──────────────────────────────┬──────────────────────────────┘
                                │
                                ▼
@@ -135,16 +134,6 @@ npm install
 npm run dev    # → http://localhost:3001
 ```
 
-### Admin Portal
-
-```bash
-cd web/admin
-npm install
-npm run dev    # → http://localhost:3000
-```
-
-See [web/admin/README.md](./web/admin/README.md) for pages, project structure, and access control details.
-
 ### Landing Site
 
 ```bash
@@ -172,8 +161,7 @@ AssemblyOps/
 ├── ios/               # iOS app (SwiftUI + Apollo iOS)
 ├── web/               # Browser apps
 │   ├── landing/       # Marketing site (Astro)
-│   ├── app/           # Volunteer app (Next.js + React)
-│   └── admin/         # Admin portal (Next.js + React)
+│   └── app/           # Volunteer app (Next.js + React)
 ├── backend/           # Node.js GraphQL API
 ├── docs/              # Architecture & development docs
 └── .github/           # CI/CD workflows
