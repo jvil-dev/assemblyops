@@ -47,6 +47,25 @@ Tests never touch Railway — they run against a throwaway Postgres 18 from `bac
 - Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/app/` (volunteer) is Next.js. No Dart/Flutter in the repo currently.
 - Commit scope is the deployable tier and nothing else: `backend`, `app`, `landing`, `ios`, `repo` (CI, templates, root docs, tooling). Retired as scopes: `web`, `admin`, `infra`, `storage`, `test`, `docs`, `ci` — `docs` and `ci` are commit **types**, not scopes. One-tier-per-PR depends on the scope being unambiguous.
 
+## Web UI (`web/app`)
+
+- **Every function has a visible control.** A context menu, right-click, or long-press may *duplicate* an action — never be the only path to it. If a capability can be granted, there is a visible toggle for it.
+- The frozen iOS app is a reference for *what* a screen does, not for *how* it is laid out. Do not port an interaction pattern from it without checking it against the rule above.
+- **Two input modes, both first-class.** Assembly-day is phones and touch; pre-assembly setup is desktop with mouse, trackpad, and keyboard. Neither is the fallback.
+  - Touch targets at least 44×44 px, with spacing between adjacent destructive and non-destructive actions.
+  - **No hover-only affordances.** Touch has no hover, so a control that only appears on hover does not exist on a phone — the same failure as the long-press problem, inverted.
+  - Every control reachable and operable by keyboard, with a visible focus state.
+  - Drag-and-drop is never the only path. The schedule builder needs a tap/click alternative that works one-handed.
+- **Browser targets: all modern browsers, with Safari and Chrome as the two that must be right.** On iOS every browser is WebKit, so Safari's engine covers the whole assembly-day phone population — it is the constraint, not an afterthought.
+  - Use `100dvh`, never `100vh`. Mobile Safari's viewport includes the URL bar, so `100vh` layouts clip.
+  - Respect `env(safe-area-inset-*)`. Without it, bottom-anchored actions sit under the home indicator and can't be tapped.
+  - Check date and time inputs in Safari specifically — it renders them very differently from Chrome.
+  - Pin the target list in `browserslist` so Vite and autoprefixer build against it rather than their defaults.
+- **Accessibility baseline: WCAG 2.2 AA.** Text contrast at least 4.5:1, UI components 3:1. Every interactive element has an accessible name. Keyboard navigation works end to end before a screen is done. This is not compliance theater — accessible controls are discoverable controls, and it is the same rule set that prevents another invisible long-press.
+- For visual work — hierarchy, spacing, color, typography — use the `refactoring-ui` skill. It does not cover affordances or discoverability; that is what the rules above are for.
+
+Why the first rule exists: in the March 2026 beta the attendance-counting permission toggle and both delete actions were reachable only by long-pressing a row (`.contextMenu` in `AssignmentsView`, `SlotDetailSheet`, `ShiftManagementView`, `ConversationListView`). Nobody found them, including the developer. The code was correct, tested, and lint-clean — no reviewer catches this class of defect.
+
 ## Workflow
 
 GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<type>/<issue-id>-<desc>`) → PR back to `main` → **merge commit, never squash**. One tier per branch (`backend/` or `web/…`, not both). Railway auto-deploys `main` on merge. See `CONTRIBUTING.md` and `.github/` templates for issue / PR / commit format.
@@ -71,6 +90,7 @@ Rules for Codex review. CI coverage differs by tier: `backend/` runs lint, Vites
 
 - Every input must be Zod-validated in `graphql/validators/` before use.
 - Resolvers delegate to `services/`. Business logic, Prisma queries beyond a trivial lookup, and third-party calls belong in a service.
+- **A field resolver that queries once per parent is a finding.** List queries must batch. Nothing in the repo imports `dataloader` today, so a 50-item list currently fires 51 queries — flag new field resolvers that make this worse.
 
 ### Database
 
