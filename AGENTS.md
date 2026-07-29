@@ -45,10 +45,17 @@ Tests never touch Railway — they run against a throwaway Postgres 18 from `bac
 - Every file carries a header comment describing it.
 - No `any` types; Zod-validate all GraphQL inputs.
 - Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/app/` (volunteer) is Next.js. No Dart/Flutter in the repo currently.
+- Commit scope is the deployable tier and nothing else: `backend`, `app`, `landing`, `ios`, `repo` (CI, templates, root docs, tooling). Retired as scopes: `web`, `admin`, `infra`, `storage`, `test`, `docs`, `ci` — `docs` and `ci` are commit **types**, not scopes. One-tier-per-PR depends on the scope being unambiguous.
 
 ## Workflow
 
 GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<type>/<issue-id>-<desc>`) → PR back to `main` → **merge commit, never squash**. One tier per branch (`backend/` or `web/…`, not both). Railway auto-deploys `main` on merge. See `CONTRIBUTING.md` and `.github/` templates for issue / PR / commit format.
+
+## Stack Freeze
+
+`web/app` is moving from Next.js to Vite + React; auth moves into the backend rather than a Next.js BFF. Decided 2026-07-28, migration pending — the Next.js references above stay accurate until it lands.
+
+**No stack changes for 90 days from the day the first vertical slice merges** — no new framework, no swapping Apollo, no new UI library. Three stack decisions in the preceding 26 days each reset the learning curve to zero.
 
 ## Code Review Rules
 
