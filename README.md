@@ -135,16 +135,6 @@ npm install
 npm run dev    # → http://localhost:3001
 ```
 
-### Admin Portal
-
-```bash
-cd web/admin
-npm install
-npm run dev    # → http://localhost:3000
-```
-
-See [web/admin/README.md](./web/admin/README.md) for pages, project structure, and access control details.
-
 ### Landing Site
 
 ```bash

@@ -29,8 +29,8 @@ npm run codegen               # regenerate src/gql/ (only when operations change
 npm run dev                   # http://localhost:3001
 ```
 
-Port 3001 is deliberate — `web/admin` occupies 3000, and the backend CORS
-allowlist already includes `http://localhost:3001`.
+Port 3001 is deliberate — the backend CORS allowlist already includes
+`http://localhost:3001`.
 
 ## Scripts
 

@@ -6,7 +6,7 @@ Volunteer scheduling and management for JW assembly/convention committees.
 
 - **Backend** (`backend/`) — Node.js + TypeScript GraphQL API: Apollo Server 5, Prisma 7, PostgreSQL 18. JWT access/refresh + Google/Apple OAuth. RBAC: App Admin / Department Overseer / Volunteer.
 - **iOS** (`ios/JW_AssemblyOps/`) — SwiftUI native app, Apollo iOS GraphQL client, MVVM, EN/ES localization.
-- **Web** (`web/`) — `web/landing/` Astro marketing site (static), `web/app/` Next.js volunteer app, `web/admin/` Next.js admin portal.
+- **Web** (`web/`) — `web/landing/` Astro marketing site (static), `web/app/` Next.js volunteer app.
 
 ## Backend layout (`backend/src/`)
 
@@ -44,7 +44,7 @@ Tests never touch Railway — they run against a throwaway Postgres 18 from `bac
 - Migrations named `<timestamp>_<kebab-case>`; never edit an applied migration.
 - Every file carries a header comment describing it.
 - No `any` types; Zod-validate all GraphQL inputs.
-- Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/app/` (volunteer) and `web/admin/` are Next.js. No Dart/Flutter in the repo currently.
+- Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/app/` (volunteer) is Next.js. No Dart/Flutter in the repo currently.
 
 ## Workflow
 
@@ -52,7 +52,7 @@ GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<t
 
 ## Code Review Rules
 
-Rules for Codex review. CI coverage differs by tier: `backend/` runs lint, Vitest, and a Docker build; `web/app/` runs lint and build; `web/landing/` runs build only; `web/admin/` and `ios/` run nothing. Do not report what a tier's own checks already catch — and do review the gaps, including lint in `web/landing/`, test coverage in both `web/landing/` and `web/app/`, and anything at all in `web/admin/` and `ios/`. Otherwise focus on behavior.
+Rules for Codex review. CI coverage differs by tier: `backend/` runs lint, Vitest, and a Docker build; `web/app/` runs lint and build; `web/landing/` runs build only; `ios/` runs nothing. Do not report what a tier's own checks already catch — and do review the gaps, including lint in `web/landing/`, test coverage in both `web/landing/` and `web/app/`, and anything at all in `ios/`. Otherwise focus on behavior.
 
 ### Authorization
 
