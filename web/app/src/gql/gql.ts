@@ -21,10 +21,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query Health {\n    health {\n      status\n      timestamp\n      database\n    }\n  }\n": typeof types.HealthDocument,
+    "\n  query Me {\n    me {\n      id\n      firstName\n    }\n  }\n": typeof types.MeDocument,
+    "\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n      user {\n        id\n        firstName\n      }\n    }\n  }\n": typeof types.LoginUserDocument,
 };
 const documents: Documents = {
-    "\n  query Health {\n    health {\n      status\n      timestamp\n      database\n    }\n  }\n": types.HealthDocument,
+    "\n  query Me {\n    me {\n      id\n      firstName\n    }\n  }\n": types.MeDocument,
+    "\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n      user {\n        id\n        firstName\n      }\n    }\n  }\n": types.LoginUserDocument,
 };
 
 /**
@@ -44,7 +46,11 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query Health {\n    health {\n      status\n      timestamp\n      database\n    }\n  }\n"): (typeof documents)["\n  query Health {\n    health {\n      status\n      timestamp\n      database\n    }\n  }\n"];
+export function graphql(source: "\n  query Me {\n    me {\n      id\n      firstName\n    }\n  }\n"): (typeof documents)["\n  query Me {\n    me {\n      id\n      firstName\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n      user {\n        id\n        firstName\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation LoginUser($input: LoginUserInput!) {\n    loginUser(input: $input) {\n      accessToken\n      user {\n        id\n        firstName\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
