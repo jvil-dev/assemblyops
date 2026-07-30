@@ -34,8 +34,9 @@ reviews:
         that would break the static build or add a runtime dependency.
     - path: "web/app/**"
       instructions: >
-        Next.js volunteer web app. Flag missing file header comments and any
-        `any` type. Note client/server component boundary mistakes.
+        Vite + React volunteer web app. Flag missing file header comments and
+        any `any` type. Flag controls reachable only on hover, and touch
+        targets under 44px.
     - path: "ios/**/*.swift"
       instructions: >
         SwiftUI + MVVM. Reference spec only — no active users. Flag missing
