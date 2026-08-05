@@ -12,13 +12,14 @@
  * Used by: App
  */
 import { useEffect, type ReactNode } from 'react';
-import { useQuery } from '@apollo/client/react';
+import { useApolloClient, useQuery } from '@apollo/client/react';
 import { Navigate } from 'react-router-dom';
-import { clearToken, getToken } from '@/lib/auth';
+import { clearToken, subscribeToOtherTabToken, useToken } from '@/lib/auth';
 import { MeQuery } from '@/lib/operations';
 
 export function RequireAuth({ children }: { children: ReactNode }) {
-  const hasToken = getToken() !== null;
+  const client = useApolloClient();
+  const hasToken = useToken() !== null;
   const { data, loading, error, refetch } = useQuery(MeQuery, {
     skip: !hasToken,
   });
@@ -27,6 +28,20 @@ export function RequireAuth({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (rejected) clearToken();
   }, [rejected]);
+
+  // Signing in as someone else in another tab leaves this tab's cached `me`
+  // belonging to the previous volunteer while requests carry the new token.
+  // resetStore refetches as well as clears, so the tab lands on the new
+  // volunteer instead of going blank. A sign-out redirects before the refetch
+  // matters, and its rejection is expected rather than an error to surface.
+  // Same-tab sign-in and sign-out clear the store themselves before navigating.
+  useEffect(
+    () =>
+      subscribeToOtherTabToken(() => {
+        client.resetStore().catch(() => {});
+      }),
+    [client]
+  );
 
   if (!hasToken || rejected) return <Navigate to="/login" replace />;
   if (error) return <UnreachableNotice onRetry={() => void refetch()} />;
