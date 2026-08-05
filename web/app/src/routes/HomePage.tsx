@@ -34,7 +34,7 @@ export function HomePage() {
       <button
         type="button"
         onClick={handleSignOut}
-        className="min-h-btn-sm self-start rounded-btn border border-divider px-l text-body font-medium text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="min-h-btn-sm self-start rounded-btn border border-divider px-l text-body font-medium text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
       >
         Sign out
       </button>

@@ -47,7 +47,7 @@ function UnreachableNotice({ onRetry }: { onRetry: () => void }) {
       <button
         type="button"
         onClick={onRetry}
-        className="min-h-btn-md self-start rounded-btn bg-primary px-l text-body font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="min-h-btn-md self-start rounded-btn bg-primary px-l text-body font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
       >
         Try again
       </button>

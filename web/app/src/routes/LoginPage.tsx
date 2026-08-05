@@ -13,7 +13,7 @@ import { LoginUserMutation } from "@/lib/operations";
 const FIELD_CLASSES =
   'min-h-btn-sm rounded-btn border border-divider bg-surface-secondary px-m ' +
   'text-body text-ink focus-visible:outline-2 focus-visible:outline-offset-2 ' +
-  'focus-visible:outline-primary';
+  'focus-visible:outline-focus-ring';
 
 export function LoginPage() {
   const client = useApolloClient();
@@ -53,7 +53,7 @@ export function LoginPage() {
         </header>
 
         <div className="flex flex-col gap-xs">
-          <label htmlFor="email" className="text-caption uppercase text-ink-tertiary">
+          <label htmlFor="email" className="text-caption uppercase text-ink-secondary">
             Email
           </label>
           <input
@@ -68,7 +68,7 @@ export function LoginPage() {
         </div>
 
         <div className="flex flex-col gap-xs">
-          <label htmlFor="password" className="text-caption uppercase text-ink-tertiary">
+          <label htmlFor="password" className="text-caption uppercase text-ink-secondary">
             Password
           </label>
           <input
@@ -83,7 +83,7 @@ export function LoginPage() {
         </div>
 
         {error && (
-          <p role="alert" className="text-subheadline text-declined">
+          <p role="alert" className="text-subheadline text-declined-text">
             {error.message}
           </p>
         )}
@@ -91,7 +91,7 @@ export function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="min-h-btn-md rounded-btn bg-primary px-l text-body font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60"
+          className="min-h-btn-md rounded-btn bg-primary px-l text-body font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring disabled:opacity-60"
         >
           {loading ? 'Signing in…' : 'Sign in'}
         </button>

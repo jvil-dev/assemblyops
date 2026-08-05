@@ -16,11 +16,16 @@
   --ao-ink-tertiary: #999999;
   --ao-divider: rgb(0 0 0 / 0.08);
   --ao-primary: #1a365d;
+  --ao-focus-ring: #1a365d;
 
   --ao-status-pending: #ff9500;
   --ao-status-accepted: #34c759;
   --ao-status-declined: #ff3b30;
   --ao-status-info: #007aff;
+
+  /* The status fills above are tuned for badges, not body text. This is the
+     text-safe red: 5.4:1 on --ao-surface, where #ff3b30 gives only 3.5:1. */
+  --ao-status-declined-text: #d70015;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,11 +39,16 @@
     --ao-ink-tertiary: rgb(255 255 255 / 0.4);
     --ao-divider: rgb(255 255 255 / 0.1);
     --ao-primary: #2c5282;
+    /* Deliberately not --ao-primary. #2c5282 on the dark card is 1.9:1, under
+       the 3:1 WCAG 2.2 AA requires of a focus indicator; this gives 5.3:1. */
+    --ao-focus-ring: #6b9bd8;
 
     --ao-status-pending: #ff9f0a;
     --ao-status-accepted: #30d158;
     --ao-status-declined: #ff453a;
     --ao-status-info: #0a84ff;
+
+    --ao-status-declined-text: #ff6961;
   }
 }
 
@@ -53,10 +63,12 @@
   --color-ink-tertiary: var(--ao-ink-tertiary);
   --color-divider: var(--ao-divider);
   --color-primary: var(--ao-primary);
+  --color-focus-ring: var(--ao-focus-ring);
 
   --color-pending: var(--ao-status-pending);
   --color-accepted: var(--ao-status-accepted);
   --color-declined: var(--ao-status-declined);
+  --color-declined-text: var(--ao-status-declined-text);
   --color-info: var(--ao-status-info);
 }
 
