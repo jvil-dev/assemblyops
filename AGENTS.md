@@ -2,31 +2,10 @@
 
 Volunteer scheduling and management for JW assembly/convention committees.
 
-## Stack
-
-- **Backend** (`backend/`) — Node.js + TypeScript GraphQL API: Apollo Server 5, Prisma 7, PostgreSQL 18. JWT access/refresh + Google/Apple OAuth. RBAC: App Admin / Department Overseer / Volunteer.
-- **iOS** (`ios/JW_AssemblyOps/`) — SwiftUI native app, Apollo iOS GraphQL client, MVVM, EN/ES localization.
-- **Web** (`web/`) — `web/landing/` Astro marketing site (static), `web/app/` Vite + React volunteer app.
-
-## Backend layout (`backend/src/`)
-
-- `graphql/schema/` — schema by domain
-- `graphql/resolvers/` — resolvers
-- `graphql/validators/` — Zod input validators
-- `graphql/guards/` — auth guards
-- `services/` — business logic (`authService`, `eventService`, `messageService`, …)
-- `config/`, `middleware/`, `utils/` — wiring, cross-cutting, helpers
-- `__tests__/integration/` + `__tests__/unit/` — Vitest tests
-- `../prisma/schema.prisma` + `../prisma/migrations/` — DB schema & migrations
-
 ## Key commands (run in `backend/`)
 
 - `npm run dev` — dev server (hot reload), against the Railway `development` env
 - `npm run test:db:up` — start + migrate the local test Postgres (Docker); `test:db:down` to stop
-- `npm test` — Vitest against that local DB (`test:coverage`, `test:watch`)
-- `npm run lint` / `npm run lint:fix` / `npm run format`
-- `npm run build`
-- `npm run prisma:generate` / `prisma:migrate` / `prisma:seed` (`prisma:seed:dev`)
 
 ## Database
 
@@ -44,7 +23,7 @@ Tests never touch Railway — they run against a throwaway Postgres 18 from `bac
 - Migrations named `<timestamp>_<kebab-case>`; never edit an applied migration.
 - Every file carries a header comment describing it.
 - No `any` types; Zod-validate all GraphQL inputs.
-- Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/app/` (volunteer) is a Vite + React SPA with React Router. No Dart/Flutter in the repo currently.
+- Web tier (`web/`): `web/landing/` is an Astro static site; `web/app/` (volunteer) is a Vite + React SPA with React Router. No Dart/Flutter in the repo currently.
 - Commit scope is the deployable tier and nothing else: `backend`, `app`, `landing`, `ios`, `repo` (CI, templates, root docs, tooling). Retired as scopes: `web`, `admin`, `infra`, `storage`, `test`, `docs`, `ci` — `docs` and `ci` are commit **types**, not scopes. One-tier-per-PR depends on the scope being unambiguous.
 
 ## Web UI (`web/app`)
@@ -56,11 +35,7 @@ Tests never touch Railway — they run against a throwaway Postgres 18 from `bac
   - **No hover-only affordances.** Touch has no hover, so a control that only appears on hover does not exist on a phone — the same failure as the long-press problem, inverted.
   - Every control reachable and operable by keyboard, with a visible focus state.
   - Drag-and-drop is never the only path. The schedule builder needs a tap/click alternative that works one-handed.
-- **Browser targets: all modern browsers, with Safari and Chrome as the two that must be right.** On iOS every browser is WebKit, so Safari's engine covers the whole assembly-day phone population — it is the constraint, not an afterthought.
-  - Use `100dvh`, never `100vh`. Mobile Safari's viewport includes the URL bar, so `100vh` layouts clip.
-  - Respect `env(safe-area-inset-*)`. Without it, bottom-anchored actions sit under the home indicator and can't be tapped.
-  - Check date and time inputs in Safari specifically — it renders them very differently from Chrome.
-  - Pin the target list in `browserslist` so Vite and autoprefixer build against it rather than their defaults.
+- **Browser targets: all modern browsers, with Safari and Chrome as the two that must be right.** On iOS every browser is WebKit, so Safari's engine covers the whole assembly-day phone population — it is the constraint, not an afterthought. The mechanics this forces are in `web/app/AGENTS.md`.
 - **Accessibility baseline: WCAG 2.2 AA.** Text contrast at least 4.5:1, UI components 3:1. Every interactive element has an accessible name. Keyboard navigation works end to end before a screen is done. This is not compliance theater — accessible controls are discoverable controls, and it is the same rule set that prevents another invisible long-press.
 - For visual work — hierarchy, spacing, color, typography — use the `refactoring-ui` skill. It does not cover affordances or discoverability; that is what the rules above are for.
 
@@ -69,6 +44,31 @@ Why the first rule exists: in the March 2026 beta the attendance-counting permis
 ## Workflow
 
 GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<type>/<issue-id>-<desc>`) → PR back to `main` → **merge commit, never squash**. One tier per branch (`backend/` or `web/…`, not both). Railway auto-deploys `main` on merge. See `CONTRIBUTING.md` and `.github/` templates for issue / PR / commit format.
+
+## Releasing
+
+Web/backend tiers deploy continuously on merge to `main`. Mobile is store-gated — merging is not releasing:
+
+- **Releases are tagged, not merged.** Cut a release from a `main` commit, tag it semver (`ios/v1.4.0`), and build from the tag so the exact shipped code is recoverable. Cut a short-lived `release/x.y.z` branch only to stabilize a store build while `main` keeps moving; cherry-pick fixes back to `main`, then delete it.
+- **Backend stays backward-compatible.** Old app versions linger in users' hands, so GraphQL/API changes must be additive — add and deprecate fields, and retire one only once telemetry shows no live version depends on it. Never make a breaking schema change the way a web-only service would.
+- **Validate through distribution tracks, not branches.** iOS via TestFlight; Android via Play testing tracks (internal → closed → open) with staged percentage rollout. These are mobile's equivalent of a staging branch — the "prove it before users get it" step lives here, not in git.
+
+## Splitting Commits Within a Slice
+
+A slice ships as one PR, but its commits are still grouped by layer so the history stays readable. This governs **splitting commits inside one slice** — it is never a way to scope the work itself. Stage only that layer's files for each commit. Never use `git add .` or `git add -A`.
+
+Paths are relative to the tier root — `backend/`, `web/app/`, or `web/landing/`. The Domain-through-Tests rows describe the backend's `src/` tree; the web tiers have no direct equivalent.
+
+| Group | Prefix | Files | Description |
+|-------|--------|-------|-------------|
+| Docs | `docs:` | `AGENTS.md`, `README.md`, `docs/` (repo root) | Documentation and architectural guidance changes that aren't tied to a specific code layer. |
+| Build & Config | `chore(<scope>):` | `package.json`, `tsconfig.json`, `vite.config.ts` / `vitest.config.ts`, `.env.example` | Dependency additions/removals and environment/configuration changes that set up what the feature needs to run. |
+| Migrations | `chore(<scope>):` | `prisma/migrations/` | Prisma migration files that define or alter the schema. One commit covers all migrations for the feature. |
+| Domain layer | `feat(<scope>):` | `prisma/schema.prisma`, `src/graphql/schema/`, `src/graphql/validators/` | Models, SDL, and Zod input schemas — the raw building blocks with no business logic. |
+| Service layer | `feat(<scope>):` | `src/services/` | Business logic, orchestration, third-party integrations. Depends on the domain layer; keep free of HTTP concerns. |
+| Resolver layer | `feat(<scope>):` | `src/graphql/resolvers/` | GraphQL resolvers that delegate entirely to services. No logic here beyond mapping args → service call → response. |
+| Security layer | `feat(<scope>):` | `src/graphql/guards/`, `src/middleware/` | Auth guards and cross-cutting security wiring. Security-critical — note this in the commit message. |
+| Tests | `test(<scope>):` | `src/__tests__/` | Unit and integration tests. Commit separately so the test history is easy to audit independently of production code. |
 
 ## Stack Freeze
 
