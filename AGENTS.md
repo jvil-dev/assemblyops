@@ -57,18 +57,18 @@ Web/backend tiers deploy continuously on merge to `main`. Mobile is store-gated 
 
 A slice ships as one PR, but its commits are still grouped by layer so the history stays readable. This governs **splitting commits inside one slice** — it is never a way to scope the work itself. Stage only that layer's files for each commit. Never use `git add .` or `git add -A`.
 
-Paths below are relative to `backend/src/` unless noted.
+Paths are relative to the tier root — `backend/`, `web/app/`, or `web/landing/`. The Domain-through-Tests rows describe the backend's `src/` tree; the web tiers have no direct equivalent.
 
 | Group | Prefix | Files | Description |
 |-------|--------|-------|-------------|
-| Docs | `docs:` | AGENTS.md, README, docs | Documentation and architectural guidance changes that aren't tied to a specific code layer. |
-| Build & Config | `chore(<scope>):` | package.json, tsconfig, vite/vitest config, `.env.example` | Dependency additions/removals and environment/configuration changes that set up what the feature needs to run. |
+| Docs | `docs:` | `AGENTS.md`, `README.md`, `docs/` (repo root) | Documentation and architectural guidance changes that aren't tied to a specific code layer. |
+| Build & Config | `chore(<scope>):` | `package.json`, `tsconfig.json`, `vite.config.ts` / `vitest.config.ts`, `.env.example` | Dependency additions/removals and environment/configuration changes that set up what the feature needs to run. |
 | Migrations | `chore(<scope>):` | `prisma/migrations/` | Prisma migration files that define or alter the schema. One commit covers all migrations for the feature. |
-| Domain layer | `feat(<scope>):` | `prisma/schema.prisma`, `graphql/schema/`, `graphql/validators/` | Models, SDL, and Zod input schemas — the raw building blocks with no business logic. |
-| Service layer | `feat(<scope>):` | `services/` | Business logic, orchestration, third-party integrations. Depends on the domain layer; keep free of HTTP concerns. |
-| Resolver layer | `feat(<scope>):` | `graphql/resolvers/` | GraphQL resolvers that delegate entirely to services. No logic here beyond mapping args → service call → response. |
-| Security layer | `feat(<scope>):` | `graphql/guards/`, `middleware/` | Auth guards and cross-cutting security wiring. Security-critical — note this in the commit message. |
-| Tests | `test(<scope>):` | `__tests__/` | Unit and integration tests. Commit separately so the test history is easy to audit independently of production code. |
+| Domain layer | `feat(<scope>):` | `prisma/schema.prisma`, `src/graphql/schema/`, `src/graphql/validators/` | Models, SDL, and Zod input schemas — the raw building blocks with no business logic. |
+| Service layer | `feat(<scope>):` | `src/services/` | Business logic, orchestration, third-party integrations. Depends on the domain layer; keep free of HTTP concerns. |
+| Resolver layer | `feat(<scope>):` | `src/graphql/resolvers/` | GraphQL resolvers that delegate entirely to services. No logic here beyond mapping args → service call → response. |
+| Security layer | `feat(<scope>):` | `src/graphql/guards/`, `src/middleware/` | Auth guards and cross-cutting security wiring. Security-critical — note this in the commit message. |
+| Tests | `test(<scope>):` | `src/__tests__/` | Unit and integration tests. Commit separately so the test history is easy to audit independently of production code. |
 
 ## Stack Freeze
 
