@@ -11,7 +11,7 @@ import { setToken } from "@/lib/auth";
 import { LoginUserMutation } from "@/lib/operations";
 
 const FIELD_CLASSES =
-  'min-h-btn-sm rounded-btn border border-divider bg-surface-secondary px-m ' +
+  'min-h-btn-sm rounded-btn border border-control bg-surface-secondary px-m ' +
   'text-body text-ink focus-visible:outline-2 focus-visible:outline-offset-2 ' +
   'focus-visible:outline-focus-ring';
 
@@ -44,7 +44,7 @@ export function LoginPage() {
         className="flex flex-col gap-l rounded-card bg-surface p-card shadow-card"
       >
         <header className="flex flex-col gap-xs">
-          <h1 className="text-large-title font-semibold text-primary">
+          <h1 className="text-large-title font-semibold text-primary-text">
             Sign in
           </h1>
           <p className="text-subheadline text-ink-secondary">
@@ -91,7 +91,7 @@ export function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="min-h-btn-md rounded-btn bg-primary px-l text-body font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring disabled:opacity-60"
+          className="min-h-btn-md rounded-btn border border-control bg-primary px-l text-body font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring disabled:opacity-60"
         >
           {loading ? 'Signing in…' : 'Sign in'}
         </button>
