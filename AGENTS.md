@@ -6,7 +6,7 @@ Volunteer scheduling and management for JW assembly/convention committees.
 
 - **Backend** (`backend/`) — Node.js + TypeScript GraphQL API: Apollo Server 5, Prisma 7, PostgreSQL 18. JWT access/refresh + Google/Apple OAuth. RBAC: App Admin / Department Overseer / Volunteer.
 - **iOS** (`ios/JW_AssemblyOps/`) — SwiftUI native app, Apollo iOS GraphQL client, MVVM, EN/ES localization.
-- **Web** (`web/`) — `web/landing/` Astro marketing site (static), `web/app/` Next.js volunteer app.
+- **Web** (`web/`) — `web/landing/` Astro marketing site (static), `web/app/` Vite + React volunteer app.
 
 ## Backend layout (`backend/src/`)
 
@@ -44,7 +44,7 @@ Tests never touch Railway — they run against a throwaway Postgres 18 from `bac
 - Migrations named `<timestamp>_<kebab-case>`; never edit an applied migration.
 - Every file carries a header comment describing it.
 - No `any` types; Zod-validate all GraphQL inputs.
-- Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/app/` (volunteer) is Next.js. No Dart/Flutter in the repo currently.
+- Web tier (`web/`): `web/landing/` is an Astro static site (see the `astro-seo-landing` skill); `web/app/` (volunteer) is a Vite + React SPA with React Router. No Dart/Flutter in the repo currently.
 - Commit scope is the deployable tier and nothing else: `backend`, `app`, `landing`, `ios`, `repo` (CI, templates, root docs, tooling). Retired as scopes: `web`, `admin`, `infra`, `storage`, `test`, `docs`, `ci` — `docs` and `ci` are commit **types**, not scopes. One-tier-per-PR depends on the scope being unambiguous.
 
 ## Web UI (`web/app`)
@@ -72,13 +72,13 @@ GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<t
 
 ## Stack Freeze
 
-`web/app` is moving from Next.js to Vite + React; auth moves into the backend rather than a Next.js BFF. Decided 2026-07-28, migration pending — the Next.js references above stay accurate until it lands.
+`web/app` runs on Vite + React; auth lives in the backend rather than a Next.js BFF. Decided 2026-07-28, landed with the first vertical slice (#196).
 
 **No stack changes for 90 days from the day the first vertical slice merges** — no new framework, no swapping Apollo, no new UI library. Three stack decisions in the preceding 26 days each reset the learning curve to zero.
 
 ## Code Review Rules
 
-Rules for Codex review. CI coverage differs by tier: `backend/` runs lint, Vitest, and a Docker build; `web/app/` runs lint and build; `web/landing/` runs build only; `ios/` runs nothing. Do not report what a tier's own checks already catch — and do review the gaps, including lint in `web/landing/`, test coverage in both `web/landing/` and `web/app/`, and anything at all in `ios/`. Otherwise focus on behavior.
+Rules for Codex review. CI coverage differs by tier: `backend/` runs lint, Vitest, and a Docker build; `web/app/` runs lint, Vitest, and a build; `web/landing/` runs build only; `ios/` runs nothing. Do not report what a tier's own checks already catch — and do review the gaps, including lint and test coverage in `web/landing/`, and anything at all in `ios/`. Otherwise focus on behavior.
 
 ### Authorization
 

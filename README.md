@@ -28,7 +28,7 @@ A volunteer scheduling and management platform for Jehovah's Witnesses assembly 
 | Layer          | Technology                                          |
 | -------------- | --------------------------------------------------- |
 | iOS App        | Swift, SwiftUI, Apollo iOS (GraphQL client)         |
-| Volunteer App  | Next.js 16, React 19, Apollo Client 4, next-intl    |
+| Volunteer App  | Vite 8, React 19, React Router 7, Apollo Client 4   |
 | API            | Node.js, Express, Apollo Server 5, GraphQL          |
 | Database       | PostgreSQL 18 with Prisma ORM                       |
 | Auth           | JWT (access + refresh tokens), OAuth (Google/Apple) |
@@ -161,7 +161,7 @@ AssemblyOps/
 ├── ios/               # iOS app (SwiftUI + Apollo iOS)
 ├── web/               # Browser apps
 │   ├── landing/       # Marketing site (Astro)
-│   └── app/           # Volunteer app (Next.js + React)
+│   └── app/           # Volunteer app (Vite + React)
 ├── backend/           # Node.js GraphQL API
 ├── docs/              # Architecture & development docs
 └── .github/           # CI/CD workflows

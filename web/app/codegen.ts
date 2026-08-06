@@ -44,7 +44,9 @@ const HEADERS: Record<string, string> = {
 };
 
 const config: CodegenConfig = {
-  schema: process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/graphql',
+  // Runs in Node, so this reads process.env — the app itself reads the same
+  // variable through import.meta.env.
+  schema: process.env.VITE_API_URL ?? 'http://localhost:4000/graphql',
   documents: ['src/**/*.{ts,tsx}', '!src/gql/**/*'],
   ignoreNoDocuments: true,
   // The DateTime scalar serializes to an ISO string over the wire.

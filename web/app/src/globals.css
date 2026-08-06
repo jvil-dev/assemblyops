@@ -15,12 +15,22 @@
   --ao-ink-secondary: #737373;
   --ao-ink-tertiary: #999999;
   --ao-divider: rgb(0 0 0 / 0.08);
+  /* Deliberately heavier than --ao-divider. Dividers are decorative and exempt
+     from contrast rules; the boundary of an input or button is what identifies
+     the control, so WCAG 2.2 AA 1.4.11 requires 3:1. This gives 3.04:1. */
+  --ao-control: rgb(0 0 0 / 0.42);
   --ao-primary: #1a365d;
+  --ao-primary-text: #1a365d;
+  --ao-focus-ring: #1a365d;
 
   --ao-status-pending: #ff9500;
   --ao-status-accepted: #34c759;
   --ao-status-declined: #ff3b30;
   --ao-status-info: #007aff;
+
+  /* The status fills above are tuned for badges, not body text. This is the
+     text-safe red: 5.4:1 on --ao-surface, where #ff3b30 gives only 3.5:1. */
+  --ao-status-declined-text: #d70015;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,12 +43,22 @@
     --ao-ink-secondary: rgb(255 255 255 / 0.6);
     --ao-ink-tertiary: rgb(255 255 255 / 0.4);
     --ao-divider: rgb(255 255 255 / 0.1);
+    /* 3.05:1 on --ao-surface. See the light-mode note above. */
+    --ao-control: rgb(255 255 255 / 0.34);
     --ao-primary: #2c5282;
+    /* Text and focus indicators both need contrast --ao-primary cannot carry:
+       #2c5282 on the dark card is 1.9:1, under the 3:1 WCAG 2.2 AA requires.
+       #6b9bd8 gives 5.3:1. --ao-primary stays the button fill, where the white
+       label carries the contrast instead (7.97:1). */
+    --ao-primary-text: #6b9bd8;
+    --ao-focus-ring: #6b9bd8;
 
     --ao-status-pending: #ff9f0a;
     --ao-status-accepted: #30d158;
     --ao-status-declined: #ff453a;
     --ao-status-info: #0a84ff;
+
+    --ao-status-declined-text: #ff6961;
   }
 }
 
@@ -52,11 +72,15 @@
   --color-ink-secondary: var(--ao-ink-secondary);
   --color-ink-tertiary: var(--ao-ink-tertiary);
   --color-divider: var(--ao-divider);
+  --color-control: var(--ao-control);
   --color-primary: var(--ao-primary);
+  --color-primary-text: var(--ao-primary-text);
+  --color-focus-ring: var(--ao-focus-ring);
 
   --color-pending: var(--ao-status-pending);
   --color-accepted: var(--ao-status-accepted);
   --color-declined: var(--ao-status-declined);
+  --color-declined-text: var(--ao-status-declined-text);
   --color-info: var(--ao-status-info);
 }
 
