@@ -103,10 +103,10 @@ describe('AuthService', () => {
     prisma = createPrismaMock();
     service = new AuthService(prisma);
 
-    // TokenService internals — delete all tokens + create refresh token are called on every
-    // successful auth path. Default these to resolved so tests don't need to repeat them.
-    vi.mocked(prisma.refreshToken.deleteMany).mockResolvedValue({ count: 0 });
+    // TokenService internals — storing a refresh token and revoking a spent one are called on
+    // the auth paths below. Default these to resolved so tests don't need to repeat them.
     vi.mocked(prisma.refreshToken.create).mockResolvedValue({} as never);
+    vi.mocked(prisma.refreshToken.updateMany).mockResolvedValue({ count: 1 } as never);
   });
 
   // ─────────────────────────────────────────────
@@ -318,6 +318,17 @@ describe('AuthService', () => {
       expect(generateTokens).toHaveBeenCalledWith(
         expect.objectContaining({ sub: 'user-1', type: 'user' })
       );
+    });
+
+    it('leaves other devices signed in — logging in does not clear existing tokens', async () => {
+      vi.mocked(prisma.user.findUnique).mockResolvedValue(mockUser as never);
+      vi.mocked(verifyPassword).mockResolvedValue(true);
+
+      await service.loginUser({ email: 'test@example.com', password: 'Valid1Pass' });
+
+      expect(prisma.refreshToken.deleteMany).not.toHaveBeenCalled();
+      expect(prisma.refreshToken.updateMany).not.toHaveBeenCalled();
+      expect(prisma.refreshToken.create).toHaveBeenCalledOnce();
     });
 
     it('throws ValidationError when email is missing', async () => {
@@ -620,8 +631,7 @@ describe('AuthService', () => {
   // ─────────────────────────────────────────────
 
   describe('refreshToken', () => {
-    it('returns null when validateRefreshToken fails (invalid/expired token)', async () => {
-      // verifyRefreshToken throws → validateRefreshToken catches and returns null
+    it('returns null when the JWT does not verify (invalid/expired token)', async () => {
       vi.mocked(verifyRefreshToken).mockImplementation(() => {
         throw new Error('invalid signature');
       });
@@ -629,6 +639,41 @@ describe('AuthService', () => {
       const result = await service.refreshToken('bad-refresh-token');
 
       expect(result).toBeNull();
+      expect(prisma.refreshToken.findUnique).not.toHaveBeenCalled();
+    });
+
+    it('trips reuse detection when the stored token is already revoked', async () => {
+      vi.mocked(verifyRefreshToken).mockReturnValue({
+        sub: 'user-1',
+        type: 'user',
+        iat: 0,
+        exp: 9999999999,
+      } as never);
+
+      // A spent token: the row survives rotation as revoked
+      vi.mocked(prisma.refreshToken.findUnique).mockResolvedValue({
+        token: 'hashed-token',
+        revoked: true,
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        userId: 'user-1',
+      } as never);
+      vi.mocked(prisma.user.findUnique).mockResolvedValue({
+        email: 'test@example.com',
+        isOverseer: false,
+        isAppAdmin: false,
+      } as never);
+
+      const result = await service.refreshToken('replayed-refresh-token');
+
+      expect(result).toBeNull();
+      // Every live session for the user is revoked, not just this one
+      expect(prisma.refreshToken.updateMany).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: { userId: 'user-1', revoked: false },
+          data: { revoked: true },
+        })
+      );
+      expect(generateTokens).not.toHaveBeenCalled();
     });
 
     it('returns new TokenPair on valid refresh token', async () => {
@@ -661,6 +706,11 @@ describe('AuthService', () => {
       expect(generateTokens).toHaveBeenCalledWith(
         expect.objectContaining({ sub: 'user-1', type: 'user' })
       );
+      // Only the spent token is retired — other devices keep their rows
+      expect(prisma.refreshToken.deleteMany).not.toHaveBeenCalled();
+      expect(prisma.refreshToken.updateMany).toHaveBeenCalledWith(
+        expect.objectContaining({ data: { revoked: true } })
+      );
     });
   });
 
@@ -669,17 +719,15 @@ describe('AuthService', () => {
   // ─────────────────────────────────────────────
 
   describe('logout', () => {
-    it('revokes the refresh token and returns true', async () => {
-      vi.mocked(prisma.refreshToken.updateMany).mockResolvedValue({ count: 1 } as never);
+    it('deletes the refresh token and returns true', async () => {
+      vi.mocked(prisma.refreshToken.deleteMany).mockResolvedValue({ count: 1 } as never);
 
       const result = await service.logout('some-refresh-token');
 
       expect(result).toBe(true);
-      expect(prisma.refreshToken.updateMany).toHaveBeenCalledWith(
-        expect.objectContaining({
-          data: { revoked: true },
-        })
-      );
+      // Deleted, not revoked — a deliberate sign-out must not trip reuse detection
+      expect(prisma.refreshToken.deleteMany).toHaveBeenCalledOnce();
+      expect(prisma.refreshToken.updateMany).not.toHaveBeenCalled();
     });
   });
 });

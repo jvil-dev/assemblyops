@@ -22,7 +22,7 @@
  */
 import { PrismaClient, AuthProvider } from '@prisma/client';
 import { hashPassword, verifyPassword } from '../utils/password.js';
-import { generateTokens, TokenPair } from '../utils/jwt.js';
+import { generateTokens, verifyRefreshToken, TokenPair } from '../utils/jwt.js';
 import { TokenService } from './tokenService.js';
 import { AuthenticationError, ConflictError, ValidationError } from '../utils/errors.js';
 import { generateUserId } from '../utils/credentials.js';
@@ -280,16 +280,23 @@ export class AuthService {
   // ─────────────────────────────────────────────
 
   async refreshToken(refreshToken: string): Promise<TokenPair | null> {
-    const validation = await this.tokenService.validateRefreshToken(refreshToken);
-    if (!validation) return null;
+    let userId: string;
+    try {
+      userId = verifyRefreshToken(refreshToken).sub;
+    } catch {
+      return null;
+    }
 
     const user = await this.prisma.user.findUnique({
-      where: { id: validation.userId },
+      where: { id: userId },
       select: { email: true, isOverseer: true, isAppAdmin: true },
     });
+
+    // Stored-state checks stay in rotateRefreshToken: it is the only place that
+    // can tell a replayed token from an unknown one and trip reuse detection.
     return this.tokenService.rotateRefreshToken(
       refreshToken,
-      validation.userId,
+      userId,
       user?.email,
       user?.isOverseer,
       user?.isAppAdmin
@@ -297,7 +304,7 @@ export class AuthService {
   }
 
   async logout(refreshToken: string): Promise<boolean> {
-    await this.tokenService.revokeRefreshToken(refreshToken);
+    await this.tokenService.deleteRefreshToken(refreshToken);
     return true;
   }
 
@@ -475,7 +482,6 @@ export class AuthService {
     isOverseer: boolean;
     isAppAdmin?: boolean;
   }) {
-    await this.tokenService.deleteAllUserTokens(user.id);
     const tokens = generateTokens({
       sub: user.id,
       type: 'user',

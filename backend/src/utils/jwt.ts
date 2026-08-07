@@ -12,9 +12,11 @@
  *   - sub: User ID
  *   - type: 'user'
  *   - email, isOverseer, isAppAdmin: User metadata
+ *   - jti: Random per-token id, refresh tokens only
  *
  * Used by: AuthService, context.ts
  */
+import crypto from 'crypto';
 import jwt, { SignOptions, JwtPayload } from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET!;
@@ -53,8 +55,11 @@ export function generateTokens(payload: {
     expiresIn: ACCESS_TOKEN_EXPIRY,
   };
 
+  // jti keeps every refresh token distinct. Without it two tokens issued to one
+  // user in the same second are byte-identical, and RefreshToken.token is unique.
   const refreshTokenOptions: SignOptions = {
     expiresIn: REFRESH_TOKEN_EXPIRY,
+    jwtid: crypto.randomUUID(),
   };
 
   const accessToken = jwt.sign(

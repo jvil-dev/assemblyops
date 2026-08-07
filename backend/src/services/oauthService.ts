@@ -149,7 +149,6 @@ export class OAuthService {
   }
 
   private async issueTokens(admin: { id: string; email: string }) {
-    await this.tokenService.deleteAllUserTokens(admin.id);
     const tokens = generateTokens({ sub: admin.id, type: 'user', email: admin.email });
     await this.tokenService.createRefreshToken(tokens.refreshToken, admin.id);
     return tokens;
