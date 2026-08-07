@@ -64,16 +64,15 @@ If any condition fails, keep the work in Notion and report the missing gate.
 
 1. Open the approved issue; add its card to Todo.
 2. Cut `<type>/<issue-id>-<short-description>` from `main`.
-3. Open a draft PR immediately with `Closes #<issue-id>`.
-4. Add issue and PR cards to the Project; move both to WIP.
-5. Build only the approved acceptance criteria.
-6. Capture newly discovered scope in Notion or a separately approved issue.
-7. Verify all criteria; add tests for logic-heavy behavior.
-8. Mark the PR ready for review while keeping it in WIP.
-9. Run the repository review checklist.
-10. Merge with a merge commit; never squash.
-11. Move issue and PR cards to Done.
-12. Update Notion with issue/PR links and delivery notes.
+3. Move the issue card to WIP.
+4. Build only the approved acceptance criteria.
+5. Capture newly discovered scope in Notion or a separately approved issue.
+6. Verify all criteria; add tests for logic-heavy behavior.
+7. Open the PR ready for review with `Closes #<issue-id>`; add its card to the Project at WIP. Never open a draft.
+8. Run the repository review checklist.
+9. Merge with a merge commit; never squash.
+10. Move issue and PR cards to Done.
+11. Update Notion with issue/PR links and delivery notes.
 
 ## Release semantics
 

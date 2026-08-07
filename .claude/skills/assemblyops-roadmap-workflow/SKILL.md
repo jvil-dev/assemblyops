@@ -11,7 +11,7 @@ Enforce the approved planning and delivery boundary:
 - Use the repository Markdown files in `docs/development_docs/` as the authoritative CO/S source transcriptions.
 - Use GitHub Issues for approved, development-ready implementation slices.
 - Use GitHub Projects only for active execution through Todo, WIP, and Done.
-- Use pull-request draft state to distinguish development from review.
+- Open pull requests ready for review; never as drafts.
 
 Read `references/workflow-contract.md` completely before creating, editing, or moving roadmap or development work.
 
@@ -32,7 +32,7 @@ Create a GitHub issue only from a Notion feature marked `Ready for development`,
 Use the GitHub Project for issue and PR execution only:
 
 - Issue approved and opened: Todo
-- Branch cut or draft PR opened: WIP
+- Branch cut: WIP
 - PR merged: Done
 
 Do not add project columns or parallel status labels to represent review state.
