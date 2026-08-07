@@ -1,0 +1,4 @@
+interface:
+  display_name: "AssemblyOps Roadmap Workflow"
+  short_description: "Guard Notion and GitHub workflow handoffs"
+  default_prompt: "Use $assemblyops-roadmap-workflow to select and hand off the next approved development slice."
