@@ -73,8 +73,13 @@ temp/
 .worktrees/
 
 # Agent tooling — per-machine config and local review output.
-# AGENTS.md is committed: it is the shared review contract.
-.codex/
+# AGENTS.md and project skills are committed shared contracts.
+.codex/*
+!.codex/skills/
+!.codex/skills/**
+.claude/*
+!.claude/skills/
+!.claude/skills/**
 .codex-review-output.md
 
 # Xcode
