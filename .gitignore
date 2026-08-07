@@ -73,8 +73,24 @@ temp/
 .worktrees/
 
 # Agent tooling — per-machine config and local review output.
-# AGENTS.md is committed: it is the shared review contract.
-.codex/
+# AGENTS.md and project skills are committed shared contracts.
+# Skill trees are an allowlist: deny everything, then re-admit directories and
+# the two source types skills are made of. A blanket `!` would instead out-rank
+# every general ignore above and re-admit .env, node_modules, and logs.
+.codex/*
+.claude/*
+!.codex/skills/
+!.claude/skills/
+.codex/skills/**
+.claude/skills/**
+!.codex/skills/**/
+!.claude/skills/**/
+!.codex/skills/**/*.md
+!.claude/skills/**/*.md
+!.codex/skills/**/*.yaml
+!.claude/skills/**/*.yaml
+.codex/skills/**/node_modules/
+.claude/skills/**/node_modules/
 .codex-review-output.md
 
 # Xcode

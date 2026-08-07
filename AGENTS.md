@@ -45,6 +45,8 @@ Why the first rule exists: in the March 2026 beta the attendance-counting permis
 
 GitHub Flow: `main` is the always-deployable trunk. Cut a branch off `main` (`<type>/<issue-id>-<desc>`) → PR back to `main` → **merge commit, never squash**. One tier per branch (`backend/` or `web/…`, not both). Railway auto-deploys `main` on merge. See `CONTRIBUTING.md` and `.github/` templates for issue / PR / commit format.
 
+Product planning lives in the **AssemblyOps Notion workspace**. Notion owns initiatives, features, requirements, decisions, priorities, release horizons, dependencies, and release state. The Markdown files in `docs/development_docs/` are the authoritative CO/S source transcriptions. GitHub Issues begin only from a Notion feature marked **Ready for development**, after the product owner explicitly approves its included scope, exclusions, and acceptance criteria. The GitHub Project remains an execution board with only **Todo / WIP / Done**.
+
 ## Releasing
 
 Web/backend tiers deploy continuously on merge to `main`. Mobile is store-gated — merging is not releasing:

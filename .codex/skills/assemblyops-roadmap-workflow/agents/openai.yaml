@@ -1,0 +1,6 @@
+# Codex display metadata for the AssemblyOps roadmap workflow skill.
+# Supplies the name, summary, and default prompt shown in the Codex skill picker.
+interface:
+  display_name: "AssemblyOps Roadmap Workflow"
+  short_description: "Guard Notion and GitHub workflow handoffs"
+  default_prompt: "Use $assemblyops-roadmap-workflow to select and hand off the next approved development slice."
